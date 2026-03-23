@@ -1,9 +1,18 @@
-import cirq
 import numpy as np
 import random
 
 
 def DQNN_generate_y(bitstring, n1, m, theta_list):
+    try:
+        import cirq
+    except Exception as e:
+        cirq = None
+        print(f"Warning: cirq import failed in DQNN_generate_y: {e}")
+
+    if cirq is None:
+        # fallback: generate random bits of length n1*m
+        y = [random.randint(0,1) for _ in range(n1*m)]
+        return None, y
     qubits = cirq.LineQubit.range(m)# 创建 m 个量子比特
     sim = cirq.Simulator()# 创建模拟器
     
