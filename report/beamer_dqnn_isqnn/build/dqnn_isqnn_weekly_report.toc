@@ -1,4 +1,3 @@
 \beamer@sectionintoc {1}{问题与算法}{3}{0}{1}
-\beamer@sectionintoc {2}{等价性证明}{7}{0}{2}
-\beamer@sectionintoc {3}{代码结果展示}{11}{0}{3}
-\beamer@sectionintoc {4}{总结}{15}{0}{4}
+\beamer@sectionintoc {2}{等价性证明}{8}{0}{2}
+\beamer@sectionintoc {3}{代码结果展示}{15}{0}{3}

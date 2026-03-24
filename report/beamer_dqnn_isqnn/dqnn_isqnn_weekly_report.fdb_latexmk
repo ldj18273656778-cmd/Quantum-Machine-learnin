@@ -1,10 +1,10 @@
 # Fdb version 4
-["xdvipdfmx"] 1774253048.6394 "dqnn_isqnn_weekly_report.xdv" "dqnn_isqnn_weekly_report.pdf" "dqnn_isqnn_weekly_report" 1774253050.01267 0
-  "dqnn_isqnn_weekly_report.xdv" 1774253048 84844 8a492aecc73ebdff0ceebb9e05e335be "xelatex"
+["xdvipdfmx"] 1774358090.34664 "dqnn_isqnn_weekly_report.xdv" "dqnn_isqnn_weekly_report.pdf" "dqnn_isqnn_weekly_report" 1774358091.61179 0
+  "dqnn_isqnn_weekly_report.xdv" 1774358090 89448 d6eeb85c55d13d6d7e937104d63d8fb4 "xelatex"
   (generated)
   "dqnn_isqnn_weekly_report.pdf"
   (rewritten before read)
-["xelatex"] 1774253045.66983 "d:/研究生/研究生/Quantum Machine learning/report/beamer_dqnn_isqnn/dqnn_isqnn_weekly_report.tex" "dqnn_isqnn_weekly_report.xdv" "dqnn_isqnn_weekly_report" 1774253050.00355 0
+["xelatex"] 1774358087.82329 "d:/研究生/研究生/Quantum Machine learning/report/beamer_dqnn_isqnn/dqnn_isqnn_weekly_report.tex" "dqnn_isqnn_weekly_report.xdv" "dqnn_isqnn_weekly_report" 1774358091.60634 0
   "assets/code_tree_screenshot.png" 1774252176 16328 cd8294329d369bca2500301351a856c7 ""
   "assets/dqnn_idqnn_mapping.png" 1774236391 106902 fababb2daca46f96ed2cb92c902569f1 ""
   "c:/Windows/Fonts/msyh.ttc" 1734266774 19701556 07c864a5b15e68fa47639738197fae38 ""
@@ -236,12 +236,12 @@
   "c:/texlive/2024/texmf-dist/web2c/texmf.cnf" 1741263777 41649 5d6ae549fbbcb850a863f69aa41f3d10 ""
   "c:/texlive/2024/texmf-var/web2c/xetex/xelatex.fmt" 1741265434 10849696 fb3c1cbdc20f3373de4ed91601ae443f ""
   "c:/texlive/2024/texmf.cnf" 1741265333 713 e69b156964470283e0530f5060668171 ""
-  "d:/研究生/研究生/Quantum Machine learning/report/beamer_dqnn_isqnn/dqnn_isqnn_weekly_report.tex" 1774253044 8704 38c6255f67968b76a1e4f422ee4f9d7a ""
-  "dqnn_isqnn_weekly_report.aux" 1774253048 3579 f06cad237d8b5d6d83c87c5f6d0f7409 "xelatex"
-  "dqnn_isqnn_weekly_report.nav" 1774253048 1973 15ef0839d8182adea5e2e2596f763f93 "xelatex"
-  "dqnn_isqnn_weekly_report.out" 1774253048 257 f6db33554823a82574121dad28a73e4a "xelatex"
-  "dqnn_isqnn_weekly_report.tex" 1774253044 8704 38c6255f67968b76a1e4f422ee4f9d7a ""
-  "dqnn_isqnn_weekly_report.toc" 1774253048 157 2136b16a30d9b076f289262802d44d0a "xelatex"
+  "d:/研究生/研究生/Quantum Machine learning/report/beamer_dqnn_isqnn/dqnn_isqnn_weekly_report.tex" 1774358086 9629 8d6abb8d35f5823119e6b7671b85add6 ""
+  "dqnn_isqnn_weekly_report.aux" 1774358090 3749 f1dfbfd0c8566ca25bcc745ac3647562 "xelatex"
+  "dqnn_isqnn_weekly_report.nav" 1774358090 2065 f36dca8daa56f694743f7ae2d2d7c05d "xelatex"
+  "dqnn_isqnn_weekly_report.out" 1774358090 257 f6db33554823a82574121dad28a73e4a "xelatex"
+  "dqnn_isqnn_weekly_report.tex" 1774358086 9629 8d6abb8d35f5823119e6b7671b85add6 ""
+  "dqnn_isqnn_weekly_report.toc" 1774358090 157 e84bb6969ad06c21d7ce53a5a974bb28 "xelatex"
   (generated)
   "dqnn_isqnn_weekly_report.aux"
   "dqnn_isqnn_weekly_report.log"

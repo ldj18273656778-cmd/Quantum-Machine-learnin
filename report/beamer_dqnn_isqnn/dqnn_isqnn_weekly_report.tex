@@ -196,7 +196,31 @@
     \item 因而两种分支下，IDQNN 与 DQNN 的“测量结果分布 + 下一步有效态”均保持一致,演化轨迹保持相同。
   \end{itemize}
 \end{frame}
+\begin{frame}
+  对第 \((i_1,i_2)\) 个 qubit 进行 \(X\) 测量，得到 \(y[i_1,i_2]\) 的概率是：
 
+  归一化：
+  \[
+    \ket{\phi^{(i_1)}}=
+    \ket{0}_{i_1,i_2}\alpha\ket{\tilde{\phi}_0}
+    +\ket{1}_{i_1,i_2}\beta\ket{\tilde{\phi}_1}.
+  \]
+  其中$\alpha=\sqrt{\braket{\phi_0\mid\phi_0}}$, $\beta=\sqrt{\braket{\phi_1\mid\phi_1}}$，且$\ket{\tilde{\phi}_0}$、$\ket{\tilde{\phi}_1}$是归一化态。
+  \[
+  \begin{aligned}
+    \ket{\Psi}
+    =&~\frac{1}{\sqrt{2}}\ket{+}_{i_1,i_2}
+      \Big(\ket{+}_{i_1+1,i_2}\alpha\ket{\tilde{\phi}_0}
+      +\ket{-}_{i_1+1,i_2}\beta\ket{\tilde{\phi}_1}\Big) \\
+    &+\frac{1}{\sqrt{2}}\ket{-}_{i_1,i_2}
+      \Big(\ket{+}_{i_1+1,i_2}\alpha\ket{\tilde{\phi}_0}
+      -\ket{-}_{i_1+1,i_2}\beta\ket{\tilde{\phi}_1}\Big).\\
+    &\equiv\frac{1}{\sqrt{2}}\ket{+}_{i_1,i_2}\ket{\Phi_+}
+      +\frac{1}{\sqrt{2}}\ket{-}_{i_1,i_2}\ket{\Phi_-}.
+  \end{aligned}
+  \]
+  
+\end{frame}
 
 
 \begin{frame}{量子优越性（对应 H.3/H.4）}
@@ -207,6 +231,7 @@
     \item 因此可支持 generative quantum advantage 。
   \end{itemize}
 \end{frame}
+
 
 \section{代码结果展示}
 

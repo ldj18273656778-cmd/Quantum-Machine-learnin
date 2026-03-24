@@ -54,8 +54,8 @@ def generate_probability_distribution(bitstring, n1, m, theta_list, num_samples=
 
 if __name__ == "__main__":
     bitstring = "000000000000"
-    n1 = 3
-    m = 4
+    n1 = 1
+    m = 12
     n = n1 * m
     theta_test = [random.uniform(0, 1) * np.pi for _ in range(n)]
 
