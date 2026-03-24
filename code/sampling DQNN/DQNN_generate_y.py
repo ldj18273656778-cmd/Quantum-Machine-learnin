@@ -65,7 +65,7 @@ def DQNN_generate_y(bitstring, n1, m, theta_list):
                 meas = random.randint(0, 1)
                 y.append(meas)
 
-                # 如果随机值为1，加X门
+                # 如果随机值为1，加X门，一定得利用x门修改状态，因为x门翻转的是\ket{+}和\ket{-}
                 if meas == 1:
                     x_circuit = cirq.Circuit(cirq.X(qubits[i]))
                     full_circuit.append(cirq.X(qubits[i]))
@@ -79,6 +79,7 @@ def DQNN_generate_y(bitstring, n1, m, theta_list):
                 h_circuit.append(cirq.measure(qubits[i], key='meas'))# 测量X并记录结果至meas
                 result = sim.simulate(h_circuit, initial_state=state, qubit_order=qubits)
                 meas = int(result.measurements['meas'][0])
+                state = result.final_state_vector
 
                 y.append(meas)
                 

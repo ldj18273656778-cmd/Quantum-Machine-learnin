@@ -7,14 +7,14 @@ random.seed(42)
 # bitstring = "100010110001"  # n = n1*m #在单层的情况下，二者输出的y分布几乎相同；没有bug.
 # n1 = 1
 # m = 12
-bitstring = "000000" 
-n1=3
+bitstring = "0001" 
+n1=2
 m=2
 n = n1 * m
 theta_test = [random.uniform(0, 1) * np.pi for _ in range(n)]
 
 dqnn_samples, isqnn_samples, dqnn_hist, isqnn_hist, bins = generate_probability_distribution(
-    bitstring, n1, m, theta_test, num_samples=5000, bin_width=2
+    bitstring, n1, m, theta_test, num_samples=3000, bin_width=1
 )
 
 print("DQNN sample decimal y:", dqnn_samples[:20], "...")
