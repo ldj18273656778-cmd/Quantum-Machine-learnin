@@ -186,17 +186,8 @@
   \end{aligned}
   \]
 \end{frame}
-
-\begin{frame}{详细展开 2：与 DQNN 的分支对齐}
-  \begin{itemize}
-    \item 当 \(x[i_1+1,i_2]=0\) 时,在DQNN中必须先施加门H，使状态由$\ket{0}\ket{\phi_0}+\ket{1}\ket{\phi_1}$变为$\ket{+}\ket{\phi_0}+\ket{-}\ket{\phi_1}$，与IDQNN的状态一致。
-    \item 当 \(x[i_1+1,i_2]=0\) 时，若在 DQNN 中对 \(y[i_1,i_2]=1\) 的分支施加 \(Z\) 校正，则两模型后续的有效状态一致。
-    \item 当 \(x[i_1+1,i_2]=1\) 时，\((i_1+1,i_2)\) 位置初始化为 \(\ket{0}\)，对应的 CZ 不改变量子态；随后对 \((i_1,i_2)\) 做 \(X\) 测量并重置，\((i_1+1,i_2)\) 的有效状态保持为 \(\ket{0}\)。
-    \item 因而两种分支下，IDQNN 与 DQNN 的“测量结果分布 + 下一步有效态”均保持一致,演化轨迹保持相同。
-  \end{itemize}
-\end{frame}
 \begin{frame}
-  对第 \((i_1,i_2)\) 个 qubit 进行 \(X\) 测量，得到 \(y[i_1,i_2]\) 的概率是：
+  $x[i_1+1,i_2]=0$时对第 \((i_1,i_2)\) 个 qubit 进行 \(X\) 测量，得到 \(y[i_1,i_2]\) 的概率是：
 
   归一化：
   \[
@@ -205,6 +196,7 @@
     +\ket{1}_{i_1,i_2}\beta\ket{\tilde{\phi}_1}.
   \]
   其中$\alpha=\sqrt{\braket{\phi_0\mid\phi_0}}$, $\beta=\sqrt{\braket{\phi_1\mid\phi_1}}$，且$\ket{\tilde{\phi}_0}$、$\ket{\tilde{\phi}_1}$是归一化态。
+  通过CZ门与后面的qubit纠缠后，整体态为：
   \[
   \begin{aligned}
     \ket{\Psi}
@@ -218,7 +210,28 @@
       +\frac{1}{\sqrt{2}}\ket{-}_{i_1,i_2}\ket{\Phi_-}.
   \end{aligned}
   \]
-  
+  因此$P[y[i_1,i_2]=0]=\frac{1}{2}$，$P[y[i_1,i_2]=1]=\frac{1}{2}$.
+\end{frame}
+
+\begin{frame}{详细展开 2：与 DQNN 的分支对齐}
+  \begin{itemize}
+    \item 当 \(x[i_1+1,i_2]=0\) 时,在DQNN中必须先施加门H，使状态由$\ket{0}\ket{\phi_0}+\ket{1}\ket{\phi_1}$变为$\ket{+}\ket{\phi_0}+\ket{-}\ket{\phi_1}$，与IDQNN的状态一致。
+    \item 当 \(x[i_1+1,i_2]=0\) 时，若在 DQNN 中对 \(y[i_1,i_2]=1\) 的分支施加 \(Z\) 校正，则两模型后续的有效状态一致。
+    \item 当 \(x[i_1+1,i_2]=1\) 时，\((i_1+1,i_2)\) 位置初始化为 \(\ket{0}\)，对应的 CZ 不改变量子态；随后对 \((i_1,i_2)\) 做 \(X\) 测量并重置，\((i_1+1,i_2)\) 的有效状态保持为 \(\ket{0}\)。
+    \item 因而两种分支下，IDQNN 与 DQNN 的“测量结果分布 + 下一步有效态”均保持一致,演化轨迹保持相同。
+  \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+  $x[i_1+1,i_2]=1$时对第 \((i_1,i_2)\) 个 qubit 进行 \(X\) 测量;
+  $$\ket{\phi^{(i_1)}}=\frac{1}{\sqrt{2}}\ket{+}_{i_1,i_2}(\alpha\ket{\tilde{\phi}_0}+\beta\ket{\tilde{\phi}_1})+\frac{1}{\sqrt{2}}\ket{-}_{i_1,i_2}(\alpha\ket{\tilde{\phi}_0}-\beta\ket{\tilde{\phi}_1})$$
+  因此：
+$$P[y[i_1,i_2]=0]=\frac{1}{2}(1+2\operatorname*{Re}\alpha^*\beta\braket{\tilde{\phi}_0\mid\tilde{\phi}_1}),
+~P[y[i_1,i_2]=1]=\frac{1}{2}(1-2\operatorname*{Re}\alpha^*\beta\braket{\tilde{\phi}_0\mid\tilde{\phi}_1}).$$
+再与下一个 qubit 纠缠后，整体态为：$\ket{0}(\alpha\ket{\tilde{\phi}_0}+\beta\ket{\tilde{\phi}_1})$或者$\ket{0}(\alpha\ket{\tilde{\phi}_0}-\beta\ket{\tilde{\phi}_1})$.
+
 \end{frame}
 
 
@@ -239,6 +252,7 @@
   \begin{itemize}
     \item \texttt{DQNN\_generate\_y.py}：实现 DQNN 采样流程。
     \item \texttt{IDQNN\_generate\_y.py}：实现 IDQNN 采样流程。
+    \item \texttt{probility\_distribution.py}：多次采样生成 DQNN 与 IDQNN 的输出分布。
   \end{itemize}
   \vspace{0.3em}
    \texttt{x bitstring = "00001111000000110000" \# n=20, m=5, n1=4.}
@@ -249,35 +263,35 @@
 
 \begin{frame}{采样结果展示 I}
   \centering
-  \includegraphics[width=0.43\textwidth]{../../../output_images/seed_42_samples_3000_bitstring_0000_tvd_0.024333.png}\hfill
-  \includegraphics[width=0.43\textwidth]{../../../output_images/seed_42_samples_3000_bitstring_0001_tvd_0.032000.png}
+  \includegraphics[width=0.43\textwidth]{../../output_images/seed_42_samples_3000_bitstring_0000_tvd_0.024333.png}\hfill
+  \includegraphics[width=0.43\textwidth]{../../output_images/seed_42_samples_3000_bitstring_0001_tvd_0.032000.png}
 
   \vspace{0.2em}
 
-  \includegraphics[width=0.43\textwidth]{../../../output_images/seed_42_samples_3000_bitstring_0010_tvd_0.045000.png}\hfill
-  \includegraphics[width=0.43\textwidth]{../../../output_images/seed_42_samples_3000_bitstring_0011_tvd_0.042333.png}
+  \includegraphics[width=0.43\textwidth]{../../output_images/seed_42_samples_3000_bitstring_0010_tvd_0.045000.png}\hfill
+  \includegraphics[width=0.43\textwidth]{../../output_images/seed_42_samples_3000_bitstring_0011_tvd_0.042333.png}
 \end{frame}
 
 \begin{frame}{采样结果展示 II}
   \centering
-  \includegraphics[width=0.43\textwidth]{../../../output_images/seed_42_samples_3000_bitstring_0100_tvd_0.054000.png}\hfill
-  \includegraphics[width=0.43\textwidth]{../../../output_images/seed_42_samples_3000_bitstring_0101_tvd_0.030667.png}
+  \includegraphics[width=0.43\textwidth]{../../output_images/seed_42_samples_3000_bitstring_0100_tvd_0.054000.png}\hfill
+  \includegraphics[width=0.43\textwidth]{../../output_images/seed_42_samples_3000_bitstring_0101_tvd_0.030667.png}
 
   \vspace{0.2em}
 
-  \includegraphics[width=0.43\textwidth]{../../../output_images/seed_42_samples_3000_bitstring_0110_tvd_0.037667.png}\hfill
-  \includegraphics[width=0.43\textwidth]{../../../output_images/seed_42_samples_3000_bitstring_0111_tvd_0.040333.png}
+  \includegraphics[width=0.43\textwidth]{../../output_images/seed_42_samples_3000_bitstring_0110_tvd_0.037667.png}\hfill
+  \includegraphics[width=0.43\textwidth]{../../output_images/seed_42_samples_3000_bitstring_0111_tvd_0.040333.png}
 \end{frame}
 
 \begin{frame}{采样结果展示 III}
   \centering
-  \includegraphics[width=0.43\textwidth]{../../../output_images/seed_42_samples_3000_bitstring_1000_tvd_0.054667.png}\hfill
-  \includegraphics[width=0.43\textwidth]{../../../output_images/seed_42_samples_3000_bitstring_1111_tvd_0.041333.png}
+  \includegraphics[width=0.43\textwidth]{../../output_images/seed_42_samples_3000_bitstring_1000_tvd_0.054667.png}\hfill
+  \includegraphics[width=0.43\textwidth]{../../output_images/seed_42_samples_3000_bitstring_1111_tvd_0.041333.png}
 \end{frame}
 
 \begin{frame}{采样结果展示 IV}
   \centering
-  \includegraphics[width=0.76\textwidth]{../../../output_images/seed_42_samples_10000_bitstring_0000_tvd_0.016500.png}
+  \includegraphics[width=0.76\textwidth]{../../output_images/seed_42_samples_10000_bitstring_0000_tvd_0.016500.png}
 \end{frame}
 
 

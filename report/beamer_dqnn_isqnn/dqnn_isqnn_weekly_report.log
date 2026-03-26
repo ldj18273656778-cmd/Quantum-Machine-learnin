@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2025.3.6)  24 MAR 2026 21:14
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2025.3.6)  25 MAR 2026 11:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -974,26 +974,26 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 ] (./dqnn_isqnn_weekly_report.toc) [2
 
 ]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 45.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 44.
  (c:/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 45.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 44.
  (c:/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <10.95> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 45.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 44.
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <8> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 45.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 44.
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <6> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 45.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 44.
 LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <10.95> not available
-(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 45.
+(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 44.
 LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <8> not available
-(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 45.
+(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 44.
 LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <6> not available
-(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 45.
+(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 44.
  [3
 
 ] [4
@@ -1005,17 +1005,17 @@ File: assets/dqnn_idqnn_mapping.png Graphic file (type bmp)
 
 ]
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <10> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 93.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 92.
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <7> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 93.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 92.
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <5> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 93.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 92.
 LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <10> not available
-(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 93.
+(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 92.
 LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <7> not available
-(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 93.
+(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 92.
 LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <5> not available
-(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 93.
+(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 92.
  [6
 
 ] [7
@@ -1028,9 +1028,9 @@ LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <5> not available
 
 ]
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <14.4> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 189.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 188.
 LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <14.4> not available
-(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 189.
+(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 188.
  [11
 
 ] [12
@@ -1038,6 +1038,8 @@ LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <14.4> not available
 ] [13
 
 ] [14
+
+] [15
 
 ]
 
@@ -1065,7 +1067,49 @@ Package fontspec Info: Font family 'FangSong(0)' created for font 'FangSong'
 
 File: assets/code_tree_screenshot.png Graphic file (type bmp)
 <assets/code_tree_screenshot.png>
- [15
+ [16
+
+]
+File: ../../output_images/seed_42_samples_3000_bitstring_0000_tvd_0.024333.png Graphic file (type bmp)
+<../../output_images/seed_42_samples_3000_bitstring_0000_tvd_0.024333.png>
+File: ../../output_images/seed_42_samples_3000_bitstring_0001_tvd_0.032000.png Graphic file (type bmp)
+<../../output_images/seed_42_samples_3000_bitstring_0001_tvd_0.032000.png>
+File: ../../output_images/seed_42_samples_3000_bitstring_0010_tvd_0.045000.png Graphic file (type bmp)
+<../../output_images/seed_42_samples_3000_bitstring_0010_tvd_0.045000.png>
+File: ../../output_images/seed_42_samples_3000_bitstring_0011_tvd_0.042333.png Graphic file (type bmp)
+<../../output_images/seed_42_samples_3000_bitstring_0011_tvd_0.042333.png>
+
+Overfull \vbox (10.06029pt too high) detected at line 273
+ []
+
+[17
+
+]
+File: ../../output_images/seed_42_samples_3000_bitstring_0100_tvd_0.054000.png Graphic file (type bmp)
+<../../output_images/seed_42_samples_3000_bitstring_0100_tvd_0.054000.png>
+File: ../../output_images/seed_42_samples_3000_bitstring_0101_tvd_0.030667.png Graphic file (type bmp)
+<../../output_images/seed_42_samples_3000_bitstring_0101_tvd_0.030667.png>
+File: ../../output_images/seed_42_samples_3000_bitstring_0110_tvd_0.037667.png Graphic file (type bmp)
+<../../output_images/seed_42_samples_3000_bitstring_0110_tvd_0.037667.png>
+File: ../../output_images/seed_42_samples_3000_bitstring_0111_tvd_0.040333.png Graphic file (type bmp)
+<../../output_images/seed_42_samples_3000_bitstring_0111_tvd_0.040333.png>
+
+Overfull \vbox (10.06029pt too high) detected at line 284
+ []
+
+[18
+
+]
+File: ../../output_images/seed_42_samples_3000_bitstring_1000_tvd_0.054667.png Graphic file (type bmp)
+<../../output_images/seed_42_samples_3000_bitstring_1000_tvd_0.054667.png>
+File: ../../output_images/seed_42_samples_3000_bitstring_1111_tvd_0.041333.png Graphic file (type bmp)
+<../../output_images/seed_42_samples_3000_bitstring_1111_tvd_0.041333.png>
+ [19
+
+]
+File: ../../output_images/seed_42_samples_10000_bitstring_0000_tvd_0.016500.png Graphic file (type bmp)
+<../../output_images/seed_42_samples_10000_bitstring_0000_tvd_0.016500.png>
+ [20
 
 ]
 \tf@nav=\write6
@@ -1086,12 +1130,12 @@ Package rerunfilecheck Info: File `dqnn_isqnn_weekly_report.out' has not changed
 (rerunfilecheck)             Checksum: F6DB33554823A82574121DAD28A73E4A;257.
  ) 
 Here is how much of TeX's memory you used:
- 27927 strings out of 474773
- 629504 string characters out of 5761290
- 1938842 words of memory out of 5000000
- 49441 multiletter control sequences out of 15000+600000
+ 28037 strings out of 474773
+ 637049 string characters out of 5761290
+ 1939842 words of memory out of 5000000
+ 49539 multiletter control sequences out of 15000+600000
  574869 words of font info for 150 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  128i,12n,123p,523b,688s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on dqnn_isqnn_weekly_report.xdv (15 pages, 89448 bytes).
+Output written on dqnn_isqnn_weekly_report.xdv (20 pages, 104676 bytes).
