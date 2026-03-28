@@ -32,17 +32,17 @@
   \begin{itemize}
     \item 给定输入-输出比特串数据集
     \[
-      \{(x_i,y_i)\mid x_i\in\{0,1\}^n,\; y_i\in\{0,1\}^m\}_{i=1}^{N}.
+      \{(x_i,y_i)\mid x_i\in\{0,1\}^n,\; y_i\in\{0,1\}^n\}_{i=1}^{N}.
     \]
     \item 其中每个输出 $y_i$ 都是根据未知条件分布 $p(y_i\mid x_i)$ 采样得到。
-    \item 目标是基于该数据集学习一个模型，使其对于任意新输入 $x$，都能按未知分布
+    \item 目标是基于该数据集建立一个模型，使其对于任意新输入 $x$，都能按未知分布
     \[
       p(y\mid x)
     \]
     生成新的输出比特串 $y$。
   \end{itemize}
 \end{frame}
-\begin{frame}{采样与生成模型的关系}
+\begin{frame}{生成模型的采样}
   在生成模型中，“从分布中抽样”通常指：从学习到的参数化分布中生成新样本。\\[0.4em]
 
   对条件生成任务，更准确地写为
@@ -50,12 +50,13 @@
     y \sim p_\theta(y\mid x).
   \]
 
-  模型学习目标是让生成分布尽可能逼近真实条件分布：
+  模型学习目标是通过调整参数$\theta$让生成分布尽可能逼近真实条件分布：
   \[
     p_\theta(y\mid x)\approx p(y\mid x).
   \]
 
-  因此，后续  Generative Quantum Neural Networks算法的核心就是：在给定输入 $x$ 时，从模型分布 $p_\theta(y\mid x)$ 中完成采样并生成输出 bitstring $y$。
+   本文讨论 Generative Quantum Neural Networks算法组件：输入经典 bitstring $x$，编码至量子态，
+   通过参数为 $\theta$ 的量子电路处理，并最终测量得到输出 bitstring $y$ 。
 \end{frame}
 
 \begin{frame}{DQNN 与 IDQNN }
@@ -66,7 +67,7 @@
   \end{itemize}
   \vspace{0.1em}
   \begin{center}
-    \includegraphics[width=0.79\textwidth]{assets/dqnn_idqnn_mapping.png}
+    \includegraphics[width=0.59\textwidth]{assets/dqnn_idqnn_mapping1.png}
   \end{center}
 \end{frame}
 
@@ -77,14 +78,14 @@
   \[
     x[i_1,i_2],~y[i_1,i_2],\quad
     i_1\in\{0,\dots,n_1-1\}~(\text{时间维}),\;
-    i_2\in\{1,\dots,m\}~(\text{空间维}).
+    i_2\in\{0,\dots,m-1\}~(\text{空间维}).
   \]
   \begin{enumerate}
     \item 初始编码（$i_1=0$）：依据 $x[0,i_2]$ 对第 $i_2$ 个 qubit 编码（$0\mapsto\ket{+},\,1\mapsto\ket{0}$），得到初始乘积态 $\ket{\phi}$。
-    \item 对于每个时间层，在同一组 $m$ 个 qubit 上依次施加 $R_z(\theta)$ 与层内成对 qubit 的 CZ 门，得到更新态（如 $\ket{\phi^{(1)}}$）。
+    \item 对于每个时间层，在同一组 $m$ 个 qubit 上依次施加 $R_z(\theta)$ 与层内成对 qubit 的 CZ 门。
     \item 对 $i_1=0,\dots,n_1-2$ 生成 $y[i_1,i_2]$ 时，分支由 $x[i_1+1,i_2]$ 决定：
     \begin{itemize}
-      \item 若 $x[i_1+1,i_2]=0$：先施加 $H$，随机得到 $y[i_1,i_2]$；若结果为 1，再施加 $X$ 校正。
+      \item 若 $x[i_1+1,i_2]=0$：随机得到 $y[i_1,i_2]$，对第 $i_2$ 个 qubit 施加 $H$，；若结果为 1，再施加 $X$ 校正。
       \item 若 $x[i_1+1,i_2]=1$：执行 $X$ 基测量，测量结果写入 $y[i_1,i_2]$，并将 测量后的该qubit 重置为 $\ket{0}$。
     \end{itemize}
     \item 当 $i_1=n_1-1$ 时，统一执行 $X$ 基测量，得到最后一层输出 $y[n_1-1,i_2]$。
@@ -96,14 +97,13 @@
     \item 使用 $n_1\times m$ 的浅层晶格结构，按 slice 组织量子比特。依据 $x[i_1,i_2]$ 对第 $(i_1,i_2)$ 个 qubit 编码（$0\mapsto\ket{+},\,1\mapsto\ket{0}$）。
     \item 每个 slice 内执行与 DQNN 对应层相同的 $R_z(\theta)$ + CZ。
     \item 相邻 slice 对应位置施加 CZ（即在 $(i_1,i_2)$ 与 $(i_1+1,i_2)$ 之间），构建跨 slice 纠缠。
-    \item 逐 slice 做测量读取y并利用测量结果驱动态转移（teleportation-like update）。
+    \item 逐 slice 做测量读取$y[i_1,i_2]$（teleportation-like update）。
     \item 对应关系：
     \[
       \text{浅层的第 }i_1\text{ 个 slice} \Longleftrightarrow
       \text{深层电路的第 }i_1\text{ 层}.
     \]
   \end{itemize}
-  特点：用常深度结构实现深层随机量子电路的采样行为。
 \end{frame}
 
 \section{等价性证明}
@@ -116,45 +116,34 @@
   思路：
   \begin{itemize}
     \item 比较逐层（逐 slice）的量子态演化；
-    \item 若每一步的测量分布一致，且测量后的“有效态”一致；
-    \item 则最终联合输出分布 \(P(y\mid x,\theta)\) 一致。
+    \item 比较生成每个输出 bit \(y[i_1,i_2]\) 时的测量分布。
   \end{itemize}
-\end{frame}
-
-\begin{frame}{证明}
-  二维索引记号：
-  \[
-    x[i_1,i_2],~y[i_1,i_2],\quad
-    i_1=0,\dots,n_1-1,\;\; i_2=1,\dots,m.
-  \]
-  \vspace{0.3em}
   记
   \[
-    \ket{\psi_D^{(i_1)}}:\text{DQNN 在第 }i_1\text{ 层对应的有效态},\quad
-    \ket{\psi_I^{(i_1)}}:\text{IDQNN 在第 }i_1\text{ slice 对应的有效态}.
+    \ket{\psi_D^{(i_1)}}:\text{DQNN 在第 }i_1\text{ 层对应的量子态},\quad
+    \ket{\psi_I^{(i_1)}}:\text{IDQNN 在第 }i_1\text{ slice 对应的量子态}.
   \]
- 证明：
+ 既证明：
   \[
     \ket{\psi_D^{(i_1)}}=\ket{\psi_I^{(i_1)}}.
   \]
+  二维索引记号：$i_1=0,\dots,n_1-1,\;\; i_2=0,\dots,m-1.$
 \end{frame}
+
 
 \begin{frame}{证明结构：Base Case 与 Inductive Step}
   \textbf{Base Case（\(i_1=0\)）}
   \begin{itemize}
     \item 初始编码都由 \(x[0,i_2]\) 决定；
-    \item 首层 \(R_z(\theta)\)+CZ 后，两模型有效态一致。
+    \item 首层 \(R_z(\theta)\)+CZ 后，两模型量子态一致。
   \end{itemize}
   \vspace{0.2em}
   \textbf{Inductive Step（由 \(i_1\) 推到 \(i_1+1\)）}
   \begin{itemize}
-    \item 假设第 \(i_1\) 步前有效态一致；
-    \item 证明生成 \(y[i_1,i_2]\) 时：
-    \begin{itemize}
-      \item 若 \(x[i_1+1,i_2]=0\)：测量 + 前馈校正对应 teleportation 分支；
-      \item 若 \(x[i_1+1,i_2]=1\)：\(X\) 基测量 + 重置对应塌缩分支；
-    \end{itemize}
-    \item 两分支都保持“测量分布一致 + 下一步有效态一致”。
+    \item 假设经过 \(i_1\) 步操作后两种情况量子态一致；
+    \item 证明生成 \(y[i_1,i_2]\) 时：DQNN和IDQNN给出的概率分布一致；
+    \item 分情况讨论，证明生成 \(y[i_1,i_2]\) 后两模型的量子态仍保持一致。
+    \item 两分支都保持“测量分布一致 + 下一步量子态一致”。
   \end{itemize}
 \end{frame}
 
@@ -235,15 +224,6 @@ $$P[y[i_1,i_2]=0]=\frac{1}{2}(1+2\operatorname*{Re}\alpha^*\beta\braket{\tilde{\
 \end{frame}
 
 
-\begin{frame}{量子优越性（对应 H.3/H.4）}
-  在论文假设下（non-uniform PH 不塌缩）（没看懂）：
-  \begin{itemize}
-    \item 这类生成任务对量子模型是可学习且可采样的（quantumly easy）。
-    \item 对经典模型则采样困难（classically hard）。
-    \item 因此可支持 generative quantum advantage 。
-  \end{itemize}
-\end{frame}
-
 
 \section{代码结果展示}
 
@@ -294,5 +274,12 @@ $$P[y[i_1,i_2]=0]=\frac{1}{2}(1+2\operatorname*{Re}\alpha^*\beta\braket{\tilde{\
   \includegraphics[width=0.76\textwidth]{../../output_images/seed_42_samples_10000_bitstring_0000_tvd_0.016500.png}
 \end{frame}
 
-
+\begin{frame}{量子优越性（对应 H.3/H.4）}
+  \begin{itemize}
+    \item Conjecture 1 (Classical hardness of sampling deep quantum circuits).
+    \item DQNN=IDQNN
+    \item IDQNN不仅可以efficiently 采样，而且可以利用经典算法efficiently训练。
+  \end{itemize}
+  以此建立了Generative quantum advantage for classical problem.
+\end{frame}
 \end{document}

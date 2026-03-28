@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from probility_distribution import generate_probability_distribution
 
+
 def total_variation_distance(p, q):
     p = np.asarray(p, dtype=float)
     q = np.asarray(q, dtype=float)
@@ -17,18 +18,19 @@ def total_variation_distance(p, q):
     q = q / q_sum
     return 0.5 * np.sum(np.abs(p - q))
 
-seed = 45
-num_samples = 3000
+
+seed = 42
+num_samples = 8000
 output_dir = "output_images"
-bin_width = 1
+bin_width = 20
 
 random.seed(seed)
-# bitstring = "100010110001"  # n = n1*m #在单层的情况下，二者输出的y分布几乎相同；没有bug.
-# n1 = 3
-# m = 4
-bitstring = "0000" 
-n1=2
-m=2
+bitstring = "100010110001"  # n = n1*m #在单层的情况下，二者输出的y分布几乎相同；没有bug.
+n1 = 3
+m = 4
+# bitstring = "0000"
+# n1 = 2
+# m = 2
 n = n1 * m
 theta_test = [random.uniform(0, 1) * np.pi for _ in range(n)]
 
