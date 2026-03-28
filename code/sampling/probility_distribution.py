@@ -12,12 +12,16 @@ plt.rcParams['font.sans-serif'] = ['SimHei']
 plt.rcParams['axes.unicode_minus'] = False
 
 try:
-    from DQNN_generate_y import DQNN_generate_y
-    from ISQNN_generate_y import ISQNN_generate_y
+    from sampling.DQNN_generate_y import DQNN_generate_y
+    from sampling.ISQNN_generate_y import ISQNN_generate_y
 except Exception as e:
-    DQNN_generate_y = None
-    ISQNN_generate_y = None
-    print(f"Warning: failed to import DQNN/ISQNN generator: {e}")
+    try:
+        from DQNN_generate_y import DQNN_generate_y
+        from ISQNN_generate_y import ISQNN_generate_y
+    except Exception as inner_e:
+        DQNN_generate_y = None
+        ISQNN_generate_y = None
+        print(f"Warning: failed to import DQNN/ISQNN generator: {e}; {inner_e}")
 
 
 def bitlist_to_decimal(y_bits):

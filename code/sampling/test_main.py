@@ -1,7 +1,13 @@
-import numpy as np
-from DQNN_generate_y import DQNN_generate_y
-from ISQNN_generate_y import ISQNN_generate_y
 import random
+
+import numpy as np
+
+try:
+    from sampling.DQNN_generate_y import DQNN_generate_y
+    from sampling.ISQNN_generate_y import ISQNN_generate_y
+except ImportError:
+    from DQNN_generate_y import DQNN_generate_y
+    from ISQNN_generate_y import ISQNN_generate_y
 
 print("Starting simplified main.py...")
 
