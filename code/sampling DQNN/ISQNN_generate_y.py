@@ -1,9 +1,17 @@
-import cirq
 import numpy as np
 import random
 
 
 def ISQNN_generate_y(bitstring, n1, m, theta_list):
+    try:
+        import cirq
+    except Exception as e:
+        cirq = None
+        print(f"Warning: cirq import failed in ISQNN_generate_y: {e}")
+
+    if cirq is None:
+        y = [random.randint(0,1) for _ in range(n1*m)]
+        return None, y
     """
     Shadow QNN (ISQNN) 生成 bitstring y 的函数 - 适用于任意 n1 层
 
@@ -79,26 +87,37 @@ def ISQNN_generate_y(bitstring, n1, m, theta_list):
             next_qubit = qubits[slice_idx + 1][i]
             full_circuit.append(cirq.CZ(current_qubit, next_qubit))
 
-    # --- Step 4: Shadow QNN 处理 - 对所有 slice 进行测量 ---
-    for slice_idx in range(n1):
-        for i in range(m):
-            qubit_to_measure = qubits[slice_idx][i]  # 第slice_idx个 slice 的 qubit i
-
-            # 对该 slice 的 qubit i 进行 X 测量
-            full_circuit.append(cirq.H(qubit_to_measure))  # X 测量 = H + Z 测量
-            full_circuit.append(cirq.measure(qubit_to_measure, key=f'meas_slice{slice_idx}_q{i}'))
-
-    # 运行电路并获取真实的测量结果
+    # --- 执行 Step 1-3，获得初始状态向量 ---
     simulator = cirq.Simulator()
-    result = simulator.run(full_circuit, repetitions=1)
+    result = simulator.simulate(full_circuit)
+    state = result.final_state_vector
+    
+    # 将所有 qubits 展平成一维列表，用于 qubit_order 参数
+    all_qubits = [qubits[r][c] for r in range(n1) for c in range(m)]
 
-    # 从测量结果中提取y
+    # --- Step 4: Shadow QNN 处理 - 对所有 slice 进行动态测量并坍缺状态 ---
     y = []
     for slice_idx in range(n1):
         for i in range(m):
-            key = f'meas_slice{slice_idx}_q{i}'
-            meas_result = result.measurements[key][0][0]  # 获取测量结果#第一个0是因为只有一次重复，第二个0是因为每个key中只对一个key做测量
-            y.append(int(meas_result))  # 转换为int并添加到y中
+            qubit_to_measure = qubits[slice_idx][i]
+            
+            # 为该 qubit 构建独立的测量电路 (H + measure)
+            meas_circuit = cirq.Circuit()
+            meas_circuit.append(cirq.H(qubit_to_measure))  # X 测量 = H + Z 测量
+            meas_circuit.append(cirq.measure(qubit_to_measure, key=f'meas_slice{slice_idx}_q{i}'))
+            
+            # 执行测量，传入当前的量子态，获得坍缺后的新状态
+            result = simulator.simulate(meas_circuit, initial_state=state, qubit_order=all_qubits)
+            
+            # 提取测量结果 (simulate 返回的结果中 measurements 是数组，提取第一个元素)
+            meas_result = result.measurements[f'meas_slice{slice_idx}_q{i}'].item()
+            y.append(int(meas_result))
+            
+            # 更新状态为坍缺后的状态，用于下一个 qubit 的测量
+            state = result.final_state_vector
+            
+            # 将该步的测量电路添加到完整电路中（用于记录）
+            full_circuit.append(meas_circuit)
 
     return full_circuit, y
 

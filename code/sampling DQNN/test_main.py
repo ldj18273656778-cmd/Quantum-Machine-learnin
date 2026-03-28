@@ -5,9 +5,10 @@ import random
 
 print("Starting simplified main.py...")
 
-bitstring = "00001111000000110000"  # n = n1*m
-n1 = 4
-m = 5
+random.seed(42)
+bitstring = "111111111111"  
+n1 = 3
+m = 4
 n = n1 * m
 theta = [random.uniform(0, 1)*np.pi for _ in range(n)]
 print(f"Generated theta list with {len(theta)} elements")

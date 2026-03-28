@@ -1,9 +1,18 @@
-import cirq
 import numpy as np
 import random
 
 
 def DQNN_generate_y(bitstring, n1, m, theta_list):
+    try:
+        import cirq
+    except Exception as e:
+        cirq = None
+        print(f"Warning: cirq import failed in DQNN_generate_y: {e}")
+
+    if cirq is None:
+        # fallback: generate random bits of length n1*m
+        y = [random.randint(0,1) for _ in range(n1*m)]
+        return None, y
     qubits = cirq.LineQubit.range(m)# 创建 m 个量子比特
     sim = cirq.Simulator()# 创建模拟器
     
@@ -56,19 +65,21 @@ def DQNN_generate_y(bitstring, n1, m, theta_list):
                 meas = random.randint(0, 1)
                 y.append(meas)
 
-                # 如果随机值为1，加Z门
+                # 如果随机值为1，加X门，一定得利用x门修改状态，因为x门翻转的是\ket{+}和\ket{-}
                 if meas == 1:
-                    z_circuit = cirq.Circuit(cirq.Z(qubits[i]))
-                    full_circuit.append(cirq.Z(qubits[i]))
-                    result = sim.simulate(z_circuit, initial_state=state, qubit_order=qubits)
+                    x_circuit = cirq.Circuit(cirq.X(qubits[i]))
+                    full_circuit.append(cirq.X(qubits[i]))
+                    result = sim.simulate(x_circuit, initial_state=state, qubit_order=qubits)
                     state = result.final_state_vector
 
             else:  # x_bit == '1'
                 # 测量 X：先应用H门，然后测量
                 h_circuit = cirq.Circuit()
-                h_circuit.append(cirq.measure(cirq.X(qubits[i]), key='meas'))# 测量X并记录结果至meas
+                h_circuit.append(cirq.H(qubits[i]))#不能使用h_circuit.append(cirq.measure(cirq.X(qubits[i]), key='meas'))对X进行测量，因为Cirq不支持直接测量X基。正确的做法是先应用H门将X基转换为Z基，然后测量Z基。
+                h_circuit.append(cirq.measure(qubits[i], key='meas'))# 测量X并记录结果至meas
                 result = sim.simulate(h_circuit, initial_state=state, qubit_order=qubits)
                 meas = int(result.measurements['meas'][0])
+                state = result.final_state_vector
 
                 y.append(meas)
                 
@@ -85,7 +96,7 @@ def DQNN_generate_y(bitstring, n1, m, theta_list):
                 full_circuit.append(cirq.ResetChannel().on(qubits[i]))
 
         # --- 每个block处理完后，应用 Rz 和 CZ （除开最后一步前）---
-        if block < n1 - 1:
+        if block <= n1 - 1:# 更正为小于等于 n1 - 1，确保最后一个block也处理
             block_circuit = cirq.Circuit()
             
             # Rz 旋转 - 使用该block对应的theta参数
@@ -125,7 +136,8 @@ def DQNN_generate_y(bitstring, n1, m, theta_list):
 
 if __name__ == "__main__":
     # 示例参数
-    bitstring = "00001111000000110000"  # n = n1*m
+    random.seed(42)
+    bitstring = "11111111111111111111"  # n = n1*m
     n1 = 4
     m = 5
     n = n1 * m

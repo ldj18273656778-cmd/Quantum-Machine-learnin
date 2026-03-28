@@ -1,0 +1,285 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[UTF8]{ctex}
+\usetheme{Madrid}
+\usecolortheme{seahorse}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+
+\usepackage{amsmath,amssymb,bm}
+\usepackage{braket}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{array}
+
+\title{DQNN 与 ISQNN 采样算法\\及等价性证明进展}
+\author{ }
+\institute{Quantum Machine Learning}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+\begin{frame}{汇报结构}
+  \tableofcontents
+\end{frame}
+
+\section{问题与算法}
+
+\begin{frame}{任务定义：经典 bitstring 的学习与采样}
+  具体任务如下：
+  \begin{itemize}
+    \item 给定输入-输出比特串数据集
+    \[
+      \{(x_i,y_i)\mid x_i\in\{0,1\}^n,\; y_i\in\{0,1\}^n\}_{i=1}^{N}.
+    \]
+    \item 其中每个输出 $y_i$ 都是根据未知条件分布 $p(y_i\mid x_i)$ 采样得到。
+    \item 目标是基于该数据集建立一个模型，使其对于任意新输入 $x$，都能按未知分布
+    \[
+      p(y\mid x)
+    \]
+    生成新的输出比特串 $y$。
+  \end{itemize}
+\end{frame}
+\begin{frame}{生成模型的采样}
+  在生成模型中，“从分布中抽样”通常指：从学习到的参数化分布中生成新样本。\\[0.4em]
+
+  对条件生成任务，更准确地写为
+  \[
+    y \sim p_\theta(y\mid x).
+  \]
+
+  模型学习目标是通过调整参数$\theta$让生成分布尽可能逼近真实条件分布：
+  \[
+    p_\theta(y\mid x)\approx p(y\mid x).
+  \]
+
+   本文讨论 Generative Quantum Neural Networks算法组件：输入经典 bitstring $x$，编码至量子态，
+   通过参数为 $\theta$ 的量子电路处理，并最终测量得到输出 bitstring $y$ 。
+\end{frame}
+
+\begin{frame}{DQNN 与 IDQNN }
+  \small
+  \begin{itemize}
+    \item \textbf{DQNN（Deep QNN）}：使用\textbf{较少量子比特}，通过\textbf{多层门操作}构成较长（深）量子电路。
+    \item \textbf{IDQNN（Instantaneously-deep QNN）}：使用\textbf{较多量子比特}，通过空间展开保持\textbf{短电路/常深度}。
+  \end{itemize}
+  \vspace{0.1em}
+  \begin{center}
+    \includegraphics[width=0.59\textwidth]{assets/dqnn_idqnn_mapping1.png}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{算法一：DQNN 采样流程（深层视角）}
+  设 $n=n_1m$。DQNN 只使用同一组 $m$ 个量子比特，并在 $n_1$ 个时间层上作用不同量子门。\\[0.2em]
+  输入/输出采用二维索引：
+  \[
+    x[i_1,i_2],~y[i_1,i_2],\quad
+    i_1\in\{0,\dots,n_1-1\}~(\text{时间维}),\;
+    i_2\in\{0,\dots,m-1\}~(\text{空间维}).
+  \]
+  \begin{enumerate}
+    \item 初始编码（$i_1=0$）：依据 $x[0,i_2]$ 对第 $i_2$ 个 qubit 编码（$0\mapsto\ket{+},\,1\mapsto\ket{0}$），得到初始乘积态 $\ket{\phi}$。
+    \item 对于每个时间层，在同一组 $m$ 个 qubit 上依次施加 $R_z(\theta)$ 与层内成对 qubit 的 CZ 门。
+    \item 对 $i_1=0,\dots,n_1-2$ 生成 $y[i_1,i_2]$ 时，分支由 $x[i_1+1,i_2]$ 决定：
+    \begin{itemize}
+      \item 若 $x[i_1+1,i_2]=0$：随机得到 $y[i_1,i_2]$，对第 $i_2$ 个 qubit 施加 $H$，；若结果为 1，再施加 $X$ 校正。
+      \item 若 $x[i_1+1,i_2]=1$：执行 $X$ 基测量，测量结果写入 $y[i_1,i_2]$，并将 测量后的该qubit 重置为 $\ket{0}$。
+    \end{itemize}
+    \item 当 $i_1=n_1-1$ 时，统一执行 $X$ 基测量，得到最后一层输出 $y[n_1-1,i_2]$。
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{算法二：IDQNN（ISQNN）采样流程（浅层映射视角）}
+  \begin{itemize}
+    \item 使用 $n_1\times m$ 的浅层晶格结构，按 slice 组织量子比特。依据 $x[i_1,i_2]$ 对第 $(i_1,i_2)$ 个 qubit 编码（$0\mapsto\ket{+},\,1\mapsto\ket{0}$）。
+    \item 每个 slice 内执行与 DQNN 对应层相同的 $R_z(\theta)$ + CZ。
+    \item 相邻 slice 对应位置施加 CZ（即在 $(i_1,i_2)$ 与 $(i_1+1,i_2)$ 之间），构建跨 slice 纠缠。
+    \item 逐 slice 做测量读取$y[i_1,i_2]$（teleportation-like update）。
+    \item 对应关系：
+    \[
+      \text{浅层的第 }i_1\text{ 个 slice} \Longleftrightarrow
+      \text{深层电路的第 }i_1\text{ 层}.
+    \]
+  \end{itemize}
+\end{frame}
+
+\section{等价性证明}
+\begin{frame}{两种电路等价性证明}
+  目标是在固定输入与参数下证明：
+  \[
+    P_{\mathrm{IDQNN}}(y\mid x,\theta)=P_{\mathrm{DQNN}}(y\mid x,\theta).
+  \]
+  \vspace{0.3em}
+  思路：
+  \begin{itemize}
+    \item 比较逐层（逐 slice）的量子态演化；
+    \item 比较生成每个输出 bit \(y[i_1,i_2]\) 时的测量分布。
+  \end{itemize}
+  记
+  \[
+    \ket{\psi_D^{(i_1)}}:\text{DQNN 在第 }i_1\text{ 层对应的量子态},\quad
+    \ket{\psi_I^{(i_1)}}:\text{IDQNN 在第 }i_1\text{ slice 对应的量子态}.
+  \]
+ 既证明：
+  \[
+    \ket{\psi_D^{(i_1)}}=\ket{\psi_I^{(i_1)}}.
+  \]
+  二维索引记号：$i_1=0,\dots,n_1-1,\;\; i_2=0,\dots,m-1.$
+\end{frame}
+
+
+\begin{frame}{证明结构：Base Case 与 Inductive Step}
+  \textbf{Base Case（\(i_1=0\)）}
+  \begin{itemize}
+    \item 初始编码都由 \(x[0,i_2]\) 决定；
+    \item 首层 \(R_z(\theta)\)+CZ 后，两模型量子态一致。
+  \end{itemize}
+  \vspace{0.2em}
+  \textbf{Inductive Step（由 \(i_1\) 推到 \(i_1+1\)）}
+  \begin{itemize}
+    \item 假设经过 \(i_1\) 步操作后两种情况量子态一致；
+    \item 证明生成 \(y[i_1,i_2]\) 时：DQNN和IDQNN给出的概率分布一致；
+    \item 分情况讨论，证明生成 \(y[i_1,i_2]\) 后两模型的量子态仍保持一致。
+    \item 两分支都保持“测量分布一致 + 下一步量子态一致”。
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{详细展开 1：\(x[i_1+1,i_2]=0\) 分支的态演化}
+  \small
+  在 IDQNN 中固定第 \((i_1,i_2)\) 个 qubit。由于第 \(i_1\) 个 slice 内 CZ 门作用，它与该 slice 其余 qubit 纠缠，记
+  \[
+    \ket{\phi^{(i_1)}}=
+    \ket{0}_{i_1,i_2}\ket{\phi_0}+\ket{1}_{i_1,i_2}\ket{\phi_1}.
+  \]
+  该 qubit 与 \((i_1+1,i_2)\) 位置 qubit 纠缠；当 \(x[i_1+1,i_2]=0\) 时，有
+  \[
+  \begin{aligned}
+    \ket{\Psi}
+    =&~\frac{1}{\sqrt{2}}\ket{+}_{i_1,i_2}
+      \Big(\ket{+}_{i_1+1,i_2}\ket{\phi_0}
+      +\ket{-}_{i_1+1,i_2}\ket{\phi_1}\Big) \\
+    &+\frac{1}{\sqrt{2}}\ket{-}_{i_1,i_2}
+      \Big(\ket{+}_{i_1+1,i_2}\ket{\phi_0}
+      -\ket{-}_{i_1+1,i_2}\ket{\phi_1}\Big).
+  \end{aligned}
+  \]
+  对 \((i_1,i_2)\) 做 \(X\) 测量并将结果写入 \(y[i_1,i_2]\)：
+  \[
+  \begin{aligned}
+    y[i_1,i_2]=0 &:~ \ket{+}_{i_1+1,i_2}\ket{\phi_0}+\ket{-}_{i_1+1,i_2}\ket{\phi_1},\\
+    y[i_1,i_2]=1 &:~ \ket{+}_{i_1+1,i_2}\ket{\phi_0}-\ket{-}_{i_1+1,i_2}\ket{\phi_1}.
+  \end{aligned}
+  \]
+\end{frame}
+\begin{frame}
+  $x[i_1+1,i_2]=0$时对第 \((i_1,i_2)\) 个 qubit 进行 \(X\) 测量，得到 \(y[i_1,i_2]\) 的概率是：
+
+  归一化：
+  \[
+    \ket{\phi^{(i_1)}}=
+    \ket{0}_{i_1,i_2}\alpha\ket{\tilde{\phi}_0}
+    +\ket{1}_{i_1,i_2}\beta\ket{\tilde{\phi}_1}.
+  \]
+  其中$\alpha=\sqrt{\braket{\phi_0\mid\phi_0}}$, $\beta=\sqrt{\braket{\phi_1\mid\phi_1}}$，且$\ket{\tilde{\phi}_0}$、$\ket{\tilde{\phi}_1}$是归一化态。
+  通过CZ门与后面的qubit纠缠后，整体态为：
+  \[
+  \begin{aligned}
+    \ket{\Psi}
+    =&~\frac{1}{\sqrt{2}}\ket{+}_{i_1,i_2}
+      \Big(\ket{+}_{i_1+1,i_2}\alpha\ket{\tilde{\phi}_0}
+      +\ket{-}_{i_1+1,i_2}\beta\ket{\tilde{\phi}_1}\Big) \\
+    &+\frac{1}{\sqrt{2}}\ket{-}_{i_1,i_2}
+      \Big(\ket{+}_{i_1+1,i_2}\alpha\ket{\tilde{\phi}_0}
+      -\ket{-}_{i_1+1,i_2}\beta\ket{\tilde{\phi}_1}\Big).\\
+    &\equiv\frac{1}{\sqrt{2}}\ket{+}_{i_1,i_2}\ket{\Phi_+}
+      +\frac{1}{\sqrt{2}}\ket{-}_{i_1,i_2}\ket{\Phi_-}.
+  \end{aligned}
+  \]
+  因此$P[y[i_1,i_2]=0]=\frac{1}{2}$，$P[y[i_1,i_2]=1]=\frac{1}{2}$.
+\end{frame}
+
+\begin{frame}{详细展开 2：与 DQNN 的分支对齐}
+  \begin{itemize}
+    \item 当 \(x[i_1+1,i_2]=0\) 时,在DQNN中必须先施加门H，使状态由$\ket{0}\ket{\phi_0}+\ket{1}\ket{\phi_1}$变为$\ket{+}\ket{\phi_0}+\ket{-}\ket{\phi_1}$，与IDQNN的状态一致。
+    \item 当 \(x[i_1+1,i_2]=0\) 时，若在 DQNN 中对 \(y[i_1,i_2]=1\) 的分支施加 \(Z\) 校正，则两模型后续的有效状态一致。
+    \item 当 \(x[i_1+1,i_2]=1\) 时，\((i_1+1,i_2)\) 位置初始化为 \(\ket{0}\)，对应的 CZ 不改变量子态；随后对 \((i_1,i_2)\) 做 \(X\) 测量并重置，\((i_1+1,i_2)\) 的有效状态保持为 \(\ket{0}\)。
+    \item 因而两种分支下，IDQNN 与 DQNN 的“测量结果分布 + 下一步有效态”均保持一致,演化轨迹保持相同。
+  \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+  $x[i_1+1,i_2]=1$时对第 \((i_1,i_2)\) 个 qubit 进行 \(X\) 测量;
+  $$\ket{\phi^{(i_1)}}=\frac{1}{\sqrt{2}}\ket{+}_{i_1,i_2}(\alpha\ket{\tilde{\phi}_0}+\beta\ket{\tilde{\phi}_1})+\frac{1}{\sqrt{2}}\ket{-}_{i_1,i_2}(\alpha\ket{\tilde{\phi}_0}-\beta\ket{\tilde{\phi}_1})$$
+  因此：
+$$P[y[i_1,i_2]=0]=\frac{1}{2}(1+2\operatorname*{Re}\alpha^*\beta\braket{\tilde{\phi}_0\mid\tilde{\phi}_1}),
+~P[y[i_1,i_2]=1]=\frac{1}{2}(1-2\operatorname*{Re}\alpha^*\beta\braket{\tilde{\phi}_0\mid\tilde{\phi}_1}).$$
+再与下一个 qubit 纠缠后，整体态为：$\ket{0}(\alpha\ket{\tilde{\phi}_0}+\beta\ket{\tilde{\phi}_1})$或者$\ket{0}(\alpha\ket{\tilde{\phi}_0}-\beta\ket{\tilde{\phi}_1})$.
+
+\end{frame}
+
+
+
+\section{代码结果展示}
+
+\begin{frame}{采样代码与示例}
+  对应文件：
+  \begin{itemize}
+    \item \texttt{DQNN\_generate\_y.py}：实现 DQNN 采样流程。
+    \item \texttt{IDQNN\_generate\_y.py}：实现 IDQNN 采样流程。
+    \item \texttt{probility\_distribution.py}：多次采样生成 DQNN 与 IDQNN 的输出分布。
+  \end{itemize}
+  \vspace{0.3em}
+   \texttt{x bitstring = "00001111000000110000" \# n=20, m=5, n1=4.}
+ \begin{center}
+    \includegraphics[width=0.92\textwidth]{assets/code_tree_screenshot.png}
+  \end{center}
+\end{frame}
+
+\begin{frame}{采样结果展示 I}
+  \centering
+  \includegraphics[width=0.43\textwidth]{../../output_images/seed_42_samples_3000_bitstring_0000_tvd_0.024333.png}\hfill
+  \includegraphics[width=0.43\textwidth]{../../output_images/seed_42_samples_3000_bitstring_0001_tvd_0.032000.png}
+
+  \vspace{0.2em}
+
+  \includegraphics[width=0.43\textwidth]{../../output_images/seed_42_samples_3000_bitstring_0010_tvd_0.045000.png}\hfill
+  \includegraphics[width=0.43\textwidth]{../../output_images/seed_42_samples_3000_bitstring_0011_tvd_0.042333.png}
+\end{frame}
+
+\begin{frame}{采样结果展示 II}
+  \centering
+  \includegraphics[width=0.43\textwidth]{../../output_images/seed_42_samples_3000_bitstring_0100_tvd_0.054000.png}\hfill
+  \includegraphics[width=0.43\textwidth]{../../output_images/seed_42_samples_3000_bitstring_0101_tvd_0.030667.png}
+
+  \vspace{0.2em}
+
+  \includegraphics[width=0.43\textwidth]{../../output_images/seed_42_samples_3000_bitstring_0110_tvd_0.037667.png}\hfill
+  \includegraphics[width=0.43\textwidth]{../../output_images/seed_42_samples_3000_bitstring_0111_tvd_0.040333.png}
+\end{frame}
+
+\begin{frame}{采样结果展示 III}
+  \centering
+  \includegraphics[width=0.43\textwidth]{../../output_images/seed_42_samples_3000_bitstring_1000_tvd_0.054667.png}\hfill
+  \includegraphics[width=0.43\textwidth]{../../output_images/seed_42_samples_3000_bitstring_1111_tvd_0.041333.png}
+\end{frame}
+
+\begin{frame}{采样结果展示 IV}
+  \centering
+  \includegraphics[width=0.76\textwidth]{../../output_images/seed_42_samples_10000_bitstring_0000_tvd_0.016500.png}
+\end{frame}
+
+\begin{frame}{量子优越性（对应 H.3/H.4）}
+  \begin{itemize}
+    \item Conjecture 1 (Classical hardness of sampling deep quantum circuits).
+    \item DQNN=IDQNN
+    \item IDQNN不仅可以efficiently 采样，而且可以利用经典算法efficiently训练。
+  \end{itemize}
+  以此建立了Generative quantum advantage for classical problem.
+\end{frame}
+\end{document}
