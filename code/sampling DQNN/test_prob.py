@@ -19,7 +19,11 @@ def total_variation_distance(p, q):
     return 0.5 * np.sum(np.abs(p - q))
 
 
+<<<<<<< HEAD
 seed = 44
+=======
+seed = 42
+>>>>>>> 0d5e358849638861c71eeab1e1643ea0d2712d23
 num_samples = 8000
 output_dir = "output_images"
 bin_width = 20
