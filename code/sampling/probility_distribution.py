@@ -1,15 +1,10 @@
 import numpy as np
 import random
-import matplotlib.pyplot as plt
 
 try:
     from tqdm import trange
 except Exception:
     trange = range
-
-# 设置 matplotlib 支持中文
-plt.rcParams['font.sans-serif'] = ['SimHei']
-plt.rcParams['axes.unicode_minus'] = False
 
 try:
     from sampling.DQNN_generate_y import DQNN_generate_y
@@ -57,6 +52,12 @@ def generate_probability_distribution(bitstring, n1, m, theta_list, num_samples=
 
 
 if __name__ == "__main__":
+    import matplotlib.pyplot as plt
+
+    # 设置 matplotlib 支持中文
+    plt.rcParams['font.sans-serif'] = ['SimHei']
+    plt.rcParams['axes.unicode_minus'] = False
+
     bitstring = "000000000000"
     n1 = 1
     m = 12

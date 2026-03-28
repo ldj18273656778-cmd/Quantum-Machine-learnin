@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "quantum-machine-learning-workspace"
+version = "0.1.0"
+description = "Local editable package setup for Train/sampling imports"
+readme = "code/sampling/README.md"
+requires-python = ">=3.10"
+
+[tool.setuptools]
+package-dir = {"" = "code"}
+
+[tool.setuptools.packages.find]
+where = ["code"]
+include = ["sampling", "sampling.*", "Train", "Train.*"]
+exclude = ["*.__pycache__*"]
