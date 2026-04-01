@@ -9,6 +9,8 @@
 \usepackage{braket}
 \usepackage{booktabs}
 \usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
 
 \title{Training and Close the Loop of Quantum Advantage\\（Beamer 雏形）}
 \author{}
@@ -28,29 +30,65 @@
 \section{问题定义与目标}
 
 \begin{frame}{生成问题的两条主线}
-  生成问题可拆解为两部分：
-  \begin{itemize}
-    \item \textbf{模型训练（training）}：从数据中学习参数。
-    \item \textbf{模型推断/生成（inference/generation）}：给定输入后采样输出。
-  \end{itemize}
+  \centering
+  \resizebox{0.82\linewidth}{!}{%
+  \begin{tikzpicture}[
+    font=\small,
+    node distance=6mm and 6mm,
+    box/.style={draw, rounded corners, minimum width=2.25cm, minimum height=0.78cm, align=center, fill=blue!8},
+    qbox/.style={draw, rounded corners, minimum width=2.1cm, minimum height=0.72cm, align=center, fill=green!10},
+    arrow/.style={-{Latex[length=1.8mm]}, thick}
+  ]
+    \node[box] (data) {数据集\\$\{(x_i,y_i)\}$};
+    \node[box, right=of data] (train) {Training\\学习参数 $\theta$};
+    \node[box, right=of train] (infer) {Inference\\$y\sim p(y\mid x,\theta)$};
 
-  按是否使用量子电路可分为：
+    \node[qbox, below=7mm of train, xshift=-13mm] (cnn) {Classical NN};
+    \node[qbox, below=7mm of train, xshift=13mm] (qnn) {Quantum NN};
+
+    \draw[arrow] (data) -- (train);
+    \draw[arrow] (train) -- (infer);
+    \draw[arrow] (cnn.north) -- (train.south west);
+    \draw[arrow] (qnn.north) -- (train.south east);
+  \end{tikzpicture}%
+  }
+
+  \vspace{0.6em}
+  \small
   \begin{itemize}
-    \item 经典神经网络（classical neural networks）
-    \item 量子神经网络（quantum neural networks）
+    \item \textbf{核心拆解}：训练（从数据学习参数）+ 推断（给定输入后采样输出）
+    \item \textbf{实现载体}：经典神经网络与量子神经网络
   \end{itemize}
 \end{frame}
 
 \begin{frame}{生成问题中的量子优越性}
-  相比经典方法，量子优越性可体现为：
-  \begin{itemize}
-    \item \textbf{higher accuracy}
-    \item \textbf{faster learning or generation time}
-    \item \textbf{capability to generate outputs infeasible for classical computers}
-  \end{itemize}
+  \centering
+  \resizebox{0.9\linewidth}{!}{%
+  \begin{tikzpicture}[
+    font=\small,
+    node distance=7mm and 10mm,
+    box/.style={draw, rounded corners, minimum width=3.2cm, minimum height=0.95cm, align=center, fill=blue!8},
+    hard/.style={draw, rounded corners, minimum width=4.2cm, minimum height=1.05cm, align=center, fill=red!10, very thick},
+    arrow/.style={-{Latex[length=2mm]}, thick}
+  ]
+    \node[box] (task) {目标生成任务\\$p(y\mid x)$};
+    \node[box, right=of task] (qroute) {量子模型路线\\DQNN / IDQNN};
+    \node[hard, right=of qroute] (hardout) {可生成的输出分布\\\textbf{经典计算机难以高效生成}};
 
-  \vspace{0.4em}
-  目标：在生成任务中建立“\textbf{训练 + 推断}”的闭环量子优越性。
+    \node[box, below=8mm of qroute] (classical) {经典路线};
+    \node[draw, dashed, rounded corners, minimum width=4.2cm, minimum height=1.05cm, align=center, fill=gray!10, right=of classical] (limit) {对该类分布缺乏已知多项式规模\\经典高效生成方法};
+
+    \draw[arrow] (task) -- (qroute);
+    \draw[arrow] (qroute) -- (hardout);
+    \draw[arrow] (task.south east) -- (classical.west);
+    \draw[arrow, dashed] (classical) -- (limit);
+  \end{tikzpicture}%
+  }
+
+  \vspace{0.35em}
+  \begin{alertblock}{本工作强调的“优越性”}
+    这里的优势核心不是单纯更快或更准，而是：\textbf{能够生成经典计算机难以高效生成的结果分布}。
+  \end{alertblock}
 \end{frame}
 
 \section{动机与核心论点}
@@ -68,16 +106,32 @@
 \end{frame}
 
 \begin{frame}{整体思路（主张）}
-  对某类经典难采样的条件分布：
-  \begin{enumerate}
-    \item 证明 IDQNN 采样是高效的（推断侧优势）。
-    \item 训练阶段采用经典方法高效完成：
-    \begin{itemize}
-      \item 从数据集中检索满足条件的样本；
-      \item 执行最大似然估计（MLE）更新参数；
-      \item 避免 barren plateaus 或 proliferating local minima。
-    \end{itemize}
-  \end{enumerate}
+  \centering
+  \resizebox{0.92\linewidth}{!}{%
+  \begin{tikzpicture}[
+    font=\small,
+    node distance=7mm and 9mm,
+    sbox/.style={draw, rounded corners, minimum width=3.0cm, minimum height=0.95cm, align=center, fill=blue!8},
+    key/.style={draw, rounded corners, minimum width=4.4cm, minimum height=1.0cm, align=center, fill=green!10, very thick},
+    note/.style={draw, dashed, rounded corners, minimum width=4.4cm, minimum height=0.95cm, align=center, fill=gray!8},
+    arrow/.style={-{Latex[length=2mm]}, thick}
+  ]
+    \node[sbox] (problem) {目标问题\\经典难采样的 $p(y\mid x)$};
+    \node[key, right=of problem] (infer) {推断侧：IDQNN 高效采样\\保留“经典难生成”性质};
+    \node[note, below=8mm of infer] (train) {训练侧：经典检索 + MLE 更新\\规避复杂训练地形瓶颈};
+    \node[key, right=of infer] (close) {闭环优势\\\textbf{可训练 + 可推断}};
+
+    \draw[arrow] (problem) -- (infer);
+    \draw[arrow] (infer) -- (close);
+    \draw[arrow] (problem.south east) -- (train.west);
+    \draw[arrow] (train.east) -- (close.south west);
+  \end{tikzpicture}%
+  }
+
+  \vspace{0.35em}
+  \begin{alertblock}{文章核心}
+    本工作把“生成经典难生成分布”的推断优势与“可高效训练”的方法结合，形成完整闭环方案。
+  \end{alertblock}
 \end{frame}
 
 \section{与既有结论的衔接}
