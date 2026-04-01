@@ -1,0 +1,178 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[UTF8]{ctex}
+\usetheme{Madrid}
+\usecolortheme{seahorse}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+
+\usepackage{amsmath,amssymb,bm}
+\usepackage{braket}
+\usepackage{booktabs}
+\usepackage{graphicx}
+
+\title{Training and Close the Loop of Quantum Advantage\\（Beamer 雏形）}
+\author{}
+\institute{Quantum Machine Learning}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{汇报结构}
+  \tableofcontents
+\end{frame}
+
+\section{问题定义与目标}
+
+\begin{frame}{生成问题的两条主线}
+  生成问题可拆解为两部分：
+  \begin{itemize}
+    \item \textbf{模型训练（training）}：从数据中学习参数。
+    \item \textbf{模型推断/生成（inference/generation）}：给定输入后采样输出。
+  \end{itemize}
+
+  按是否使用量子电路可分为：
+  \begin{itemize}
+    \item 经典神经网络（classical neural networks）
+    \item 量子神经网络（quantum neural networks）
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{生成问题中的量子优越性}
+  相比经典方法，量子优越性可体现为：
+  \begin{itemize}
+    \item \textbf{higher accuracy}
+    \item \textbf{faster learning or generation time}
+    \item \textbf{capability to generate outputs infeasible for classical computers}
+  \end{itemize}
+
+  \vspace{0.4em}
+  目标：在生成任务中建立“\textbf{训练 + 推断}”的闭环量子优越性。
+\end{frame}
+
+\section{动机与核心论点}
+
+\begin{frame}{为什么强调“闭环”}
+  已有研究表明：
+  \begin{itemize}
+    \item 某些量子神经网络可实现经典难采样分布的生成；
+    \item 但在参数学习（如 VQA）阶段，常遇到训练地形差的问题，
+    如 barren plateaus 与大量局部极小值。
+  \end{itemize}
+
+  \vspace{0.4em}
+  因此，仅“会生成”不足以构成完整优势；还需“\textbf{可高效训练}”。
+\end{frame}
+
+\begin{frame}{整体思路（主张）}
+  对某类经典难采样的条件分布：
+  \begin{enumerate}
+    \item 证明 IDQNN 采样是高效的（推断侧优势）。
+    \item 训练阶段采用经典方法高效完成：
+    \begin{itemize}
+      \item 从数据集中检索满足条件的样本；
+      \item 执行最大似然估计（MLE）更新参数；
+      \item 避免 barren plateaus 或 proliferating local minima。
+    \end{itemize}
+  \end{enumerate}
+\end{frame}
+
+\section{与既有结论的衔接}
+
+\begin{frame}{DQNN 与 IDQNN 的分布等价结论}
+  你已证明：在参数相同条件下，IDQNN 与 DQNN 生成的条件分布相同：
+  \[
+    P_{\mathrm{IDQNN}}(y\mid x,\theta)=P_{\mathrm{DQNN}}(y\mid x,\theta).
+  \]
+
+  结合文献附录 H.3：
+  \begin{itemize}
+    \item DQNN 对 $D_n(y)\ket{0^n}$ 测量得到的分布无已知多项式规模经典线路可实现；
+    \item 由于分布等价，IDQNN 对该类任务同样具备难以经典复现的采样能力。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{任务边界：不是“任意分布”生成优势}
+  本文讨论的是特定结构任务 $p(y\mid x)$：
+  \begin{itemize}
+    \item 量子优势体现在“量子线路可采样某些经典难生成分布”；
+    \item 并非证明“对 universal 分布家族都更优”。
+  \end{itemize}
+
+  文中线路只能生成带有结构特征的分布，例如：
+  \begin{itemize}
+    \item 当 $x=\mathbf{1}$ 时，$y$ 近似均匀分布；
+    \item 当 $x=\mathbf{0}$ 时，$y$ 的前 $((n_1-1)\times m)$ 比特边缘分布均匀。
+  \end{itemize}
+\end{frame}
+
+\section{数据与训练设定}
+
+\begin{frame}{数据集构造方式}
+  数据并非任意采集，而是由“理想参数 + 指定输入分布”生成：
+  \begin{itemize}
+    \item 预先固定一组理想参数 $\theta_{\mathrm{real}}$；
+    \item 给定输入分布 $D(x)$；
+    \item 重复采样 $N$ 次得到
+    \[
+      \{(x_i,y_i)\}_{i=1}^{N}.
+    \]
+  \end{itemize}
+
+  这对应“先定义真实分布，再做参数恢复”的训练范式。
+\end{frame}
+
+\begin{frame}{本文学习目标}
+  训练任务为：
+  \begin{itemize}
+    \item \textbf{网络结构已知}（DQNN / IDQNN 固定）；
+    \item 学习参数 $\beta$，使其逼近目标参数（或目标分布）。
+  \end{itemize}
+
+  即：主要关注“参数学习可行性与效率”，而非结构搜索。
+\end{frame}
+
+\section{当前代码状态与现实约束}
+
+\begin{frame}{实现现状：目前是经典模拟}
+  现有采样代码（DQNN \& IDQNN）基于 \texttt{cirq} simulator：
+  \begin{itemize}
+    \item 本质是对量子算法的经典仿真；
+    \item 时间与空间开销随比特数呈指数增长。
+  \end{itemize}
+
+  即使使用 tensor network 等技巧，也难以对“所有输入 $x$”普遍降低模拟复杂度。
+\end{frame}
+
+\section{下一步章节预留（可逐步替换）}
+
+\begin{frame}{后续可填充模块}
+  \begin{enumerate}
+    \item 理论部分：
+    \begin{itemize}
+      \item 经典难采样性陈述与引用；
+      \item IDQNN 采样高效性的形式化条件。
+    \end{itemize}
+    \item 训练部分：
+    \begin{itemize}
+      \item 基于数据检索 + MLE 的算法流程图；
+      \item 收敛性与复杂度分析。
+    \end{itemize}
+    \item 实验部分：
+    \begin{itemize}
+      \item 数据规模、参数设置、评估指标（NLL / TVD / fidelity）；
+      \item DQNN、IDQNN 与经典基线对比。
+    \end{itemize}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{一句话总结}
+  \centering
+  \Large
+  目标是把“可采样的量子优势”推进为“\textbf{可训练 + 可推断}”的闭环量子优势。
+\end{frame}
+
+\end{document}
