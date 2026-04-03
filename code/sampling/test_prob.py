@@ -20,7 +20,7 @@ def total_variation_distance(p, q):
 
 
 seed = 42
-num_samples = 8000
+num_samples = 1000
 output_dir = "output_images"
 bin_width = 20
 

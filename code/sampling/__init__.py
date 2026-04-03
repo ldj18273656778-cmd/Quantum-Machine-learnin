@@ -1,10 +1,11 @@
 from .DQNN_generate_y import DQNN_generate_y
-from .ISQNN_generate_y import ISQNN_generate_y
+from .ISQNN_generate_y import ISQNN_generate_y, idqnn_connectivity
 from importlib import import_module
 
 __all__ = [
 	"DQNN_generate_y",
 	"ISQNN_generate_y",
+	"idqnn_connectivity",
 ]
 
 

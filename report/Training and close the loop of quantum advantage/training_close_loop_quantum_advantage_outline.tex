@@ -10,7 +10,7 @@
 \usepackage{booktabs}
 \usepackage{graphicx}
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta,positioning}
+\usetikzlibrary{arrows.meta,positioning,calc}
 
 \title{Training and Close the Loop of Quantum Advantage\\（Beamer 雏形）}
 \author{}
@@ -23,13 +23,13 @@
   \titlepage
 \end{frame}
 
-\begin{frame}{汇报结构}
-  \tableofcontents
-\end{frame}
+% \begin{frame}{汇报结构}
+%   \tableofcontents
+% \end{frame}
 
 \section{问题定义与目标}
 
-\begin{frame}{生成问题的两条主线}
+\begin{frame}{生成问题}
   \centering
   \resizebox{0.82\linewidth}{!}{%
   \begin{tikzpicture}[
@@ -87,25 +87,41 @@
 
   \vspace{0.35em}
   \begin{alertblock}{本工作强调的“优越性”}
-    这里的优势核心不是单纯更快或更准，而是：\textbf{能够生成经典计算机难以高效生成的结果分布}。
+    这里的优势核心不是更快或更准，而是：\textbf{能够生成经典计算机难以高效生成的结果分布}。
   \end{alertblock}
 \end{frame}
 
 \section{动机与核心论点}
 
-\begin{frame}{为什么强调“闭环”}
-  已有研究表明：
-  \begin{itemize}
-    \item 某些量子神经网络可实现经典难采样分布的生成；
-    \item 但在参数学习（如 VQA）阶段，常遇到训练地形差的问题，
-    如 barren plateaus 与大量局部极小值。
-  \end{itemize}
+\begin{frame}{QNN难训练现象}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.52\textwidth}
+    已有研究表明：
+    \begin{itemize}
+      \item 某些量子神经网络可实现经典难采样分布的生成；
+      \item 但在参数学习阶段，常遇到训练地形差的问题，
+      如 barren plateaus 与大量局部极小值。
+    \end{itemize}
 
-  \vspace{0.4em}
-  因此，仅“会生成”不足以构成完整优势；还需“\textbf{可高效训练}”。
+    \vspace{0.25em}
+    因此，仅“会生成”不足以构成完整优势；还需“\textbf{可高效训练}”。
+
+    \column{0.46\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{./assets/standard_landscape.png}
+  \end{columns}
+
+  \vspace{0.25em}
+  {\tiny 参考文献（对应原文编号）：[42] McClean et al., \emph{Nature Communications} (2018);
+  [43] Larocca et al., \emph{Nature Reviews Physics} (2025);
+  [44] Anschuetz \& Kiani, \emph{Nature Communications} (2022);
+  [45] Huang et al., arXiv:2401.10095 (2024).}
 \end{frame}
 
-\begin{frame}{整体思路（主张）}
+\begin{frame}{整体思路}
+  	本文提出一种浅层的 generative quantum models---IDQNN
+
+  \vspace{0.35em}
   \centering
   \resizebox{0.92\linewidth}{!}{%
   \begin{tikzpicture}[
@@ -118,8 +134,8 @@
   ]
     \node[sbox] (problem) {目标问题\\经典难采样的 $p(y\mid x)$};
     \node[key, right=of problem] (infer) {推断侧：IDQNN 高效采样\\保留“经典难生成”性质};
-    \node[note, below=8mm of infer] (train) {训练侧：经典检索 + MLE 更新\\规避复杂训练地形瓶颈};
-    \node[key, right=of infer] (close) {闭环优势\\\textbf{可训练 + 可推断}};
+    \node[note, below=8mm of infer] (train) {训练侧：利用经典方法完成高效训练\\规避复杂训练地形};
+    \node[key, right=of infer] (close) {Quantum 优势\\\textbf{可训练 + 可推断}};
 
     \draw[arrow] (problem) -- (infer);
     \draw[arrow] (infer) -- (close);
@@ -130,68 +146,107 @@
 
   \vspace{0.35em}
   \begin{alertblock}{文章核心}
-    本工作把“生成经典难生成分布”的推断优势与“可高效训练”的方法结合，形成完整闭环方案。
+    本工作把“生成经典难生成分布”的推断优势与“可高效训练”的方法结合，形成完整量子优越性。
   \end{alertblock}
 \end{frame}
 
 \section{与既有结论的衔接}
 
 \begin{frame}{DQNN 与 IDQNN 的分布等价结论}
-  你已证明：在参数相同条件下，IDQNN 与 DQNN 生成的条件分布相同：
-  \[
-    P_{\mathrm{IDQNN}}(y\mid x,\theta)=P_{\mathrm{DQNN}}(y\mid x,\theta).
-  \]
+  \centering
+  \resizebox{0.96\linewidth}{!}{%
+  \begin{tikzpicture}[
+    font=\small,
+    node distance=8mm and 10mm,
+    input/.style={draw, rounded corners=3pt, minimum width=4.6cm, minimum height=1.35cm, align=center, fill=blue!10, line width=0.9pt},
+    logic/.style={draw, rounded corners=3pt, minimum width=5.0cm, minimum height=1.35cm, align=center, fill=orange!14, line width=0.9pt},
+    result/.style={draw, rounded corners=3pt, minimum width=10.0cm, minimum height=1.45cm, align=center, fill=green!16, line width=1.1pt},
+    arrow/.style={-{Latex[length=2.2mm]}, thick, color=black!75}
+  ]
+    \node[input] (eq) {\textbf{分布等价（已证）}\\$P_{\mathrm{IDQNN}}(y\mid x,\theta)=P_{\mathrm{DQNN}}(y\mid x,\theta)$};
+    \node[logic, right=of eq] (hq) {\textbf{附录 H.3}\\DQNN 对应分布\;\textbf{经典难高效生成}};
+    \node[result, below=12mm of $(eq)!0.5!(hq)$] (id) {\textbf{IDQNN 保留推断侧性质：高效采样经典难生成分布}};
 
-  结合文献附录 H.3：
-  \begin{itemize}
-    \item DQNN 对 $D_n(y)\ket{0^n}$ 测量得到的分布无已知多项式规模经典线路可实现；
-    \item 由于分布等价，IDQNN 对该类任务同样具备难以经典复现的采样能力。
-  \end{itemize}
+    \draw[arrow] (eq) -- (hq);
+    \draw[arrow] (eq.south) -- (id.north west);
+    \draw[arrow] (hq.south) -- (id.north east);
+  \end{tikzpicture}%
+  }
 \end{frame}
 
-\begin{frame}{任务边界：不是“任意分布”生成优势}
-  本文讨论的是特定结构任务 $p(y\mid x)$：
+\begin{frame}{IDQNN 的输入-输出分布结构}
+  \begin{block}{本文问题设定（明确）}
+    本文考虑的经典比特串生成任务由 \textbf{IDQNN} 完成，但目标是\textbf{特殊结构分布}，而不是一般任意分布。
+  \end{block}
+
   \begin{itemize}
-    \item 量子优势体现在“量子线路可采样某些经典难生成分布”；
-    \item 并非证明“对 universal 分布家族都更优”。
+    \item 当输入比特串 $x=\mathbf{1}$ 时，生成的 $y$ 为均匀分布；
+    \item 当输入比特串 $x=\mathbf{0}$ 时，生成的 $y$ 的前 $((n_1-1)\times m)$ 个比特的边缘分布为均匀分布。
   \end{itemize}
 
-  文中线路只能生成带有结构特征的分布，例如：
-  \begin{itemize}
-    \item 当 $x=\mathbf{1}$ 时，$y$ 近似均匀分布；
-    \item 当 $x=\mathbf{0}$ 时，$y$ 的前 $((n_1-1)\times m)$ 比特边缘分布均匀。
-  \end{itemize}
+  \begin{alertblock}{结论}
+    该模型与训练方案\textbf{不能直接覆盖任意数据集}（例如手写数字识别数据集）上的一般分布学习任务。
+  \end{alertblock}
 \end{frame}
 
 \section{数据与训练设定}
 
-\begin{frame}{数据集构造方式}
+\begin{frame}{数据集构造与训练目标}
   数据并非任意采集，而是由“理想参数 + 指定输入分布”生成：
   \begin{itemize}
     \item 预先固定一组理想参数 $\theta_{\mathrm{real}}$；
-    \item 给定输入分布 $D(x)$；
+    \item 给定输入比特串分布 $D(x)$（文中实验设定）：
+    \begin{itemize}
+      \item 以 $\frac{1}{3}$ 概率，取 $x=0^n$；
+      \item 以 $\frac{1}{3}$ 概率，$x$ 的每一比特独立采样，且 $P(x_j=0)=0.6,\;P(x_j=1)=0.4$；
+      \item 以 $\frac{1}{3}$ 概率，$x$ 的每一比特独立采样，且 $P(x_j=0)=0.2,\;P(x_j=1)=0.8$。
+    \end{itemize}
     \item 重复采样 $N$ 次得到
     \[
-      \{(x_i,y_i)\}_{i=1}^{N}.
+      \text{dataset}=\{(x_i,y_i)\}_{i=1}^{N}.
+    \]
+  \end{itemize}
+   训练任务为：
+  \begin{itemize}
+    \item \textbf{网络结构已知}（IDQNN 结构）的情况下；
+    \item 学习参数 $\theta$，使其逼近目标参数 $\theta_{\mathrm{real}}$。
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{本文学习算法：样本筛选与参数估计}
+  \small
+  	\textbf{1) 样本筛选（以第 $(i,j)$ 个参数为例）}
+  \begin{itemize}
+    \item 从 $\text{dataset}=\{(x_i,y_i)\}_{i=1}^N$ 中筛选满足条件的子集：
+    \[
+      x_{i,j}=0,\quad x_{\mathcal N(i,j)}=1,
+    \]
+    其中 $\mathcal N(i,j)$ 表示第 $(i,j)$ 位的邻域比特；
+    \item 记筛选后样本数为 $N_{\mathrm{sp}}$，对应输出位记作
+    \[
+      y^{(i,j)}_{(t)}\in\{0,1\},\quad t=1,\dots,N_{\mathrm{sp}}.
     \]
   \end{itemize}
 
-  这对应“先定义真实分布，再做参数恢复”的训练范式。
+  \vspace{0.2em}
+  	\textbf{2) 估计参数}
+  \[
+    \hat\theta_{i,j}=\frac{1}{2}\arccos\!\left(1-\frac{2}{N_{\mathrm{sp}}}\sum_{t=1}^{N_{\mathrm{sp}}}y^{(i,j)}_{(t)}\right).
+  \]
+
+  \vspace{0.2em}
+  	\textbf{3) 估计误差}
+  \[
+    \mathrm{Std}(\hat\theta_j)\approx \frac{1}{2\sqrt{N_{\mathrm{sp}}}},
+    \qquad
+    |\hat\theta_j-\theta_j|=\mathcal O\!\left(\frac{1}{\sqrt{N_{\mathrm{sp}}}}\right).
+  \]
+
 \end{frame}
 
-\begin{frame}{本文学习目标}
-  训练任务为：
-  \begin{itemize}
-    \item \textbf{网络结构已知}（DQNN / IDQNN 固定）；
-    \item 学习参数 $\beta$，使其逼近目标参数（或目标分布）。
-  \end{itemize}
 
-  即：主要关注“参数学习可行性与效率”，而非结构搜索。
-\end{frame}
-
-\section{当前代码状态与现实约束}
-
-\begin{frame}{实现现状：目前是经典模拟}
+\begin{frame}{代码现状：模拟采样}
   现有采样代码（DQNN \& IDQNN）基于 \texttt{cirq} simulator：
   \begin{itemize}
     \item 本质是对量子算法的经典仿真；
@@ -199,34 +254,11 @@
   \end{itemize}
 
   即使使用 tensor network 等技巧，也难以对“所有输入 $x$”普遍降低模拟复杂度。
+  $$\mathcal{L}_{\text{NLL}}(\theta) = -\sum_{i=1}^N \log p_\theta(y_i \mid x_i)$$
+  $$\theta_{n+1} = \theta_n - \eta \nabla_\theta \mathcal{L}_{\text{NLL}}(\theta_n)$$
+  $$\theta_{\text{opt}} = \arg\min_\theta \mathcal{L}_{\text{NLL}}(\theta)$$
 \end{frame}
 
-\section{下一步章节预留（可逐步替换）}
 
-\begin{frame}{后续可填充模块}
-  \begin{enumerate}
-    \item 理论部分：
-    \begin{itemize}
-      \item 经典难采样性陈述与引用；
-      \item IDQNN 采样高效性的形式化条件。
-    \end{itemize}
-    \item 训练部分：
-    \begin{itemize}
-      \item 基于数据检索 + MLE 的算法流程图；
-      \item 收敛性与复杂度分析。
-    \end{itemize}
-    \item 实验部分：
-    \begin{itemize}
-      \item 数据规模、参数设置、评估指标（NLL / TVD / fidelity）；
-      \item DQNN、IDQNN 与经典基线对比。
-    \end{itemize}
-  \end{enumerate}
-\end{frame}
-
-\begin{frame}{一句话总结}
-  \centering
-  \Large
-  目标是把“可采样的量子优势”推进为“\textbf{可训练 + 可推断}”的闭环量子优势。
-\end{frame}
 
 \end{document}

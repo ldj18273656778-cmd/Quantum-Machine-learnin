@@ -1,0 +1,21 @@
+input=D:\研究生\研究生\Quantum Machine learning\code\Train\data\xy_dataset.npy
+n1=3, m=4, n=12
+
+# theta_hat matrix (rad)
+0.3241582930 0.5414605896 1.3423593250 1.0559903717
+1.5707963268 0.8131902500 0.9255230806 1.2385534833
+0.5710253255 1.3341912805 0.4636476090 0.9608518352
+
+# details per bit
+bit_1based=1, bit_0based=0, neighbors_0based=[1, 4], N_sp=69, sum_y=7, theta_hat_rad=0.324158293046992, theta_hat_deg=18.57290208575758
+bit_1based=2, bit_0based=1, neighbors_0based=[0, 5], N_sp=64, sum_y=17, theta_hat_rad=0.5414605896273018, theta_hat_deg=31.023406558309436
+bit_1based=3, bit_0based=2, neighbors_0based=[3, 6], N_sp=78, sum_y=74, theta_hat_rad=1.342359325028566, theta_hat_deg=76.91152391416672
+bit_1based=4, bit_0based=3, neighbors_0based=[2, 7], N_sp=66, sum_y=50, theta_hat_rad=1.0559903716750858, theta_hat_deg=60.50379150343357
+bit_1based=5, bit_0based=4, neighbors_0based=[0, 5, 8], N_sp=47, sum_y=47, theta_hat_rad=1.5707963267948966, theta_hat_deg=90.0
+bit_1based=6, bit_0based=5, neighbors_0based=[1, 4, 9], N_sp=36, sum_y=19, theta_hat_rad=0.813190250037907, theta_hat_deg=46.5923692683602
+bit_1based=7, bit_0based=6, neighbors_0based=[2, 7, 10], N_sp=47, sum_y=30, theta_hat_rad=0.9255230806157184, theta_hat_deg=53.02856636122692
+bit_1based=8, bit_0based=7, neighbors_0based=[3, 6, 11], N_sp=47, sum_y=42, theta_hat_rad=1.2385534832801346, theta_hat_deg=70.96388729317869
+bit_1based=9, bit_0based=8, neighbors_0based=[4, 9], N_sp=89, sum_y=26, theta_hat_rad=0.571025325483858, theta_hat_deg=32.7173411453092
+bit_1based=10, bit_0based=9, neighbors_0based=[5, 8], N_sp=91, sum_y=86, theta_hat_rad=1.3341912804910934, theta_hat_deg=76.44352943529466
+bit_1based=11, bit_0based=10, neighbors_0based=[6, 11], N_sp=75, sum_y=15, theta_hat_rad=0.46364760900080615, theta_hat_deg=26.565051177077994
+bit_1based=12, bit_0based=11, neighbors_0based=[7, 10], N_sp=64, sum_y=43, theta_hat_rad=0.9608518351929889, theta_hat_deg=55.052754893958

@@ -11,6 +11,11 @@ from pathlib import Path
 
 import numpy as np
 
+try:
+    from tqdm import tqdm
+except ImportError:
+    tqdm = None
+
 ROOT = Path(__file__).resolve().parents[2]
 TRAIN_DIR = Path(__file__).resolve().parent
 CODE_DIR = ROOT / "code"
@@ -36,6 +41,7 @@ def generate_xy_dataset(
     theta: np.ndarray,
     num_samples: int = 1000,
     seed: int = 7,
+    show_progress: bool = True,
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """Generate (x,y)^N with fixed theta and D(x).
 
@@ -52,7 +58,11 @@ def generate_xy_dataset(
 
     x, comps = sample_dx(n_bits=n, num_samples=num_samples, seed=seed)
     y = np.zeros((num_samples, n), dtype=np.int8)
-    for i, xi in enumerate(x.tolist()):
+    iterator = enumerate(x.tolist())
+    if show_progress and tqdm is not None:
+        iterator = tqdm(iterator, total=num_samples, desc="Generating y", unit="sample")
+
+    for i, xi in iterator:
         _, yi = ISQNN_generate_y(xi, n1, m, theta_list)
         y[i] = np.asarray(yi, dtype=np.int8)
 
@@ -63,14 +73,17 @@ if __name__ == "__main__":
     # ======= 手动修改这里的参数 =======
     n1 = 3
     m = 4
-    num_samples = 1000
+    num_samples = 20000
     seed = 7
     theta_path = ROOT / "code" / "Train" / "data" / "theta_demo.npy"
-    out_path = ROOT / "code" / "Train" / "data" / "xy_dataset.txt"
-    out_npy_path = ROOT / "code" / "Train" / "data" / "xy_dataset.npy"
+    out_dir = ROOT / "code" / "Train" / "data"
     # ================================
 
     n = n1 * m
+    filename_tag = f"n1{n1}_m{m}_N{num_samples}_seed{seed}"
+    out_path = out_dir / f"xy_dataset_{filename_tag}.txt"
+    out_npy_path = out_dir / f"xy_dataset_{filename_tag}.npy"
+
     theta = load_theta(theta_path, n1, m)
     x, y, comps = generate_xy_dataset(
         n1=n1,
@@ -85,6 +98,9 @@ if __name__ == "__main__":
         f.write(f"n1={n1}, m={m}, n={n}, N={num_samples}\n")
         f.write(f"seed={seed}\n")
         f.write(f"theta_path={theta_path}\n")
+        f.write("theta_array:\n")
+        f.write(np.array2string(theta, precision=8, suppress_small=False))
+        f.write("\n")
         f.write("comp\tx\ty\n")
         for comp, xi, yi in zip(comps.tolist(), x.tolist(), y.tolist()):
             y_str = "".join(str(int(b)) for b in yi)

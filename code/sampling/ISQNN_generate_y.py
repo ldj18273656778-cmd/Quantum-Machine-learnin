@@ -2,6 +2,36 @@ import numpy as np
 import random
 
 
+def idqnn_connectivity(n1, m):
+    """返回网络连通结构 G（所有 CZ 门作用的 bit 对）。
+
+    bit 编号采用展平索引: idx = slice_idx * m + i。
+    """
+    def idx(slice_idx, i):
+        return slice_idx * m + i
+
+    intra_slice_edges = []
+    for slice_idx in range(n1):
+        for i in range(m // 2):
+            intra_slice_edges.append((idx(slice_idx, 2 * i), idx(slice_idx, 2 * i + 1)))
+
+    inter_slice_edges = []
+    for slice_idx in range(n1 - 1):
+        for i in range(m):
+            inter_slice_edges.append((idx(slice_idx, i), idx(slice_idx + 1, i)))
+
+    G = {
+        "n1": n1,
+        "m": m,
+        "n": n1 * m,
+        "intra_slice_edges": intra_slice_edges,
+        "inter_slice_edges": inter_slice_edges,
+        "all_edges": intra_slice_edges + inter_slice_edges,
+    }#G 是一个字典，包含了网络的层数 n1、每层的 qubit 数 m、总 qubit 数 n，以及所有 CZ 门作用的 bit 对（intra_slice_edges 和 inter_slice_edges）。
+    #G[""all_edges"] 是一个列表，包含了所有 CZ 门作用的 bit 对，先是每层内部的连接（intra_slice_edges），然后是相邻层之间的连接（inter_slice_edges）。
+    return G
+
+
 def ISQNN_generate_y(bitstring, n1, m, theta_list):
     try:
         import cirq
@@ -131,8 +161,12 @@ if __name__ == "__main__":
     theta_test = [random.uniform(0, 1) * np.pi for _ in range(n)]
 
     circuit, y = ISQNN_generate_y(bitstring, n1, m, theta_test)
+    G = idqnn_connectivity(n1, m)
 
     print("Theta parameters (first 8):", theta_test[:8])
     print("Generated y:", y)
+    print("CZ connectivity G:", G)
     print("\n=== 完整的量子电路 ===")
-    print(circuit)
+    #print(circuit)
+    print(G['all_edges'])
+    print(G['all_edges'][3:5])
