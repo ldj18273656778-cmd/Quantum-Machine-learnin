@@ -17,14 +17,16 @@ from Train.generate_xy_dataset import load_theta, generate_xy_dataset
 from sampling.ISQNN_generate_y import idqnn_connectivity
 from Train.find_x_indices_by_graph_condition import build_adjacency, find_indices
 from Train.estimate_theta_from_filtered_samples import estimate_theta_from_filtered_samples
+from Train.estimate_theta_from_filtered_samples import load_xy_from_npy
 
 def main() -> int:
     # ===== 调试参数区 =====
     n1 = 3
     m = 4
-    num_samples = 10000
+    num_samples = 20000
     seed = 7
     theta_path = ROOT / "code" / "Train" / "data" / "theta_demo.npy"
+    input_path = ROOT / "code" / "Train" / "data" /"xy_dataset_n13_m4_N20000_seed7.npy"
     # =====================
 
     t0 = time.perf_counter()
@@ -43,18 +45,21 @@ def main() -> int:
     print(theta)
     print(f"theta loaded, shape={theta.shape}, dtype={theta.dtype}")
 
-    x, y, comps = generate_xy_dataset(
-        n1=n1,
-        m=m,
-        theta=theta,
-        num_samples=num_samples,
-        seed=seed,
-    )
+    x, y = load_xy_from_npy(input_path)
+    n = len(x[0])
 
-    print(f"x.shape={x.shape}, y.shape={y.shape}, comps.shape={comps.shape}")
+    # x, y, comps = generate_xy_dataset(
+    #     n1=n1,
+    #     m=m,
+    #     theta=theta,
+    #     num_samples=num_samples,
+    #     seed=seed,
+    # )
+
+    print(f"x.shape={x.shape}, y.shape={y.shape}")
     print("first 3 x:", x[:3].tolist())
     print("first 3 y:", ["".join(str(int(b)) for b in row) for row in y[:3]])
-    print("first 3 comps:", comps[:3].tolist())
+    # print("first 3 comps:", comps[:3].tolist())
     print(f"elapsed={time.perf_counter() - t0:.3f}s")
     print("=== test_train done ===")
 
