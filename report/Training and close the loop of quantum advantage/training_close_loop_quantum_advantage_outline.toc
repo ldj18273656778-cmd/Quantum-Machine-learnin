@@ -1,4 +1,4 @@
-\beamer@sectionintoc {1}{问题定义与目标}{2}{0}{1}
-\beamer@sectionintoc {2}{动机与核心论点}{4}{0}{2}
-\beamer@sectionintoc {3}{与既有结论的衔接}{6}{0}{3}
-\beamer@sectionintoc {4}{数据与训练设定}{8}{0}{4}
+\beamer@sectionintoc {1}{Background \& Claim}{2}{0}{1}
+\beamer@sectionintoc {2}{This Work}{4}{0}{2}
+\beamer@sectionintoc {3}{Task 1: Learn Classically Intractable Distributions}{5}{0}{3}
+\beamer@sectionintoc {4}{Task 1 Experiments \& Results (to be extended)}{11}{0}{4}

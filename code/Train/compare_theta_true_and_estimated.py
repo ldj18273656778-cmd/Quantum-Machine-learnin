@@ -61,17 +61,17 @@ def compare_theta(theta_true: np.ndarray, theta_hat: np.ndarray) -> dict:
             f"shape mismatch: true={theta_true.shape}, estimated={theta_hat.shape}"
         )
 
-    diff = theta_hat - theta_true
-    abs_err = np.abs(diff)
+    d_cos = np.cos(theta_hat) - np.cos(theta_true)
+    abs_err = np.abs(d_cos)
 
     mae = float(np.mean(abs_err))
-    rmse = float(np.sqrt(np.mean(diff**2)))
+    rmse = float(np.sqrt(np.mean(d_cos**2)))
     max_abs = float(np.max(abs_err))
 
     return {
         "theta_true": theta_true,
         "theta_hat": theta_hat,
-        "diff": diff,
+        "d_cos": d_cos,
         "abs_err": abs_err,
         "mae": mae,
         "rmse": rmse,
@@ -101,5 +101,5 @@ if __name__ == "__main__":
     print(result["theta_true"])
     print("\nestimated_theta(rad):")
     print(result["theta_hat"])
-    print("\ndiff = estimated - true (rad):")
-    print(result["diff"])
+    print("\nd_cos = cos(estimated) - cos(true):")
+    print(result["d_cos"])

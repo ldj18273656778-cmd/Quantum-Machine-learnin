@@ -136,10 +136,12 @@ def DQNN_generate_y(bitstring, n1, m, theta_list):
 
 if __name__ == "__main__":
     # 示例参数
+    import time
+    t0 = time.perf_counter()
     random.seed(42)
-    bitstring = "11111111111111111111"  # n = n1*m
-    n1 = 4
-    m = 5
+    bitstring = "1011101101111011110111110111011011110111101111111101110110111101111011111011101101111011110111110011"  # n = n1*m
+    n1 = 10
+    m = 10
     n = n1 * m
     theta_test = [random.uniform(0, 1)*np.pi for _ in range(n)]# 随机生成theta参数列表
 
@@ -147,5 +149,7 @@ if __name__ == "__main__":
     
     print("Theta parameters:", theta_test)
     print("Generated y:", y)
-    print("\n=== 完整的量子电路 ===")
-    print(circuit)
+    # print("\n=== 完整的量子电路 ===")
+    # print(circuit)
+    t1 = time.perf_counter()
+    print(f"总耗时: {t1 - t0:.6f} 秒")

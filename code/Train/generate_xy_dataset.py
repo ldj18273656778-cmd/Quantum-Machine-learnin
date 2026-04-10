@@ -73,7 +73,7 @@ if __name__ == "__main__":
     # ======= 手动修改这里的参数 =======
     n1 = 3
     m = 4
-    num_samples = 20000
+    num_samples = 200000
     seed = 7
     theta_path = ROOT / "code" / "Train" / "data" / "theta_demo.npy"
     out_dir = ROOT / "code" / "Train" / "data"

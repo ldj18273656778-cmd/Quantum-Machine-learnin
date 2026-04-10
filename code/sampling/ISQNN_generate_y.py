@@ -154,9 +154,12 @@ def ISQNN_generate_y(bitstring, n1, m, theta_list):
 
 if __name__ == "__main__":
     # 示例参数
-    bitstring = "000100"  
-    n1 = 3
-    m = 2
+    import time
+    t0 = time.perf_counter()
+
+    bitstring = "1000100010000111"  
+    n1 = 4
+    m = 4
     n = n1 * m
     theta_test = [random.uniform(0, 1) * np.pi for _ in range(n)]
 
@@ -169,4 +172,6 @@ if __name__ == "__main__":
     print("\n=== 完整的量子电路 ===")
     #print(circuit)
     print(G['all_edges'])
-    print(G['all_edges'][3:5])
+    # print(G['all_edges'][3:5])
+    t1 = time.perf_counter()
+    print(f"总耗时: {t1 - t0:.6f} 秒")

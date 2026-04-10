@@ -50,7 +50,7 @@ $$
 单个参数估计公式：
 
 $$
-\hat\theta_j=\frac{1}{2}\arccos\!\left(1-\frac{2}{N_{\mathrm{sp}}}\sum_{t=1}^{N_{\mathrm{sp}}}y_t^{(j)}\right)
+\hat\theta_j=\arccos\!\left(1-\frac{2}{N_{\mathrm{sp}}}\sum_{t=1}^{N_{\mathrm{sp}}}y_t^{(j)}\right)
 $$
 
 其中 $N_{\mathrm{sp}}$ 是筛选后样本数，$y_t^{(j)}\in\{0,1\}$。

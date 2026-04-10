@@ -1,9 +1,9 @@
 \documentclass[aspectratio=169]{beamer}
-\usepackage[UTF8]{ctex}
 \usetheme{Madrid}
 \usecolortheme{seahorse}
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{footline}[frame number]
+\setbeamersize{text margin left=8mm,text margin right=8mm}
 
 \usepackage{amsmath,amssymb,bm}
 \usepackage{braket}
@@ -11,8 +11,10 @@
 \usepackage{graphicx}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,calc}
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
 
-\title{Training and Close the Loop of Quantum Advantage\\（Beamer 雏形）}
+\title{Generative quantum advantage for classical and quantum problems}
 \author{}
 \institute{Quantum Machine Learning}
 \date{\today}
@@ -20,245 +22,295 @@
 \begin{document}
 
 \begin{frame}
-  \titlepage
+  \maketitle
 \end{frame}
 
-% \begin{frame}{汇报结构}
-%   \tableofcontents
+% \begin{frame}{Outline}
+%   \begin{itemize}
+%     \item Background \& Claim
+%     \item This Work
+%     \item Task 1: Learning Classically Intractable Distributions
+%     \item Task 1: Experiments \& Results
+%     \item Task 2: Learning Quantum Circuits for Accelerated Physical Simulation
+%     \item Takeaway
+%   \end{itemize}
 % \end{frame}
 
-\section{问题定义与目标}
+\section{Background \& Claim}
 
-\begin{frame}{生成问题}
-  \centering
-  \resizebox{0.82\linewidth}{!}{%
-  \begin{tikzpicture}[
-    font=\small,
-    node distance=6mm and 6mm,
-    box/.style={draw, rounded corners, minimum width=2.25cm, minimum height=0.78cm, align=center, fill=blue!8},
-    qbox/.style={draw, rounded corners, minimum width=2.1cm, minimum height=0.72cm, align=center, fill=green!10},
-    arrow/.style={-{Latex[length=1.8mm]}, thick}
-  ]
-    \node[box] (data) {数据集\\$\{(x_i,y_i)\}$};
-    \node[box, right=of data] (train) {Training\\学习参数 $\theta$};
-    \node[box, right=of train] (infer) {Inference\\$y\sim p(y\mid x,\theta)$};
+\begin{frame}{Beyond-Classical Sampling: Status and Gap}
+  \begin{block}{Established fact}
+    Beyond-classical quantum experiments have shown that quantum devices can sample from distributions that are classically intractable to simulate.
+  \end{block}
+\vspace{0.3em}
+  \begin{alertblock}{Critical gap}
+    Complexity barriers have thwarted efficient learning of such distributions.
+  \end{alertblock}
 
-    \node[qbox, below=7mm of train, xshift=-13mm] (cnn) {Classical NN};
-    \node[qbox, below=7mm of train, xshift=13mm] (qnn) {Quantum NN};
+  % \vspace{0.3em}
+  % \begin{itemize}
+  %   \item Demonstrating hard sampling alone is not sufficient.
+  %   \item We must also show the target distribution can be learned and generated reliably.
+  % \end{itemize}
+\end{frame}
 
-    \draw[arrow] (data) -- (train);
-    \draw[arrow] (train) -- (infer);
-    \draw[arrow] (cnn.north) -- (train.south west);
-    \draw[arrow] (qnn.north) -- (train.south east);
-  \end{tikzpicture}%
-  }
+\begin{frame}{A Stronger Definition of Generative Quantum Advantage}
+  \begin{block}{Goal emphasized in this talk}
+    {\bfseries Generative quantum advantage}: quantum computers can \textbf{learn and generate} desired outputs substantially better than classical computers, not just sample once from a hard distribution.
+  \end{block}
 
-  \vspace{0.6em}
-  \small
+  \[
+      \mathrm{Advantage\ loop} = \underbrace{\mathrm{Trainable}}_{\mathrm{efficient\ learning}} + \underbrace{\mathrm{Inferable}}_{\mathrm{efficient\ generation\ of\ classically\ hard\ distributions}}
+  \]
+\end{frame}
+
+\section{This Work}
+
+\begin{frame}{Main Results}
   \begin{itemize}
-    \item \textbf{核心拆解}：训练（从数据学习参数）+ 推断（给定输入后采样输出）
-    \item \textbf{实现载体}：经典神经网络与量子神经网络
+    \item Introduce families of generative quantum models that are:
+    \begin{itemize}
+      \item classically hard to simulate,
+      \item efficiently trainable.
+    \end{itemize}
+    \item Demonstrate on a 68-qubit superconducting quantum processor in two scenarios:
+    \begin{enumerate}
+      \item learning classically intractable probability distributions,(bitstring generation task)
+      \item learning quantum circuits for accelerated physical simulation.
+    \end{enumerate}
+    \item The two tasks leverage different learning algorithms.
   \end{itemize}
 \end{frame}
 
-\begin{frame}{生成问题中的量子优越性}
-  \centering
-  \resizebox{0.9\linewidth}{!}{%
-  \begin{tikzpicture}[
-    font=\small,
-    node distance=7mm and 10mm,
-    box/.style={draw, rounded corners, minimum width=3.2cm, minimum height=0.95cm, align=center, fill=blue!8},
-    hard/.style={draw, rounded corners, minimum width=4.2cm, minimum height=1.05cm, align=center, fill=red!10, very thick},
-    arrow/.style={-{Latex[length=2mm]}, thick}
-  ]
-    \node[box] (task) {目标生成任务\\$p(y\mid x)$};
-    \node[box, right=of task] (qroute) {量子模型路线\\DQNN / IDQNN};
-    \node[hard, right=of qroute] (hardout) {可生成的输出分布\\\textbf{经典计算机难以高效生成}};
+\section{Task 1: Learn Classically Intractable Distributions}
 
-    \node[box, below=8mm of qroute] (classical) {经典路线};
-    \node[draw, dashed, rounded corners, minimum width=4.2cm, minimum height=1.05cm, align=center, fill=gray!10, right=of classical] (limit) {对该类分布缺乏已知多项式规模\\经典高效生成方法};
-
-    \draw[arrow] (task) -- (qroute);
-    \draw[arrow] (qroute) -- (hardout);
-    \draw[arrow] (task.south east) -- (classical.west);
-    \draw[arrow, dashed] (classical) -- (limit);
-  \end{tikzpicture}%
-  }
-
-  \vspace{0.35em}
-  \begin{alertblock}{本工作强调的“优越性”}
-    这里的优势核心不是更快或更准，而是：\textbf{能够生成经典计算机难以高效生成的结果分布}。
-  \end{alertblock}
-\end{frame}
-
-\section{动机与核心论点}
-
-\begin{frame}{QNN难训练现象}
-  \begin{columns}[T,onlytextwidth]
-    \column{0.52\textwidth}
-    已有研究表明：
-    \begin{itemize}
-      \item 某些量子神经网络可实现经典难采样分布的生成；
-      \item 但在参数学习阶段，常遇到训练地形差的问题，
-      如 barren plateaus 与大量局部极小值。
-    \end{itemize}
-
-    \vspace{0.25em}
-    因此，仅“会生成”不足以构成完整优势；还需“\textbf{可高效训练}”。
-
-    \column{0.46\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{./assets/standard_landscape.png}
-  \end{columns}
-
-  \vspace{0.25em}
-  {\tiny 参考文献（对应原文编号）：[42] McClean et al., \emph{Nature Communications} (2018);
-  [43] Larocca et al., \emph{Nature Reviews Physics} (2025);
-  [44] Anschuetz \& Kiani, \emph{Nature Communications} (2022);
-  [45] Huang et al., arXiv:2401.10095 (2024).}
-\end{frame}
-
-\begin{frame}{整体思路}
-  	本文提出一种浅层的 generative quantum models---IDQNN
-
-  \vspace{0.35em}
-  \centering
-  \resizebox{0.92\linewidth}{!}{%
-  \begin{tikzpicture}[
-    font=\small,
-    node distance=7mm and 9mm,
-    sbox/.style={draw, rounded corners, minimum width=3.0cm, minimum height=0.95cm, align=center, fill=blue!8},
-    key/.style={draw, rounded corners, minimum width=4.4cm, minimum height=1.0cm, align=center, fill=green!10, very thick},
-    note/.style={draw, dashed, rounded corners, minimum width=4.4cm, minimum height=0.95cm, align=center, fill=gray!8},
-    arrow/.style={-{Latex[length=2mm]}, thick}
-  ]
-    \node[sbox] (problem) {目标问题\\经典难采样的 $p(y\mid x)$};
-    \node[key, right=of problem] (infer) {推断侧：IDQNN 高效采样\\保留“经典难生成”性质};
-    \node[note, below=8mm of infer] (train) {训练侧：利用经典方法完成高效训练\\规避复杂训练地形};
-    \node[key, right=of infer] (close) {Quantum 优势\\\textbf{可训练 + 可推断}};
-
-    \draw[arrow] (problem) -- (infer);
-    \draw[arrow] (infer) -- (close);
-    \draw[arrow] (problem.south east) -- (train.west);
-    \draw[arrow] (train.east) -- (close.south west);
-  \end{tikzpicture}%
-  }
-
-  \vspace{0.35em}
-  \begin{alertblock}{文章核心}
-    本工作把“生成经典难生成分布”的推断优势与“可高效训练”的方法结合，形成完整量子优越性。
-  \end{alertblock}
-\end{frame}
-
-\section{与既有结论的衔接}
-
-\begin{frame}{DQNN 与 IDQNN 的分布等价结论}
-  \centering
-  \resizebox{0.96\linewidth}{!}{%
-  \begin{tikzpicture}[
-    font=\small,
-    node distance=8mm and 10mm,
-    input/.style={draw, rounded corners=3pt, minimum width=4.6cm, minimum height=1.35cm, align=center, fill=blue!10, line width=0.9pt},
-    logic/.style={draw, rounded corners=3pt, minimum width=5.0cm, minimum height=1.35cm, align=center, fill=orange!14, line width=0.9pt},
-    result/.style={draw, rounded corners=3pt, minimum width=10.0cm, minimum height=1.45cm, align=center, fill=green!16, line width=1.1pt},
-    arrow/.style={-{Latex[length=2.2mm]}, thick, color=black!75}
-  ]
-    \node[input] (eq) {\textbf{分布等价（已证）}\\$P_{\mathrm{IDQNN}}(y\mid x,\theta)=P_{\mathrm{DQNN}}(y\mid x,\theta)$};
-    \node[logic, right=of eq] (hq) {\textbf{附录 H.3}\\DQNN 对应分布\;\textbf{经典难高效生成}};
-    \node[result, below=12mm of $(eq)!0.5!(hq)$] (id) {\textbf{IDQNN 保留推断侧性质：高效采样经典难生成分布}};
-
-    \draw[arrow] (eq) -- (hq);
-    \draw[arrow] (eq.south) -- (id.north west);
-    \draw[arrow] (hq.south) -- (id.north east);
-  \end{tikzpicture}%
-  }
-\end{frame}
-
-\begin{frame}{IDQNN 的输入-输出分布结构}
-  \begin{block}{本文问题设定（明确）}
-    本文考虑的经典比特串生成任务由 \textbf{IDQNN} 完成，但目标是\textbf{特殊结构分布}，而不是一般任意分布。
+\begin{frame}{Task 1 : Inference with DQNN/IDQNN}
+  \begin{block}{Inference }
+    Given an input bitstring $x\in (0,1)^n$, the generative quantum model probabilistically generates output bitstring $y\in (0,1)^n$ acoording to $n$ model parameters $\theta$:
+    \[
+      y \sim p_\theta(y\mid x).
+    \]
   \end{block}
 
   \begin{itemize}
-    \item 当输入比特串 $x=\mathbf{1}$ 时，生成的 $y$ 为均匀分布；
-    \item 当输入比特串 $x=\mathbf{0}$ 时，生成的 $y$ 的前 $((n_1-1)\times m)$ 个比特的边缘分布为均匀分布。
+    \item Models: DQNN(Deep Quantum Neural Network) and shallow IDQNN(Instantaneous Deep Quantum Neural Network).
+    \item Possess the ability to generate classically intractable distributions.
   \end{itemize}
-
-  \begin{alertblock}{结论}
-    该模型与训练方案\textbf{不能直接覆盖任意数据集}（例如手写数字识别数据集）上的一般分布学习任务。
-  \end{alertblock}
+  We had proved that $P_{IDQNN}(y | x,\theta) = P_{DQNN}(y | x,\theta)$.
 \end{frame}
 
-\section{数据与训练设定}
+\begin{frame}{IDQNN Definition and Architecture}
+  \begin{columns}[c,onlytextwidth]
+    \column{0.48\textwidth}
+    \centering
+    \includegraphics[width=0.98\linewidth,height=0.58\textheight,keepaspectratio]{./assets/2D Shallow QNN.png}
 
-\begin{frame}{数据集构造与训练目标}
-  数据并非任意采集，而是由“理想参数 + 指定输入分布”生成：
-  \begin{itemize}
-    \item 预先固定一组理想参数 $\theta_{\mathrm{real}}$；
-    \item 给定输入比特串分布 $D(x)$（文中实验设定）：
-    \begin{itemize}
-      \item 以 $\frac{1}{3}$ 概率，取 $x=0^n$；
-      \item 以 $\frac{1}{3}$ 概率，$x$ 的每一比特独立采样，且 $P(x_j=0)=0.6,\;P(x_j=1)=0.4$；
-      \item 以 $\frac{1}{3}$ 概率，$x$ 的每一比特独立采样，且 $P(x_j=0)=0.2,\;P(x_j=1)=0.8$。
-    \end{itemize}
-    \item 重复采样 $N$ 次得到
+    \vspace{0.35em}
+    {\scriptsize 2D shallow QNN architecture used by IDQNN.}
+
+    \column{0.50\textwidth}
+    \centering
+    \resizebox{0.98\linewidth}{!}{%
+    \begin{tikzpicture}[
+      font=\small,
+      node distance=8mm and 10mm,
+      box/.style={draw, rounded corners, minimum width=2.35cm, minimum height=0.85cm, align=center, fill=blue!8},
+      op/.style={draw, rounded corners, minimum width=1.75cm, minimum height=0.85cm, align=center, fill=green!10},
+      meas/.style={draw, rounded corners, minimum width=2.0cm, minimum height=0.85cm, align=center, fill=orange!16},
+      arrow/.style={-{Latex[length=2mm]}, thick}
+    ]
+      % 2x2 layout
+      \node[box] (enc) {Encoding\\$x\mapsto \ket{\psi(x)}$};
+      \node[op, right=of enc] (rz) {Apply\\$R_z(\theta)$};
+      \node[op, below=of enc] (cz) {Apply\\$CZ$};
+      \node[meas, right=of cz] (mx) {Measure\\in $X$ basis};
+
+      % flow: top row -> down -> bottom row
+      \draw[arrow] (enc) -- (rz);
+      \draw[arrow] (rz) -- (cz);
+      \draw[arrow] (cz) -- (mx);
+
+      \node[align=center] at ($(cz)!0.5!(mx)+(0,-1.35)$)
+      {$\ket{\psi_{\mathrm{out}}}=\left(\prod CZ\right)\left(\prod R_z(\theta)\right)\ket{\psi(x)},\quad y\sim p_\theta(y\mid x)$};
+    \end{tikzpicture}%
+    }
+  \end{columns}
+
+  \vspace{0.35em}
+  \begin{block}{Input-state encoding rule}
+    {\footnotesize Qubit $i$ is initialized from
+    $\{|0\rangle, |+\rangle=\tfrac{1}{\sqrt{2}}(|0\rangle+|1\rangle)\}$ according to bit $x_i$:
+    $0\mapsto|+\rangle,\;1\mapsto|0\rangle$.}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Task 1 Learning Algorithm: Dataset Construction}
+  \begin{enumerate}
+    \item Sample $N_{\mathrm{sample}}$ input bitstrings from $D(x)$.
+    \item Fix ideal parameters $\theta_{\mathrm{real}}$.
+    \item Generate the dataset under ideal parameters:
     \[
-      \text{dataset}=\{(x_i,y_i)\}_{i=1}^{N}.
+      \mathcal D = \{(x_i,y_i)\}_{i=1}^{N_{\mathrm{sample}}}.
     \]
-  \end{itemize}
-   训练任务为：
-  \begin{itemize}
-    \item \textbf{网络结构已知}（IDQNN 结构）的情况下；
-    \item 学习参数 $\theta$，使其逼近目标参数 $\theta_{\mathrm{real}}$。
-  \end{itemize}
+  \end{enumerate}
 
+  \vspace{0.25em}
+  \begin{block}{Training objective}
+    Estimate $\theta$ from $\mathcal D$ such that $\theta$ approaches $\theta_{\mathrm{real}}$.
+  \end{block}
 \end{frame}
 
-\begin{frame}{本文学习算法：样本筛选与参数估计}
+\begin{frame}{Task 1 Learning Algorithm: Block-wise Estimation}
   \small
-  	\textbf{1) 样本筛选（以第 $(i,j)$ 个参数为例）}
+  {\bfseries Core idea: estimate each parameter position block-wise.}
   \begin{itemize}
-    \item 从 $\text{dataset}=\{(x_i,y_i)\}_{i=1}^N$ 中筛选满足条件的子集：
+    \item For each parameter at position $(i,j)$, filter samples satisfying:
     \[
-      x_{i,j}=0,\quad x_{\mathcal N(i,j)}=1,
+      x_{i,j}=0,\qquad x_{\mathcal N(i,j)}=1,
     \]
-    其中 $\mathcal N(i,j)$ 表示第 $(i,j)$ 位的邻域比特；
-    \item 记筛选后样本数为 $N_{\mathrm{sp}}$，对应输出位记作
-    \[
-      y^{(i,j)}_{(t)}\in\{0,1\},\quad t=1,\dots,N_{\mathrm{sp}}.
-    \]
+    where $\mathcal N(i,j)$ denotes positions connected via CZ gates.
+    \item Compute the parameter estimate from the filtered samples using the prescribed formula.
   \end{itemize}
 
-  \vspace{0.2em}
-  	\textbf{2) 估计参数}
   \[
-    \hat\theta_{i,j}=\frac{1}{2}\arccos\!\left(1-\frac{2}{N_{\mathrm{sp}}}\sum_{t=1}^{N_{\mathrm{sp}}}y^{(i,j)}_{(t)}\right).
+    \hat\theta_{i,j}=\arccos\!\left(1-\frac{2}{N_{\mathrm{sp}}}\sum_{t=1}^{N_{\mathrm{sp}}}y^{(i,j)}_{(t)}\right).
   \]
+\end{frame}
 
-  \vspace{0.2em}
-  	\textbf{3) 估计误差}
-  \[
-    \mathrm{Std}(\hat\theta_j)\approx \frac{1}{2\sqrt{N_{\mathrm{sp}}}},
-    \qquad
-    |\hat\theta_j-\theta_j|=\mathcal O\!\left(\frac{1}{\sqrt{N_{\mathrm{sp}}}}\right).
-  \]
+\begin{frame}{Proof Sketch  (IDQNN)}
+  \small
+  \begin{columns}[T,onlytextwidth]
+    \column{0.42\textwidth}
+    \begin{itemize}
+      \item Focus on parameter at position $(i,j)$.
+      \item Filtering condition: $x_{i,j}=0$ and neighbors in $\mathcal N(i,j)$ are $1$.
+      \item This simplifies the local input to
+      \[
+        \ket{0}_{i,j-1}\ket{+}_{i,j}\ket{0}_{i,j+1}.
+      \]
+      \item Measure qubit $(i,j)$ in the $X$ basis.
+    \end{itemize}
 
+    \column{0.56\textwidth}
+    \vspace{-0.2em}
+    \[
+      \ket{\psi'}=
+      \ket{0}_{i,j-1}
+      \left(\ket{+}_{i,j}\cos\frac{\theta_{i,j}}{2}
+      -\ket{-}_{i,j}\sin\frac{\theta_{i,j}}{2}\right)
+      \ket{0}_{i,j+1}
+    \]
+    \[
+      \Pr\big(y_{i,j}=1\big)=\frac{1-\cos\theta_{i,j}}{2}
+    \]
+    \begin{alertblock}{Estimator form}
+      \[
+        \hat\theta_{i,j}=arccos\!\left(1-\frac{2}{N_{\mathrm{sp}}}\sum_{t=1}^{N_{\mathrm{sp}}}y^{(i,j)}_{(t)}\right)
+      \]
+    \end{alertblock}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{ Code Result}
+  I set $n=12;n_1=3,m=4$; the distance is defined as $d=\max |\cos\hat{\theta}_{i,j}-\cos\theta_{i,j}^{\text{real}}|$.
+  \begin{columns}[c,onlytextwidth]
+    \column{0.48\textwidth}
+    \centering
+    \includegraphics[width=0.98\linewidth,height=0.62\textheight,keepaspectratio]{./assets/distance_vs_samples_logx.png}
+
+    \vspace{0.25em}
+    {\scriptsize  Code result: distance vs number of samples (log-scale x-axis).}
+
+    \column{0.48\textwidth}
+    \centering
+    \includegraphics[width=0.98\linewidth,height=0.62\textheight,keepaspectratio]{./assets/python.png}
+
+    \vspace{0.25em}
+    {\scriptsize Python implementation screenshot/result.}
+  \end{columns}
+\end{frame}
+
+\section{Task 1 Experiments \& Results (to be extended)}
+
+\begin{frame}{Hardware Experiment Setting (Authors' Result)}
+  \begin{itemize}
+    \item The authors implement deep circuit forms on a superconducting quantum processor:
+    \begin{itemize}
+      \item 68 physical qubits,
+      \item 12 rounds (layers) of execution.
+    \end{itemize}
+    \item This corresponds to a shallow equivalent structure on 816 qubits ($68\times 12$).
+  \end{itemize}
+
+  \begin{block}{Implementation trick}
+    They bypass mid-circuit measurement by evaluating hardware only for $x=000\cdots0$ and randomly initializing all but the final layer of $y$.
+  \end{block}
+\end{frame}
+
+\begin{frame}{Device Mapping and Errors}
+  \begin{columns}[c,onlytextwidth]
+    \column{0.48\textwidth}
+    \centering
+    \includegraphics[width=0.98\linewidth,height=0.62\textheight,keepaspectratio]{./assets/2.a.png}
+    
+    \vspace{0.25em}
+    {\scriptsize (a) Around-CZ-gates device layout: 68 physical qubits, mapped to up to 816 shallow qubits.}
+
+    \column{0.48\textwidth}
+    \centering
+    \includegraphics[width=0.98\linewidth,height=0.62\textheight,keepaspectratio]{./assets/2.c.png}
+
+    % \vspace{0.25em}
+    % {\scriptsize (c) Classical sample complexity vs gate fidelity.}
+  \end{columns}
+
+ 
+\end{frame}
+
+\begin{frame}{ XEB Performance on Hardware}
+  \begin{columns}[c,onlytextwidth]
+    \column{0.58\textwidth}
+    \centering
+    \includegraphics[width=0.98\linewidth,height=0.72\textheight,keepaspectratio]{./assets/2.d.png}
+
+    \column{0.38\textwidth}
+    \small
+    $$\operatorname*{XEB}=2^n\frac{1}{N}\sum_{i=1}^N P_{ideal}(y_i)-1$$
+    \begin{itemize}
+      \item Quantum and classical models are compared using Cross-Entropy Benchmarking score.
+      \item Inference is evaluated at input bitstring $x=000\cdots0$.
+      \item The same datasets are supplied to classical models (Transformer and XGBoost)  
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{ Beyond-Classical Regime}
+  \begin{columns}[c,onlytextwidth]
+    \column{0.62\textwidth}
+    \centering
+    \includegraphics[width=0.98\linewidth,height=0.72\textheight,keepaspectratio]{./assets/2.e.png}
+
+    \column{0.34\textwidth}
+    \small
+    \begin{itemize}
+      \item Performance is inferred in the beyond-classical regime.
+    \end{itemize}
+  \end{columns}
 \end{frame}
 
 
-\begin{frame}{代码现状：模拟采样}
-  现有采样代码（DQNN \& IDQNN）基于 \texttt{cirq} simulator：
-  \begin{itemize}
-    \item 本质是对量子算法的经典仿真；
-    \item 时间与空间开销随比特数呈指数增长。
-  \end{itemize}
+\section{Task 2: Learn Quantum Circuits for Accelerated Physical Simulation}
 
-  即使使用 tensor network 等技巧，也难以对“所有输入 $x$”普遍降低模拟复杂度。
-  $$\mathcal{L}_{\text{NLL}}(\theta) = -\sum_{i=1}^N \log p_\theta(y_i \mid x_i)$$
-  $$\theta_{n+1} = \theta_n - \eta \nabla_\theta \mathcal{L}_{\text{NLL}}(\theta_n)$$
-  $$\theta_{\text{opt}} = \arg\min_\theta \mathcal{L}_{\text{NLL}}(\theta)$$
-\end{frame}
+% \begin{frame}{Task 2 (Placeholder)}
+%   \begin{block}{Goal}
+%     Learn quantum circuits for accelerated physical simulation.
+%   \end{block}
 
+%   \begin{itemize}
+%     \item Uses a learning algorithm different from Task 1.
+%     \item Placeholder for task definition, loss function, hardware setup, and results.
+%   \end{itemize}
+% \end{frame}
 
 
 \end{document}

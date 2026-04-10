@@ -18,22 +18,23 @@ from sampling.ISQNN_generate_y import idqnn_connectivity
 from Train.find_x_indices_by_graph_condition import build_adjacency, find_indices
 from Train.estimate_theta_from_filtered_samples import estimate_theta_from_filtered_samples
 from Train.estimate_theta_from_filtered_samples import load_xy_from_npy
+from Train.compare_theta_true_and_estimated import compare_theta
 
 def main() -> int:
     # ===== 调试参数区 =====
     n1 = 3
     m = 4
-    num_samples = 20000
+    num_samples = 200000
     seed = 7
     theta_path = ROOT / "code" / "Train" / "data" / "theta_demo.npy"
-    input_path = ROOT / "code" / "Train" / "data" /"xy_dataset_n13_m4_N20000_seed7.npy"
+    input_path = ROOT / "code" / "Train" / "data" /"xy_dataset_n13_m4_N200000_seed7.npy"
     # =====================
 
     t0 = time.perf_counter()
     print("=== test_train start ===")
-    print(f"python: {sys.executable}")
+    # print(f"python: {sys.executable}")
     print(f"cwd: {Path.cwd()}")
-    print(f"theta_path: {theta_path}")
+    print(f"theta_path: {theta_path}")#引入theta参数文件路径
 
     n = n1 * m
     print(f"n1={n1}, m={m}, n={n}, num_samples={num_samples}, seed={seed}")
@@ -97,6 +98,13 @@ def main() -> int:
 
     print("theta_hat matrix (rad):")
     print(theta_hat_matrix)
+
+    result = compare_theta(theta, theta_hat_matrix)
+    print("=== Theta comparison done ===")
+    # print(f"MAE: {result['mae']}")
+    # print(f"RMSE: {result['rmse']}")
+    print(f"MAX_ABS: {result['max_abs']}")
+    print(result["d_cos"])
     return 0
 
 
