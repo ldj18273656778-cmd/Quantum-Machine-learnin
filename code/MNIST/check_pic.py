@@ -7,6 +7,9 @@ os.environ.setdefault("KMP_DUPLICATE_LIB_OK", "TRUE")
 import matplotlib.pyplot as plt
 from torchvision import datasets, transforms
 
+def binarize(img):
+    return (img > 0.183).float()
+
 
 def get_n_from_args_or_input(total: int) -> int:
 	"""获取用户输入的第 n 张图（1-based），并返回对应 0-based 索引。"""
@@ -30,8 +33,9 @@ def get_n_from_args_or_input(total: int) -> int:
 def main() -> None:
 	# transform = transforms.ToTensor()
 	transform = transforms.Compose([
-    transforms.Resize((7, 7)),  # 28x28 -> 7x7
+    transforms.Resize((10, 10)),  # 28x28 -> 10x10
     transforms.ToTensor(),       # [0,255] -> [0,1] 张量
+	transforms.Lambda(binarize)
 ])
 
 	train_dataset = datasets.MNIST(
