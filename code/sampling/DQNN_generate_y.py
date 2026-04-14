@@ -105,13 +105,20 @@ def DQNN_generate_y(bitstring, n1, m, theta_list):
                 block_circuit.append(cirq.rz(full_theta_list[theta_index])(qubits[i]))
                 full_circuit.append(cirq.rz(full_theta_list[theta_index])(qubits[i]))
             
-            # CZ 门
-            #for i in range(m - 1):
-            #    block_circuit.append(cirq.CZ(qubits[i], qubits[i + 1]))
-            #    full_circuit.append(cirq.CZ(qubits[i], qubits[i + 1]))
-            for i in range((m )//2):
-                block_circuit.append(cirq.CZ(qubits[2*i], qubits[2*i + 1]))
-                full_circuit.append(cirq.CZ(qubits[2*i], qubits[2*i + 1]))
+            if block % 2 == 0:# 如果block是偶数，连接偶数索引的qubits
+                # CZ 门
+                #for i in range(m - 1):
+                #    block_circuit.append(cirq.CZ(qubits[i], qubits[i + 1]))
+                #    full_circuit.append(cirq.CZ(qubits[i], qubits[i + 1]))
+                for i in range((m )//2):
+                    block_circuit.append(cirq.CZ(qubits[2*i], qubits[2*i + 1]))
+                    full_circuit.append(cirq.CZ(qubits[2*i], qubits[2*i + 1]))
+
+            if block % 2 != 0:# 如果block是奇数，连接奇数索引的qubits
+                # CZ 门
+                for i in range((m - 1)//2):
+                    block_circuit.append(cirq.CZ(qubits[2*i + 1], qubits[2*i + 2]))
+                    full_circuit.append(cirq.CZ(qubits[2*i + 1], qubits[2*i + 2]))
 
 
 
@@ -139,9 +146,9 @@ if __name__ == "__main__":
     import time
     t0 = time.perf_counter()
     random.seed(42)
-    bitstring = "1011101101111011110111110111011011110111101111111101110110111101111011111011101101111011110111110011"  # n = n1*m
-    n1 = 10
-    m = 10
+    bitstring = "1111111111111111111111110111011011110111101111111101110110111101111011111011101101111011110111110011"  # n = n1*m
+    n1 = 3
+    m = 7
     n = n1 * m
     theta_test = [random.uniform(0, 1)*np.pi for _ in range(n)]# 随机生成theta参数列表
 
@@ -149,7 +156,7 @@ if __name__ == "__main__":
     
     print("Theta parameters:", theta_test)
     print("Generated y:", y)
-    # print("\n=== 完整的量子电路 ===")
-    # print(circuit)
+    print("\n=== 完整的量子电路 ===")
+    print(circuit)
     t1 = time.perf_counter()
     print(f"总耗时: {t1 - t0:.6f} 秒")

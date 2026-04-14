@@ -12,8 +12,12 @@ def idqnn_connectivity(n1, m):
 
     intra_slice_edges = []
     for slice_idx in range(n1):
-        for i in range(m // 2):
-            intra_slice_edges.append((idx(slice_idx, 2 * i), idx(slice_idx, 2 * i + 1)))
+        if slice_idx % 2 == 0:
+            for i in range(m // 2):
+                intra_slice_edges.append((idx(slice_idx, 2 * i), idx(slice_idx, 2 * i + 1)))
+        else:
+            for i in range((m - 1) // 2):
+                intra_slice_edges.append((idx(slice_idx, 2 * i + 1), idx(slice_idx, 2 * i + 2)))
 
     inter_slice_edges = []
     for slice_idx in range(n1 - 1):
@@ -106,9 +110,13 @@ def ISQNN_generate_y(bitstring, n1, m, theta_list):
             theta_idx = start_theta + i
             full_circuit.append(cirq.rz(full_theta_list[theta_idx])(slice_qubits[i]))
 
-        # CZ 门 (slice 内部两两连接)
-        for i in range(m // 2):
-            full_circuit.append(cirq.CZ(slice_qubits[2*i], slice_qubits[2*i + 1]))
+        # CZ 门 (slice 内部按奇偶 slice 交替连接，与 DQNN 保持一致)
+        if slice_idx % 2 == 0:  # 偶数 slice: (0,1), (2,3), ...
+            for i in range(m // 2):
+                full_circuit.append(cirq.CZ(slice_qubits[2 * i], slice_qubits[2 * i + 1]))
+        else:  # 奇数 slice: (1,2), (3,4), ...
+            for i in range((m - 1) // 2):
+                full_circuit.append(cirq.CZ(slice_qubits[2 * i + 1], slice_qubits[2 * i + 2]))
 
     # --- Step 3: 在相邻 slice 之间应用 entanglement (CZ 门) ---
     for slice_idx in range(n1 - 1):

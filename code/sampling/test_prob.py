@@ -2,7 +2,7 @@ import os
 import random
 import numpy as np
 import matplotlib.pyplot as plt
-from probility_distribution import generate_probability_distribution
+from sampling.probility_distribution import generate_probability_distribution
 
 
 def total_variation_distance(p, q):
@@ -20,14 +20,14 @@ def total_variation_distance(p, q):
 
 
 seed = 42
-num_samples = 1000
+num_samples = 10000
 output_dir = "output_images"
-bin_width = 20
+bin_width = 1
 
 random.seed(seed)
-bitstring = "100010110001"  # n = n1*m #在单层的情况下，二者输出的y分布几乎相同；没有bug.
-n1 = 3
-m = 4
+bitstring = "1100"  # n = n1*m #在单层的情况下，二者输出的y分布几乎相同；没有bug.
+n1 = 2
+m = 2
 # bitstring = "0000"
 # n1 = 2
 # m = 2

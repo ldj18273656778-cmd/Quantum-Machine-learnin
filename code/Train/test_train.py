@@ -24,10 +24,10 @@ def main() -> int:
     # ===== 调试参数区 =====
     n1 = 3
     m = 4
-    num_samples = 200000
+    num_samples = 756
     seed = 7
     theta_path = ROOT / "code" / "Train" / "data" / "theta_demo.npy"
-    input_path = ROOT / "code" / "Train" / "data" /"xy_dataset_n13_m4_N200000_seed7.npy"
+    input_path = ROOT / "code" / "Train" / "data" /"xy_dataset_n13_m4_N756_seed7.npy"
     # =====================
 
     t0 = time.perf_counter()
@@ -49,6 +49,8 @@ def main() -> int:
     x, y = load_xy_from_npy(input_path)
     n = len(x[0])
 
+    print(y[0:3])
+    print(y.dtype)
     # x, y, comps = generate_xy_dataset(
     #     n1=n1,
     #     m=m,
