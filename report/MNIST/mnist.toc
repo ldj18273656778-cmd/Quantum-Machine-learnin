@@ -1,0 +1,3 @@
+\beamer@sectionintoc {1}{Algorithm Recap}{2}{0}{1}
+\beamer@sectionintoc {2}{MNIST Training Setup}{6}{0}{2}
+\beamer@sectionintoc {3}{MNIST Estimation and Generation}{11}{0}{3}

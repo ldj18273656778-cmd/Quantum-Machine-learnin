@@ -31,7 +31,7 @@
 
 5. **结果组织与保存**
    - `theta_hat_flat` reshape 成 `theta_hat_matrix (10×10)`。
-   - 保存为：`data/estimate_theta1.npz`。
+   - 保存为：`data/estimate_theta_binarized{threshold}.npz`。
 
 ## 输出文件说明（estimate_theta1.npz）
 
@@ -50,3 +50,7 @@
 - 最终 `theta_hat_matrix`。
 - 跳过 bit 的数量与索引。
 - 结果保存路径。
+
+# MNIST 模块说明（MNIST_testdataset.py）
+针对大小为10000的测试集（已经进行了resize和阈值为threshold的二值化）
+利用DQNN_generate_y生成inferred bitstrings；数组结构为np.array(10000,100);储存至data file下

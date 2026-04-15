@@ -15,9 +15,9 @@ from Train.find_x_indices_by_graph_condition import build_adjacency, find_indice
 from MNIST.Encode_0to9 import encode_diagonal
 from Train.estimate_theta_from_filtered_samples import estimate_theta_from_filtered_samples
 
+threshold = 0.4
 
-
-X=np.load(MNIST_DIR / "data" / "MNIST_10x10_binarize0.5.npy")
+X=np.load(MNIST_DIR / "data" / f"MNIST_10x10_binarize{threshold}.npy")
 X = X.reshape(X.shape[0], -1)#将每个样本的图像数据展平为一维数组，新的形状为 (N, 100)，其中 N 是样本数量，100 是每个样本的像素数量（10x10=100）。
 X = X.astype(int)#将像素值转换为整数类型（0 或 1），以便后续处理。
 print(f"X shape: {X.shape}, dtype: {X.dtype}")
@@ -39,6 +39,7 @@ n = len(x_bitstrings[0])
 n1=10
 m=10
 
+
 print(f"x_bitstrings shape: {x_bitstrings.shape}, dtype: {x_bitstrings.dtype}")
 print(f"Sample x_bitstrings: {x_bitstrings[0:3]}")
 
@@ -55,24 +56,24 @@ print(f"Number of samples satisfying target_bit condition: {len(indices)}")
 print(f"3 Indices of x_bitstrings satisfying target_bit condition: {indices[:3]}")
 print(f"Adjacency list for target_bit {target_bit}: {adjacency[target_bit]}")
 
-# Number_of_satisfying=[]
-# for target_bit in range(n):
-#     indices = find_indices(x=x_bitstrings, target_bit=target_bit, adjacency=adjacency)
-#     Number_of_satisfying.append(len(indices))
+Number_of_satisfying=[]
+for target_bit in range(n):
+    indices = find_indices(x=x_bitstrings, target_bit=target_bit, adjacency=adjacency)
+    Number_of_satisfying.append(len(indices))
 
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
-# y = Number_of_satisfying
+y = Number_of_satisfying
 
-# plt.figure(figsize=(6,4))
-# plt.plot(np.arange(1, len(y) + 1), y)
+plt.figure(figsize=(6,4))
+plt.plot(np.arange(1, len(y) + 1), y)
 
-# plt.xlabel("Index (1 to 100)")
-# plt.ylabel("Number_of_satisfying")
-# plt.title("Visualization of Number_of_satisfying")
+plt.xlabel("Index (1 to 100)")
+plt.ylabel("Number_of_satisfying")
+plt.title("Visualization of Number_of_satisfying")
 
-# plt.grid(True)
-# plt.show()
+plt.grid(True)
+plt.show()
 
 theta_hat_flat = np.zeros(n, dtype=float)
 records: list[dict] = []
@@ -102,7 +103,7 @@ for target_bit in bit_iter:
 
 theta_hat_matrix = theta_hat_flat.reshape(n1, m)
 
-output_path = MNIST_DIR / "data" / "estimate_theta1.npz"
+output_path = MNIST_DIR / "data" / f"estimate_theta_binarized{threshold}.npz"
 np.savez(
     output_path,
     theta_hat_flat=theta_hat_flat,

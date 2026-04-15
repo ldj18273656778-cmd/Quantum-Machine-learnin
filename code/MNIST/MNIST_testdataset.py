@@ -12,9 +12,10 @@ MNIST_DIR = Path(__file__).resolve().parent
 
 n1 = 10
 m = 10
+threshold = 0.4
 random.seed(42)
 
-theta_path = MNIST_DIR / "data" / "estimate_theta1.npz"
+theta_path = MNIST_DIR / "data" / f"estimate_theta_binarized{threshold}.npz"
 if not theta_path.exists():
 	raise FileNotFoundError(f"未找到参数文件: {theta_path}")
 with np.load(theta_path) as data:
@@ -43,7 +44,7 @@ for bitsreing in tqdm(x_test_bitstrings):
 y_inferred = np.array(y_inferred)
 print(f"y_inferred shape: {y_inferred.shape}, dtype: {y_inferred.dtype}")
 
-output_path = MNIST_DIR / "data" / "y_inferred.npz"
+output_path = MNIST_DIR / "data" / f"y_inferred_binarized{threshold}.npz"
 np.savez(
 	output_path,
 	y_inferred=y_inferred,
