@@ -1,17 +1,18 @@
 # Fdb version 4
-["xdvipdfmx"] 1776261344.8165 "mnist.xdv" "mnist.pdf" "mnist" 1776261346.63523 0
-  "mnist.xdv" 1776261344 150684 11c1add38900c452eab7bb6eb61bb49f "xelatex"
+["xdvipdfmx"] 1776353605.73799 "mnist.xdv" "mnist.pdf" "mnist" 1776353607.04961 0
+  "mnist.xdv" 1776353605 113828 e6cd95638d5ef90c006ffb722010411c "xelatex"
   (generated)
   "mnist.pdf"
   (rewritten before read)
-["xelatex"] 1776261342.43887 "d:/研究生/研究生/Quantum Machine learning/report/MNIST/mnist.tex" "mnist.xdv" "mnist" 1776261346.62985 0
+["xelatex"] 1776353604.09234 "d:/研究生/研究生/Quantum Machine learning/report/MNIST/mnist.tex" "mnist.xdv" "mnist" 1776353607.04296 0
   "asset/2D Shallow QNN.png" 1775739979 56727 dc8dd324cb84cba7d044e775921d2dac ""
   "asset/First 12 raw MNIST images (10×10).png" 1776243447 30047 6f253e8603ccf6b93f5399249281e7d9 ""
   "asset/First 6 binarized MNIST images (10×10).png" 1776244808 20638 27dd740a73471925fa54dd5f2ac1247e ""
+  "asset/Non_0_pixel_values.png" 1775917550 24843 bdd70b47f2c8422b62ab895d9814302c ""
   "asset/Visualization_of_Number_of_satisfying.png" 1776066112 45419 a1f849053526ef6cd5eb1358ba21f5e2 ""
-  "asset/Visualization_of_Number_of_satisfying_binarized0.4.png" 1776257654 45626 ff86ca602106fbdd43621de7d36882f2 ""
+  "asset/encoding1.png" 1776330407 47870 cd4879cc4899c7e03eb2663b7909a009 ""
   "asset/mean_vs_encoded_n1_10_m_10_seed_42_nNumber_1000_testIdx_99_trueLabel_9_bitstring_1111111111111111111111100011111110000111110111011111000001111111010111111111011111111101111111111111.png" 1776236513 19649 7a36eb99fe498259cabd69ba3a907a81 ""
-  "asset/standard_landscape.png" 1775055846 198087 702925d7d981686d0b1f0f6a4e505cce ""
+  "asset/test_bitstring_99.png" 1776353080 5690 96a8d253cfc33ec1a78e67302bdfca5f ""
   "c:/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1741264242 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2024/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1741265322 1528 7e12f4c0fcf5a072cebdcfbfc610f54c ""
   "c:/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm" 1741263807 1120 1e8878807317373affa7f7bba4cf2f6a ""
@@ -239,11 +240,11 @@
   "c:/texlive/2024/texmf-dist/web2c/texmf.cnf" 1741263777 41649 5d6ae549fbbcb850a863f69aa41f3d10 ""
   "c:/texlive/2024/texmf-var/web2c/xetex/xelatex.fmt" 1741265434 10849696 fb3c1cbdc20f3373de4ed91601ae443f ""
   "c:/texlive/2024/texmf.cnf" 1741265333 713 e69b156964470283e0530f5060668171 ""
-  "d:/研究生/研究生/Quantum Machine learning/report/MNIST/mnist.tex" 1776261338 10576 eb30e865a780809cf1cd60b98960a09b ""
-  "mnist.aux" 1776261344 3463 36a9b5fd36ce7a6f5eda3996ff143e67 "xelatex"
-  "mnist.nav" 1776261344 1917 8fe080fcd384751e7f826dd01bfa935b "xelatex"
-  "mnist.out" 1776261344 477 c9daf32c406ed44f3b844592c33590d2 "xelatex"
-  "mnist.tex" 1776261338 10576 eb30e865a780809cf1cd60b98960a09b ""
+  "d:/研究生/研究生/Quantum Machine learning/report/MNIST/mnist.tex" 1776353592 10873 22265e654718342d188d5e75da7cb0be ""
+  "mnist.aux" 1776353605 3293 c2b130acda922419f436940bae120aa8 "xelatex"
+  "mnist.nav" 1776353605 1825 6f29b6ae2def60a20ced6763429a4f17 "xelatex"
+  "mnist.out" 1776353605 477 c9daf32c406ed44f3b844592c33590d2 "xelatex"
+  "mnist.tex" 1776353592 10873 22265e654718342d188d5e75da7cb0be ""
   (generated)
   "mnist.aux"
   "mnist.log"

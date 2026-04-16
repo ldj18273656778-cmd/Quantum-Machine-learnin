@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2025.3.6)  15 APR 2026 21:55
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2025.3.6)  16 APR 2026 23:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -776,56 +776,52 @@ Dictionary: translator-theorem-dictionary, Language: English
 ) (./mnist.nav) [1
 
 ]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 57.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 86.
  (c:/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 57.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 86.
  (c:/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <10.95> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 57.
-LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <8> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 57.
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <10> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 86.
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <7> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 86.
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <5> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 86.
+LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <10> not available
+(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 86.
+LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <7> not available
+(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 86.
+LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <5> not available
+(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 86.
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <9> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 86.
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <6> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 57.
-LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <10.95> not available
-(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 57.
-LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <8> not available
-(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 57.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 86.
+LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <9> not available
+(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 86.
 LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <6> not available
-(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 57.
+(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 86.
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <10.95> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 86.
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <8> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 86.
+LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <10.95> not available
+(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 86.
+LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <8> not available
+(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 86.
  [2
 
 ]
 File: ./asset/2D Shallow QNN.png Graphic file (type bmp)
 <./asset/2D Shallow QNN.png>
-LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <10> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 102.
-LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <7> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 102.
-LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <5> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 102.
-LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <10> not available
-(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 102.
-LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <7> not available
-(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 102.
-LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <5> not available
-(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 102.
-LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <9> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 102.
-LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <9> not available
-(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 102.
  [3
 
 ] [4
 
-]
-Overfull \vbox (41.30145pt too high) detected at line 146
- []
-
-[5
+] [5
 
 ] [6
 
@@ -835,47 +831,36 @@ Overfull \vbox (41.30145pt too high) detected at line 146
 File: ./asset/First 12 raw MNIST images (10×10).png Graphic file (type bmp)
 <./asset/First 12 raw MNIST images (10×10).png>
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <14.4> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 198.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 213.
 LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <14.4> not available
-(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 198.
+(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 213.
  [8
 
 ]
+File: ./asset/Non_0_pixel_values.png Graphic file (type bmp)
+<./asset/Non_0_pixel_values.png>
 File: ./asset/First 6 binarized MNIST images (10×10).png Graphic file (type bmp)
 <./asset/First 6 binarized MNIST images (10×10).png>
-File: ./asset/Visualization_of_Number_of_satisfying_binarized0.4.png Graphic file (type bmp)
-<./asset/Visualization_of_Number_of_satisfying_binarized0.4.png>
-
-Overfull \vbox (1.0324pt too high) detected at line 223
- []
-
-[9
+ [9
 
 ]
-File: ./asset/standard_landscape.png Graphic file (type bmp)
-<./asset/standard_landscape.png>
-
-Overfull \vbox (1.08665pt too high) detected at line 242
- []
-
-[10
+File: ./asset/encoding1.png Graphic file (type bmp)
+<./asset/encoding1.png>
+ [10
 
 ]
 File: ./asset/Visualization_of_Number_of_satisfying.png Graphic file (type bmp)
 <./asset/Visualization_of_Number_of_satisfying.png>
 
-Overfull \hbox (36.93863pt too wide) in paragraph at lines 266--266
-[]\TU/lmss/m/n/8 [0,1,2,3,7,8,9,10,11,19,20,29,50,60,69,80,89,90,91,98,99]  
- []
-
+Missing character: There is no ： (U+FF1A) in font [lmsans12-regular]:mapping=tex-text;!
 [11
 
 ]
+File: ./asset/test_bitstring_99.png Graphic file (type bmp)
+<./asset/test_bitstring_99.png>
 File: ./asset/mean_vs_encoded_n1_10_m_10_seed_42_nNumber_1000_testIdx_99_trueLabel_9_bitstring_1111111111111111111111100011111110000111110111011111000001111111010111111111011111111101111111111111.png Graphic file (type bmp)
 <./asset/mean_vs_encoded_n1_10_m_10_seed_42_nNumber_1000_testIdx_99_trueLabel_9_bitstring_1111111111111111111111100011111110000111110111011111000001111111010111111111011111111101111111111111.png>
  [12
-
-] [13
 
 ]
 \tf@nav=\write6
@@ -896,12 +881,12 @@ Package rerunfilecheck Info: File `mnist.out' has not changed.
 (rerunfilecheck)             Checksum: C9DAF32C406ED44F3B844592C33590D2;477.
  ) 
 Here is how much of TeX's memory you used:
- 25466 strings out of 474773
- 515409 string characters out of 5761290
- 1933842 words of memory out of 5000000
- 47029 multiletter control sequences out of 15000+600000
- 576440 words of font info for 137 fonts, out of 8000000 for 9000
+ 25475 strings out of 474773
+ 514215 string characters out of 5761290
+ 1931842 words of memory out of 5000000
+ 47036 multiletter control sequences out of 15000+600000
+ 576448 words of font info for 138 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 128i,13n,123p,486b,1064s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 128i,14n,123p,486b,1065s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on mnist.xdv (13 pages, 150684 bytes).
+Output written on mnist.xdv (12 pages, 113828 bytes).
