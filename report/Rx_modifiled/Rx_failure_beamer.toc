@@ -1,0 +1,5 @@
+\beamer@sectionintoc {1}{Motivation}{2}{0}{1}
+\beamer@sectionintoc {2}{Parameter Estimation with $R_x$}{4}{0}{2}
+\beamer@sectionintoc {3}{The Inference Gap}{6}{0}{3}
+\beamer@sectionintoc {4}{Why the Answer is No}{7}{0}{4}
+\beamer@sectionintoc {5}{Conclusion}{13}{0}{5}

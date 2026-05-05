@@ -1,0 +1,102 @@
+{
+  "seed": 42,
+  "num_samples": 1000,
+  "patterns": [
+    {
+      "pattern": "101",
+      "n1": 3,
+      "m": 1,
+      "support_size": 5,
+      "state_count": 8,
+      "entropy_bits": 2.0083999508476382,
+      "tvd_dqnn_idqnn": 0.03500000000000002,
+      "top_states": [
+        {
+          "state": "101",
+          "probability": 0.26
+        },
+        {
+          "state": "100",
+          "probability": 0.258
+        },
+        {
+          "state": "001",
+          "probability": 0.242
+        },
+        {
+          "state": "000",
+          "probability": 0.239
+        },
+        {
+          "state": "110",
+          "probability": 0.001
+        }
+      ],
+      "image": "pattern_101_distribution.png"
+    },
+    {
+      "pattern": "1001",
+      "n1": 4,
+      "m": 1,
+      "support_size": 16,
+      "state_count": 16,
+      "entropy_bits": 3.990299955371495,
+      "tvd_dqnn_idqnn": 0.073,
+      "top_states": [
+        {
+          "state": "0000",
+          "probability": 0.075
+        },
+        {
+          "state": "0100",
+          "probability": 0.073
+        },
+        {
+          "state": "1100",
+          "probability": 0.068
+        },
+        {
+          "state": "0111",
+          "probability": 0.068
+        },
+        {
+          "state": "1110",
+          "probability": 0.066
+        }
+      ],
+      "image": "pattern_1001_distribution.png"
+    },
+    {
+      "pattern": "10001",
+      "n1": 5,
+      "m": 1,
+      "support_size": 32,
+      "state_count": 32,
+      "entropy_bits": 4.567156344045312,
+      "tvd_dqnn_idqnn": 0.07900000000000001,
+      "top_states": [
+        {
+          "state": "01110",
+          "probability": 0.067
+        },
+        {
+          "state": "00101",
+          "probability": 0.064
+        },
+        {
+          "state": "11111",
+          "probability": 0.062
+        },
+        {
+          "state": "00100",
+          "probability": 0.058
+        },
+        {
+          "state": "10001",
+          "probability": 0.058
+        }
+      ],
+      "image": "pattern_10001_distribution.png"
+    }
+  ]
+}

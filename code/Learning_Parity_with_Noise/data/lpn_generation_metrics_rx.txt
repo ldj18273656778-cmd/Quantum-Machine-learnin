@@ -1,0 +1,25 @@
+LPN Rx-ISQNN generation evaluation
+bit_accuracy = 0.500281
+sample_accuracy = 0.000000
+mean_hamming_distance = 7.995500
+median_hamming_distance = 8.000000
+max_hamming_distance = 16
+rx_angle = 0.7853981633974483
+
+per_output_bit_accuracy:
+y_1	0.500000
+y_2	0.506000
+y_3	0.484500
+y_4	0.496300
+y_5	0.504700
+y_6	0.501400
+y_7	0.499300
+y_8	0.502900
+y_9	0.504400
+y_10	0.497800
+y_11	0.503900
+y_12	0.496400
+y_13	0.506600
+y_14	0.493600
+y_15	0.499800
+y_16	0.506900

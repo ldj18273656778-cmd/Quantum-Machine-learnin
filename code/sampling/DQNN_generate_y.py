@@ -156,7 +156,7 @@ if __name__ == "__main__":
     
     print("Theta parameters:", theta_test)
     print("Generated y:", y)
-    print("\n=== 完整的量子电路 ===")
-    print(circuit)
+    # print("\n=== 完整的量子电路 ===")
+    # print(circuit)
     t1 = time.perf_counter()
     print(f"总耗时: {t1 - t0:.6f} 秒")

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "deepseek": {
+      "models": {
+        "deepseek-chat": {
+        },
+        "deepseek-reasoner": {
+          "interleaved": {
+            "field": "reasoning_content"
+          }
+        },
+        "deepseek-v4-pro": {
+          "interleaved": {
+            "field": "reasoning_content"
+          }
+        }
+      }
+    }
+  }
+}

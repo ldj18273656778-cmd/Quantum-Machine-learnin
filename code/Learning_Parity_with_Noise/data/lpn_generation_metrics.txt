@@ -1,0 +1,24 @@
+LPN ISQNN generation evaluation
+bit_accuracy = 0.498394
+sample_accuracy = 0.000000
+mean_hamming_distance = 8.025700
+median_hamming_distance = 8.000000
+max_hamming_distance = 15
+
+per_output_bit_accuracy:
+y_1	0.498300
+y_2	0.491800
+y_3	0.503000
+y_4	0.503800
+y_5	0.501400
+y_6	0.486500
+y_7	0.499800
+y_8	0.497500
+y_9	0.496200
+y_10	0.503400
+y_11	0.496100
+y_12	0.493300
+y_13	0.505300
+y_14	0.498700
+y_15	0.498400
+y_16	0.500800
