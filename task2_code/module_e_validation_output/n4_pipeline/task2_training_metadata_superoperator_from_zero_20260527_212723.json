@@ -1,0 +1,75 @@
+{
+  "schema_version": 2,
+  "artifact_type": "multi_block_training",
+  "timestamp": "20260527_212723",
+  "n_qubits": 4,
+  "target_seed": 42,
+  "time_k": 5,
+  "time": 1.1790972450961723,
+  "h_arr": [
+    0.5479120971119267,
+    -0.12224312049589536,
+    0.7171958398227649,
+    0.3947360581187278
+  ],
+  "blocks": [
+    {
+      "block_index": 1,
+      "block_qubits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "target_bit": 1,
+      "lightcone_qubits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "ansatz_qubits": 4,
+      "theta_size": 60,
+      "params_key": "best_params_block_1",
+      "selected_restart": 1,
+      "best_iteration": 150,
+      "best_loss": 0.008674050542828224,
+      "per_bit_losses": {
+        "0": 0.0031933246671121537,
+        "1": 0.0031366876009693975,
+        "2": 0.0013952694501224213,
+        "3": 0.0009487688246242518
+      },
+      "loss_qubits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "lightcone_semantics": "circuit_gate_restriction",
+      "loss_semantics": "lightcone_residual_channel"
+    }
+  ],
+  "block_qubits": [
+    [
+      0,
+      1,
+      2,
+      3
+    ]
+  ],
+  "target_bits": [
+    1
+  ],
+  "radius": 0,
+  "lightcone_mode": "circuit",
+  "loss_mode": "lightcone",
+  "ansatz": "default_5layer_cz",
+  "superoperator": "superoperator_from_zero",
+  "iterations": 150,
+  "lr": 0.1,
+  "fd_eps": 1e-05,
+  "max_restarts": 1,
+  "training_seed_start": 1042,
+  "params_file": "task2_training_params_superoperator_from_zero_20260527_212723.npz"
+}

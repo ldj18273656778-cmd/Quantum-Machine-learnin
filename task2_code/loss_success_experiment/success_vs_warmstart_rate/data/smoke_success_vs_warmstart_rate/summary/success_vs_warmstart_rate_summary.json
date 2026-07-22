@@ -1,0 +1,137 @@
+{
+  "artifact_type": "success_vs_warmstart_rate_summary",
+  "experiment_root": "task2_code\\loss_success_experiment\\success_vs_warmstart_rate\\data\\smoke_success_vs_warmstart_rate",
+  "total_trials": 1,
+  "rows": [
+    {
+      "warmstart_iterations": 1,
+      "trials": 1,
+      "success_count": 0,
+      "success_rate": 0.0,
+      "final_best_loss_mean": 43.80706098815881,
+      "final_best_loss_median": 43.80706098815881,
+      "final_best_loss_q25": 43.80706098815881,
+      "final_best_loss_q75": 43.80706098815881,
+      "warmstart_best_loss_mean": 10.752145829368803,
+      "warmstart_best_loss_median": 10.752145829368803
+    }
+  ],
+  "manifest": {
+    "schema_version": 1,
+    "artifact_type": "success_vs_warmstart_rate_experiment",
+    "preset": "n4_single_block",
+    "n_qubits": 4,
+    "block_index": 1,
+    "block_qubits": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "target_bit": 1,
+    "radius": 0,
+    "time_k": 5,
+    "target_seed": 42,
+    "training_seed_start": 1042,
+    "lightcone_mode": "circuit",
+    "loss_mode": "lightcone",
+    "ansatz": "default_5layer_cz",
+    "block_only_ansatz": false,
+    "ansatz_qubits": 4,
+    "theta_size": 60,
+    "lightcone_qubits": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "fd_eps": 1e-05,
+    "success_threshold": 0.01,
+    "warmstart_iterations": [
+      1
+    ],
+    "heisenberg_iterations": 1,
+    "trials_per_warmstart": 1,
+    "group_count": 1,
+    "trials_per_group_per_warmstart": 1,
+    "total_trials": 1,
+    "warmstart_stage": {
+      "loss_function": "edge_quantum_channel",
+      "superoperator": "superoperator_from_mix",
+      "iterations_by_sweep": [
+        1
+      ],
+      "lr": 0.1
+    },
+    "heisenberg_stage": {
+      "loss_function": "heisenberg_pauli",
+      "superoperator": null,
+      "iterations": 1,
+      "lr": 0.1
+    },
+    "target_metadata": {
+      "n_qubits": 4,
+      "target_seed": 42,
+      "time_k": 5,
+      "time": 1.1790972450961723,
+      "h_arr": [
+        0.5479120971119267,
+        -0.12224312049589536,
+        0.7171958398227649,
+        0.3947360581187278
+      ]
+    },
+    "context_metadata": {
+      "n_qubits": 4,
+      "block_qubits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "target_bit": 1,
+      "radius": 0,
+      "lightcone_mode": "circuit",
+      "loss_mode": "lightcone",
+      "target_seed": 42,
+      "time_k": 5,
+      "time": 1.1790972450961723,
+      "h_arr": [
+        0.5479120971119267,
+        -0.12224312049589536,
+        0.7171958398227649,
+        0.3947360581187278
+      ],
+      "lightcone_qubits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "ansatz": "default_5layer_cz",
+      "block_only_ansatz": false,
+      "ansatz_qubits": 4,
+      "theta_size": 60,
+      "block_positions": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "outside_qubits": [],
+      "lightcone_semantics": "circuit_gate_restriction",
+      "loss_semantics": "lightcone_residual_channel",
+      "lightcone_diagnostics": {
+        "left_unitarity_error": 3.5476863760404414e-15,
+        "right_unitarity_error": 3.7068153306630895e-15,
+        "max_column_leakage": 8.881784197001252e-16
+      },
+      "target_operator_summary": {
+        "shape": "(16, 16)",
+        "fro_norm": 4.0,
+        "sha256_float_view": "0ce73684762e3d128a0b193a10a5a84de2e4474f9b38720f3ebf16884f68d9e1"
+      },
+      "full_target_operator_summary": null
+    }
+  }
+}

@@ -1,0 +1,256 @@
+{
+  "artifact_type": "distances_to_global_best_param",
+  "source": "task2_code\\loss_success_experiment\\data\\paired_warmstart_n32_8blocks_block05_400pairs\\summary\\paired_best_params.npz",
+  "npz_file": "distances_to_global_best_param.npz",
+  "csv_file": "distances_to_global_best_param.csv",
+  "distance_definition": "angular L2: norm(wrap(theta - theta_best, [-pi, pi]))",
+  "global_best": {
+    "combined_index": 493,
+    "training_type": "warmstart",
+    "pair_index": 94,
+    "loss": 5.191383801680446e-05,
+    "success": true,
+    "theta_size": 120,
+    "first10_params": [
+      0.09137045234887997,
+      0.214488546751471,
+      2.8088263799237447,
+      3.6354403879148727,
+      0.002830716919046336,
+      3.8404341537624704,
+      3.6232192716301075,
+      6.22993680961329,
+      1.3464556459727057,
+      0.6358263853028511
+    ]
+  },
+  "distance_summary": {
+    "all": {
+      "count": 800,
+      "min": 0.0,
+      "q25": 19.87851706308971,
+      "median": 20.484386397152278,
+      "q75": 21.107659398837004,
+      "max": 23.41980343636199,
+      "mean": 20.483036142384048
+    },
+    "heisenberg_only": {
+      "count": 400,
+      "min": 10.497411081559424,
+      "q25": 19.708576924126735,
+      "median": 20.281324767568705,
+      "q75": 20.982664665303986,
+      "max": 23.23492756741288,
+      "mean": 20.319011639141735
+    },
+    "warmstart": {
+      "count": 400,
+      "min": 0.0,
+      "q25": 20.08488010575156,
+      "median": 20.717523167872432,
+      "q75": 21.26955166114593,
+      "max": 23.41980343636199,
+      "mean": 20.64706064562636
+    },
+    "successful": {
+      "count": 188,
+      "min": 0.0,
+      "q25": 20.165373495358647,
+      "median": 20.70276201494719,
+      "q75": 21.218713721140617,
+      "max": 23.41980343636199,
+      "mean": 20.626439576747288
+    },
+    "failed": {
+      "count": 612,
+      "min": 10.497411081559424,
+      "q25": 19.80203698535133,
+      "median": 20.425085008063427,
+      "q75": 21.08309195055613,
+      "max": 23.23492756741288,
+      "mean": 20.43898410699142
+    },
+    "heisenberg_success": {
+      "count": 13,
+      "min": 19.40846511585019,
+      "q25": 19.947982470777582,
+      "median": 20.466408388686574,
+      "q75": 20.668585563689003,
+      "max": 21.458612449894822,
+      "mean": 20.422062559440917
+    },
+    "warmstart_success": {
+      "count": 175,
+      "min": 0.0,
+      "q25": 20.210682197829026,
+      "median": 20.741149975549483,
+      "q75": 21.24231371028617,
+      "max": 23.41980343636199,
+      "mean": 20.64162186946147
+    }
+  },
+  "nearest_10": [
+    {
+      "combined_index": 493,
+      "training_type": "warmstart",
+      "pair_index": 94,
+      "loss": 5.191383801680446e-05,
+      "success": true,
+      "angular_l2_distance": 0.0
+    },
+    {
+      "combined_index": 93,
+      "training_type": "heisenberg_only",
+      "pair_index": 94,
+      "loss": 24.020677243420856,
+      "success": false,
+      "angular_l2_distance": 10.497411081559424
+    },
+    {
+      "combined_index": 12,
+      "training_type": "heisenberg_only",
+      "pair_index": 13,
+      "loss": 28.268180922533745,
+      "success": false,
+      "angular_l2_distance": 17.83524917228349
+    },
+    {
+      "combined_index": 388,
+      "training_type": "heisenberg_only",
+      "pair_index": 389,
+      "loss": 33.91655448733775,
+      "success": false,
+      "angular_l2_distance": 18.13919662385627
+    },
+    {
+      "combined_index": 358,
+      "training_type": "heisenberg_only",
+      "pair_index": 359,
+      "loss": 32.87667184119766,
+      "success": false,
+      "angular_l2_distance": 18.19937144907655
+    },
+    {
+      "combined_index": 106,
+      "training_type": "heisenberg_only",
+      "pair_index": 107,
+      "loss": 39.07095949632256,
+      "success": false,
+      "angular_l2_distance": 18.232180468335038
+    },
+    {
+      "combined_index": 164,
+      "training_type": "heisenberg_only",
+      "pair_index": 165,
+      "loss": 37.24894117111578,
+      "success": false,
+      "angular_l2_distance": 18.31417011677964
+    },
+    {
+      "combined_index": 788,
+      "training_type": "warmstart",
+      "pair_index": 389,
+      "loss": 17.788351365702326,
+      "success": false,
+      "angular_l2_distance": 18.326867452827372
+    },
+    {
+      "combined_index": 134,
+      "training_type": "heisenberg_only",
+      "pair_index": 135,
+      "loss": 38.621108251262356,
+      "success": false,
+      "angular_l2_distance": 18.376484809943243
+    },
+    {
+      "combined_index": 33,
+      "training_type": "heisenberg_only",
+      "pair_index": 34,
+      "loss": 26.29333220099229,
+      "success": false,
+      "angular_l2_distance": 18.384875424594455
+    }
+  ],
+  "farthest_10": [
+    {
+      "combined_index": 445,
+      "training_type": "warmstart",
+      "pair_index": 46,
+      "loss": 0.004799348175068374,
+      "success": true,
+      "angular_l2_distance": 23.41980343636199
+    },
+    {
+      "combined_index": 9,
+      "training_type": "heisenberg_only",
+      "pair_index": 10,
+      "loss": 15.586743691159416,
+      "success": false,
+      "angular_l2_distance": 23.23492756741288
+    },
+    {
+      "combined_index": 45,
+      "training_type": "heisenberg_only",
+      "pair_index": 46,
+      "loss": 17.64382772679206,
+      "success": false,
+      "angular_l2_distance": 23.206621857657364
+    },
+    {
+      "combined_index": 409,
+      "training_type": "warmstart",
+      "pair_index": 10,
+      "loss": 0.010232146174991059,
+      "success": false,
+      "angular_l2_distance": 22.85367910616949
+    },
+    {
+      "combined_index": 535,
+      "training_type": "warmstart",
+      "pair_index": 136,
+      "loss": 0.0009375453727240471,
+      "success": true,
+      "angular_l2_distance": 22.844151343897195
+    },
+    {
+      "combined_index": 733,
+      "training_type": "warmstart",
+      "pair_index": 334,
+      "loss": 0.0014861728971105144,
+      "success": true,
+      "angular_l2_distance": 22.834012266512755
+    },
+    {
+      "combined_index": 681,
+      "training_type": "warmstart",
+      "pair_index": 282,
+      "loss": 0.018082054771953644,
+      "success": false,
+      "angular_l2_distance": 22.6323069038528
+    },
+    {
+      "combined_index": 260,
+      "training_type": "heisenberg_only",
+      "pair_index": 261,
+      "loss": 8.456494545997762,
+      "success": false,
+      "angular_l2_distance": 22.61278220755973
+    },
+    {
+      "combined_index": 299,
+      "training_type": "heisenberg_only",
+      "pair_index": 300,
+      "loss": 0.012485120495511667,
+      "success": false,
+      "angular_l2_distance": 22.587728622704937
+    },
+    {
+      "combined_index": 63,
+      "training_type": "heisenberg_only",
+      "pair_index": 64,
+      "loss": 14.907107894965131,
+      "success": false,
+      "angular_l2_distance": 22.520374192304875
+    }
+  ]
+}

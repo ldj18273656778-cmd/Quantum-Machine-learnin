@@ -1,0 +1,78 @@
+{
+  "schema_version": 2,
+  "artifact_type": "multi_block_training",
+  "timestamp": "20260528_104703",
+  "preset": "n4_single_block",
+  "run_dir": "task2_code\\module_e_validation_output\\run_dir_smoke\\task2_training_n4_single_block_superoperator_from_mix_20260528_104703",
+  "n_qubits": 4,
+  "target_seed": 42,
+  "time_k": 5,
+  "time": 1.1790972450961723,
+  "h_arr": [
+    0.5479120971119267,
+    -0.12224312049589536,
+    0.7171958398227649,
+    0.3947360581187278
+  ],
+  "blocks": [
+    {
+      "block_index": 1,
+      "block_qubits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "target_bit": 1,
+      "lightcone_qubits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "ansatz_qubits": 4,
+      "theta_size": 60,
+      "params_key": "best_params_block_1",
+      "selected_restart": 1,
+      "best_iteration": 1,
+      "best_loss": 10.752145829368803,
+      "per_bit_losses": {
+        "0": 2.811346246643126,
+        "1": 2.852740851993903,
+        "2": 2.8940184316749673,
+        "3": 2.194040299056807
+      },
+      "loss_qubits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "lightcone_semantics": "circuit_gate_restriction",
+      "loss_semantics": "lightcone_residual_channel"
+    }
+  ],
+  "block_qubits": [
+    [
+      0,
+      1,
+      2,
+      3
+    ]
+  ],
+  "target_bits": [
+    1
+  ],
+  "radius": 0,
+  "lightcone_mode": "circuit",
+  "loss_mode": "lightcone",
+  "ansatz": "default_5layer_cz",
+  "superoperator": "superoperator_from_mix",
+  "iterations": 1,
+  "lr": 0.1,
+  "fd_eps": 1e-05,
+  "max_restarts": 1,
+  "training_seed_start": 1042,
+  "params_file": "params.npz",
+  "metadata_file": "metadata.json"
+}

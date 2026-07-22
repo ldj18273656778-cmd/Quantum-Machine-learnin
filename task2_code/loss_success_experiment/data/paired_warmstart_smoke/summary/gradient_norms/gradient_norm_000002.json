@@ -1,0 +1,14 @@
+{
+  "task_index": 2,
+  "training_type": "warmstart",
+  "pair_index": 1,
+  "fd_eps": 1e-05,
+  "best_loss_recorded": 999.0,
+  "loss_at_theta": 43.80706098815881,
+  "loss_difference": -955.1929390118412,
+  "success": false,
+  "grad_norm": 5.706538470806277,
+  "grad_inf_norm": 1.9114138819276147,
+  "theta_size": 60,
+  "elapsed_seconds": 0.6777913998812437
+}

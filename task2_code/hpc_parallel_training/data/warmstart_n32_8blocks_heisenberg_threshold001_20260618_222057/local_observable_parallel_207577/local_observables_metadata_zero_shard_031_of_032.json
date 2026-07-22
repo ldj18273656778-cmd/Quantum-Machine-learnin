@@ -1,0 +1,117 @@
+{
+  "params": "/home/um202470160/task2_code/hpc_parallel_training/data/warmstart_n32_8blocks_heisenberg_threshold001_20260618_222057/bundle/task2_training_n32_8blocks_heisenberg_default_5layer_cz_heisenberg_pauli_20260619_201516/params.npz",
+  "metadata": "/home/um202470160/task2_code/hpc_parallel_training/data/warmstart_n32_8blocks_heisenberg_threshold001_20260618_222057/bundle/task2_training_n32_8blocks_heisenberg_default_5layer_cz_heisenberg_pauli_20260619_201516/metadata.json",
+  "n_qubits": 32,
+  "input_state": "zero",
+  "observable_qubits": [
+    31
+  ],
+  "all_requested_observable_qubits": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31
+  ],
+  "shard": {
+    "mode": "modulo",
+    "num_shards": 32,
+    "shard_index": 31
+  },
+  "paulis": [
+    "X",
+    "Y",
+    "Z"
+  ],
+  "order": "odd-even",
+  "dagger_convention": "trained",
+  "ansatz": "default_5layer_cz",
+  "max_cone_qubits": 32,
+  "target_cone_sizes": {
+    "31": 4
+  },
+  "sewing_cone_sizes": {
+    "31": 18
+  },
+  "summary": {
+    "X": {
+      "max_abs_diff": 0.0022148901206056615,
+      "mean_abs_diff": 0.0022148901206056615,
+      "rms_abs_diff": 0.0022148901206056615
+    },
+    "Y": {
+      "max_abs_diff": 0.001182964810094722,
+      "mean_abs_diff": 0.001182964810094722,
+      "rms_abs_diff": 0.001182964810094722
+    },
+    "Z": {
+      "max_abs_diff": 0.0032018883748157756,
+      "mean_abs_diff": 0.0032018883748157756,
+      "rms_abs_diff": 0.0032018883748157756
+    },
+    "all": {
+      "max_abs_diff": 0.0032018883748157756,
+      "mean_abs_diff": 0.002199914435172053,
+      "rms_abs_diff": 0.0023492717419844114
+    }
+  },
+  "rows": [
+    {
+      "qubit": 31,
+      "pauli": "X",
+      "target_expectation": 0.28560624024358977,
+      "sewing_expectation": 0.28782113036419543,
+      "signed_diff": 0.0022148901206056615,
+      "abs_diff": 0.0022148901206056615,
+      "target_cone_size": 4,
+      "sewing_cone_size": 18
+    },
+    {
+      "qubit": 31,
+      "pauli": "Y",
+      "target_expectation": 0.908001368797152,
+      "sewing_expectation": 0.9068184039870573,
+      "signed_diff": -0.001182964810094722,
+      "abs_diff": 0.001182964810094722,
+      "target_cone_size": 4,
+      "sewing_cone_size": 18
+    },
+    {
+      "qubit": 31,
+      "pauli": "Z",
+      "target_expectation": 0.0439347234913694,
+      "sewing_expectation": 0.047136611866185174,
+      "signed_diff": 0.0032018883748157756,
+      "abs_diff": 0.0032018883748157756,
+      "target_cone_size": 4,
+      "sewing_cone_size": 18
+    }
+  ]
+}

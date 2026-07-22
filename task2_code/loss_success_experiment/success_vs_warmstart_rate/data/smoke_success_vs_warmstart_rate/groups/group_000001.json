@@ -1,0 +1,32 @@
+{
+  "group_index": 1,
+  "trajectory_npz": "group_000001_trajectories.npz",
+  "trials": [
+    {
+      "warmstart_iterations": 1,
+      "trial_index": 1,
+      "seed": 1042,
+      "trajectory_key_prefix": "warm0001_trial000001",
+      "trajectory_keys": {
+        "initial_params": "initial_params_warm0001_trial000001",
+        "warmstart_param_trajectory": "warmstart_param_trajectory_warm0001_trial000001",
+        "warmstart_loss_history": "warmstart_loss_history_warm0001_trial000001",
+        "warmstart_best_params": "warmstart_best_params_warm0001_trial000001",
+        "warmstart_final_params": "warmstart_final_params_warm0001_trial000001",
+        "heisenberg_param_trajectory": "heisenberg_param_trajectory_warm0001_trial000001",
+        "heisenberg_loss_history": "heisenberg_loss_history_warm0001_trial000001",
+        "heisenberg_best_params": "heisenberg_best_params_warm0001_trial000001",
+        "heisenberg_final_params": "heisenberg_final_params_warm0001_trial000001"
+      },
+      "initial_warmstart_loss": 11.864372382369995,
+      "warmstart_best_loss": 10.752145829368803,
+      "warmstart_final_loss": 10.752145829368803,
+      "warmstart_best_iteration": 1,
+      "heisenberg_initial_loss_after_warmstart": 44.82835974156242,
+      "final_best_loss": 43.80706098815881,
+      "heisenberg_best_iteration": 1,
+      "final_loss_from_best_params": 43.80706098815881,
+      "success": false
+    }
+  ]
+}

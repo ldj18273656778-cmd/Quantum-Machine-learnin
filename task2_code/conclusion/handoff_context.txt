@@ -1,0 +1,88 @@
+﻿HANDOFF CONTEXT
+===============
+
+USER REQUESTS (AS-IS)
+---------------------
+- "利用cirq实现电路的superoperator的某个比特的partial trace时；是否需要考虑该bit的光锥范围？（如果不考虑会不会增大计算成本）"
+- "请针对模块 C（Light Cone 提取）和模块 D（Mode 1 Deterministic Loss）制定一份详细的实现计划，并基于该计划完成相关脚本开发。"
+- "请将 superoperator 模块重构为基于 Cirq 的实现，并将原始脚本备份为 old 版本。"
+- "请帮我写一个测试local_loss的脚本；bit串大小为12，测试block{5,6,7,8};U_target光锥半径为3；我想知道针对每个bit；损失函数的值是多少"
+- "请在 task2_code/bemear_related 文件夹中新建一份 Markdown 总结文档，用于记录本阶段工作，并作为后续制作汇报 PPT 的参考材料。"
+- "per_bit_losses_from_V计算superoperator的方法和脚本superoperator的方法完全不一样，请你写入总结md"
+- "求迹操作会不会使某个bit上的superoperator不会受光锥之内的影响？...光锥内其它比特在计算中被设置为什么初态？"
+- "文章中对mode1训练也是做了cone内的bit取最大混态的假设吗？"
+- "task2_code\conclusion\module_c_d_conclusion.md修改为中文"
+
+GOAL
+----
+Continue implementing Task 2 Mode 1 remaining modules (E: training loop, F: sewing, G: verification/plotting) using the established codebase conventions, Cirq-native superoperator, and per-bit reduced channel method where full superoperators are infeasible.
+
+WORK COMPLETED
+--------------
+- Installed basedpyright 1.39.4 in the QML conda environment for type checking.
+- Implemented Module C (lightcone.py): LightConeResult dataclass with operator, lightcone_qubits, block_positions, outside_qubits, semantics, and diagnostics; functions for radius-based cone selection, circuit-based backward lightcone, outside-|0> projected operator extraction, and unitarity/leakage diagnostics.
+- Implemented Module D (local_loss.py): embed_block_unitary_in_lightcone with explicit basis-index manipulation (NO raw np.kron assumptions), compute_loss using column-stacking superoperator convention and partial_trace_superoperator with normalize=True.
+- Refactored superoperator.py to use Cirq-native APIs: superoperator(U) now uses cirq.kraus_to_superoperator with row-to-column conversion; partial_trace uses cirq.partial_trace; partial_trace_superoperator uses cirq.partial_trace on Liouville tensor; vec/unvec kept in NumPy. Original backed up as superoperator_old.py.
+- Implemented test_module_c_d.py with 8 plain-python sanity checks (all pass): radius-zero/boundary cones, identity projection, cross-boundary CNOT nonunitarity detection, non-leading block embedding, identity/exact/global-phase loss, invalid inputs.
+- Implemented test_per_bit_loss.py for n=12, block={5,6,7,8}, radius=3. Uses per_bit_losses_from_V which avoids building the 4^s x 4^s full superoperator by iterating env states and directly assembling 4x4 reduced superoperators per qubit. Produces per-bit loss output.
+- Wrote conclusion/module_c_d_conclusion.md (Chinese translation), conclusion/per_bit_loss_methods.md (two-method comparison with complexity tables and mathematical equivalence proof), and bemear_related/stage_work_ppt_reference.md (PPT reference with module inventory, data flow, method comparison, physical semantics, illustration ideas, and 12-page PPT structure).
+- Explained the physical semantics: partial trace does NOT ignore cone-internal influence; environment qubits within the cone are taken as maximally mixed (I/2^{s-1}) equivalent to Hilbert-Schmidt average; the Mode 1 paper's normalized superoperator partial trace mathematically encodes the same maximal-entropy assumption; the full system has a three-layer initial-state structure (outside=|0>, cone-env=I/d, target-qubit=basis operators).
+- Resolved a column-stacking convention note: for superoperator.py convention, row index = a + 2*b (not a*2+b).
+
+CURRENT STATE
+-------------
+- Entire task2_code/ directory is new and untracked by git.
+- All tests pass: test_module_c_d.py (8/8), superoperator sanity checks, cirq_superoperator_compare.py (6/6 at 0.000e+00 diff), test_per_bit_loss.py produces valid per-bit losses.
+- basedpyright LSP shows zero errors on all new files; only strict-mode warnings from Cirq and legacy untyped superoperator imports remain.
+- pytest is NOT installed; all tests are plain Python scripts with manual assertion.
+- Config: n_qubits=20 in config.py, but implementation guards dense operations to n<=12 or configured max.
+- Cirq APIs available: partial_trace, kraus_to_superoperator, operation_to_superoperator, unitary.
+- Repository uses column-stacking convention: superoperator(U) = U.conj() kron U; Cirq uses row-stacking, conversion via P^T @ S_row @ P.
+
+PENDING TASKS
+-------------
+From IMPLEMENTATION_PLAN.md, remaining modules NOT yet implemented:
+- Module E: train_local_inversion.py (ADAM optimizer, multi-restart, loss recording, best theta selection)
+- Module F: sewing.py (block SWAP construction, sew_channel, apply_sewn_channel)
+- Module G: verify.py (Z_j expectation, compare_with_exact, plot_Zj_vs_time)
+- Large-n sparse or reduced-channel generalization is deferred future work.
+
+KEY FILES
+---------
+- task2_code/lightcone.py - Module C: light cone extraction, projected operator, diagnostics
+- task2_code/local_loss.py - Module D: compute_loss, embed_block_unitary_in_lightcone
+- task2_code/superoperator.py - Cirq-native superoperator, partial_trace, partial_trace_superoperator (column-stacking)
+- task2_code/superoperator_old.py - Original NumPy implementation backup
+- task2_code/ansatz.py - 4-qubit 60-parameter local inversion ansatz
+- task2_code/U_target.py - Target unitary/circuit construction (V_scr, H_diag, H_target)
+- task2_code/test_per_bit_loss.py - Per-bit loss test using direct reduced channel method
+- task2_code/test_module_c_d.py - 8 sanity checks for Module C/D
+- task2_code/config.py - System parameters (n_qubits=20, seed=42, time points)
+- task2_code/IMPLEMENTATION_PLAN.md - Full module A-G implementation plan with dependency graph
+- task2_code/bemear_related/stage_work_ppt_reference.md - PPT reference document
+- task2_code/conclusion/per_bit_loss_methods.md - Two-method comparison with complexity
+- task2_code/conclusion/module_c_d_conclusion.md - Module C/D summary in Chinese
+
+IMPORTANT DECISIONS
+-------------------
+- Module C returns outside-|0> projected operator, NOT a partial trace of a unitary. Semantics explicitly labelled as "outside_zero_projection" with unitarity diagnostics.
+- Module D embeds trial unitaries by explicit basis-index manipulation, never raw np.kron(U_trial, I) except when block qubits are proven leading axes. block_qubits are global labels; block_positions are local indices inside lightcone_qubits.
+- per_bit_losses_from_V avoids the 4^s x 4^s full superoperator (impossible at s=10: 16 TB) by iterating env states and directly assembling 4x4 reduced superoperators.
+- cirq.partial_trace returns subsystems in the order of keep_indices (no extra reordering needed).
+- Ascending qubit order used everywhere; basis integers follow big-endian tensor order matching reduce(np.kron, ops) convention.
+- All tests are plain Python scripts (no pytest); run from repository root with "python task2_code/<script>.py".
+
+EXPLICIT CONSTRAINTS
+--------------------
+- "若 Cirq 已提供可复用的工具、函数或数据结构，应优先采用 Cirq 的原生实现"
+- "将现有 superoperator 脚本保留为备份文件"
+
+CONTEXT FOR CONTINUATION
+------------------------
+- The project is in a QML conda environment at C:\ProgramData\anaconda3\envs\QML with Cirq and basedpyright installed.
+- All new code is in task2_code/ which is entirely untracked by git.
+- Module E (training) should use compute_loss from local_loss.py; the per_bit_losses_from_V pattern should be used when light cone size makes full superoperator infeasible.
+- The light cone extraction currently uses outside-|0> projection; for closed light cones or exact circuit-local extraction, consider using circuit-based methods from lightcone_test.py or bounding to closed subcircuits.
+- Reduced-channel generalization (returning target superoperator instead of U_target_Sj) is documented as deferred future work.
+- The column-stacking convention (superoperator(U) = U.conj() kron U) must be preserved throughout.
+- block_qubits are ALWAYS global labels; partial_trace_superoperator keep_indices are ALWAYS local positions.

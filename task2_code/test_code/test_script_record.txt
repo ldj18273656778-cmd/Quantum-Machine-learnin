@@ -1,0 +1,53 @@
+Task 2 / Module E test script record
+
+This folder collects the test, diagnostic, and verification scripts that were previously kept directly under task2_code. Run commands are written relative to the repository root.
+
+check_module_e_per_bit_losses.py
+- Purpose: Runs Module E ADAM training and prints per-qubit losses at initial, final, and best parameters.
+- What it checks: Sum-block training objective, per-qubit loss trajectories, and the S.2.4-style max per-qubit evaluation criterion.
+- Typical run: python task2_code/test_code/check_module_e_per_bit_losses.py --iterations 150
+
+validate_module_e_structure.py
+- Purpose: Structural and smoke validation for Module E training utilities.
+- What it checks: Superoperator/per-bit conventions, objective construction, finite-difference gradients, optimizer behavior, and artifact saving.
+- Typical run: python task2_code/test_code/validate_module_e_structure.py
+
+test_per_bit_loss.py
+- Purpose: Direct per-qubit local-inversion loss diagnostic for a larger n=12 block.
+- What it checks: Light-cone extraction, block-unitary embedding, and scalable per-bit reduced-channel loss without constructing a full large superoperator.
+- Typical run: python task2_code/test_code/test_per_bit_loss.py
+
+test_module_c_d.py
+- Purpose: Plain-Python tests for lightcone and local-loss modules used by Module E.
+- What it checks: Lightcone radius handling, outside-zero projection semantics, boundary non-unitarity detection, block-unitary embedding, and local loss conventions.
+- Typical run: python task2_code/test_code/test_module_c_d.py
+
+lightcone_test.py
+- Purpose: Exploratory light-cone analysis for Task 2 Mode 1.
+- What it checks: Dense commutator-based and circuit-based forward/backward light-cone calculations for target dynamics.
+- Typical run: python task2_code/test_code/lightcone_test.py
+
+cirq_superoperator_compare.py
+- Purpose: Compares Cirq's public superoperator and partial-trace helpers against the repository conventions.
+- What it checks: Row-stacking versus column-stacking conversion, unitary-channel superoperator construction, and partial-trace behavior.
+- Typical run: python task2_code/test_code/cirq_superoperator_compare.py
+
+verify_n8_compose.py
+- Purpose: Tests whether independently trained n=8 block inversions compose into a useful global inverse.
+- What it checks: Independent block training, light-cone embeddings, and direct composition quality against the n=8 target unitary.
+- Typical run: python task2_code/test_code/verify_n8_compose.py
+
+verify_sewing.py
+- Purpose: Minimal n=4 sewing verification using known ground-truth local inversions.
+- What it checks: Definition-12 sewing mechanics, swap construction, and process fidelity against the target channel.
+- Typical run: python task2_code/test_code/verify_sewing.py
+
+verify_sewing_v2.py
+- Purpose: Sewing verification with a properly trained n=4 closed-lightcone Mode 1 local inversion.
+- What it checks: Closed-lightcone training, trained ansatz quality, Definition-12 sewing, and sewn-channel fidelity.
+- Typical run: python task2_code/test_code/verify_sewing_v2.py
+
+verify_sewing_n8.py
+- Purpose: n=8 sewing verification with independently trained 4-qubit blocks.
+- What it checks: Two-block training, per-qubit losses, state-vector sewing implementation, and fidelity against the n=8 target unitary.
+- Typical run: python task2_code/test_code/verify_sewing_n8.py

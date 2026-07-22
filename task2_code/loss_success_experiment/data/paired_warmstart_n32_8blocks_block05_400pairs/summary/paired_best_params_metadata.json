@@ -1,0 +1,34 @@
+{
+  "artifact_type": "paired_best_params_summary",
+  "source_experiment_root": "/home/um202470160/task2_code/loss_success_experiment/data/paired_warmstart_n32_8blocks_block05_400pairs",
+  "npz_file": "paired_best_params.npz",
+  "csv_file": "paired_best_params_index.csv",
+  "total_pairs": 400,
+  "theta_size": 120,
+  "arrays": {
+    "heisenberg_best_params": [
+      400,
+      120
+    ],
+    "warmstart_best_params": [
+      400,
+      120
+    ],
+    "mixed_stage_best_params": [
+      400,
+      120
+    ],
+    "initial_params": [
+      400,
+      120
+    ]
+  },
+  "heisenberg_success_count": 13,
+  "heisenberg_success_rate": 0.0325,
+  "warmstart_success_count": 175,
+  "warmstart_success_rate": 0.4375,
+  "heisenberg_best_loss_min": 0.0014349089175630326,
+  "heisenberg_best_loss_median": 27.26865417080001,
+  "warmstart_best_loss_min": 5.191383801680446e-05,
+  "warmstart_best_loss_median": 0.011621973025473586
+}

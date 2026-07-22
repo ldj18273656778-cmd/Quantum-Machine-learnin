@@ -1,0 +1,83 @@
+{
+  "n_qubits": 12,
+  "block_qubits": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "target_bit": 5,
+  "radius": 2,
+  "lightcone_mode": "radius",
+  "loss_mode": "lightcone",
+  "target_seed": 42,
+  "time_k": 5,
+  "time": 1.1790972450961723,
+  "h_arr": [
+    0.5479120971119267,
+    -0.12224312049589536,
+    0.7171958398227649,
+    0.3947360581187278,
+    -0.8116453042247009,
+    0.9512447032735118,
+    0.5222794039807059,
+    0.5721286105539076,
+    -0.7437727346489083,
+    -0.09922812420886573,
+    -0.25840395153483753,
+    0.8535299776972036
+  ],
+  "lightcone_qubits": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "ansatz": "default_5layer_cz",
+  "block_only_ansatz": false,
+  "ansatz_qubits": 8,
+  "theta_size": 120,
+  "block_positions": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "outside_qubits": [
+    0,
+    1,
+    10,
+    11
+  ],
+  "lightcone_semantics": "circuit_gate_restriction",
+  "loss_semantics": "lightcone_residual_channel",
+  "lightcone_diagnostics": {
+    "left_unitarity_error": 3.376225188055351e-14,
+    "right_unitarity_error": 3.39815341351366e-14,
+    "max_column_leakage": 3.885780586188048e-15
+  },
+  "target_operator_summary": {
+    "shape": "(256, 256)",
+    "fro_norm": 15.99999999999999,
+    "sha256_float_view": "3bc824ebe16650328ab2629d85d7ba7ea55c92ea930c7be7f2a3d36ae245e157"
+  },
+  "full_target_operator_summary": null,
+  "training_seed": 506,
+  "validation": "n12",
+  "initial_probe_loss": 12.024198659695552,
+  "schema_version": 1,
+  "best_restart": 0,
+  "best_iteration": 0,
+  "best_loss": 12.27031865181645,
+  "restart_failed": [
+    false
+  ],
+  "failure_reasons": [
+    ""
+  ],
+  "array_file": "module_e_training_arrays.npz"
+}

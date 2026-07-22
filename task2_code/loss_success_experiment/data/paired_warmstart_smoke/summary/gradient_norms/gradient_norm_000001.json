@@ -1,0 +1,14 @@
+{
+  "task_index": 1,
+  "training_type": "heisenberg_only",
+  "pair_index": 1,
+  "fd_eps": 1e-05,
+  "best_loss_recorded": 999.0,
+  "loss_at_theta": 44.095359712317304,
+  "loss_difference": -954.9046402876827,
+  "success": false,
+  "grad_norm": 5.689853465643205,
+  "grad_inf_norm": 1.8691529476200228,
+  "theta_size": 60,
+  "elapsed_seconds": 0.5695237000472844
+}

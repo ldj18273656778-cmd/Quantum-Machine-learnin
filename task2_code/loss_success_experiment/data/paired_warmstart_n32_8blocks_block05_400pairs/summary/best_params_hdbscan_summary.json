@@ -1,0 +1,218 @@
+{
+  "artifact_type": "best_params_hdbscan_clusters",
+  "input": "task2_code\\loss_success_experiment\\data\\paired_warmstart_n32_8blocks_block05_400pairs\\summary\\paired_best_params.npz",
+  "projection": "task2_code\\loss_success_experiment\\data\\paired_warmstart_n32_8blocks_block05_400pairs\\summary\\best_params_pca_projection.npz",
+  "min_cluster_size": 8,
+  "min_samples": 2,
+  "wrap_angles": true,
+  "labels_npz": "best_params_hdbscan_clusters.npz",
+  "labels_csv": "best_params_hdbscan_cluster_labels.csv",
+  "heisenberg_only": {
+    "total": 400,
+    "noise_count": 182,
+    "cluster_count": 2,
+    "clusters": [
+      {
+        "label": -1,
+        "kind": "noise",
+        "count": 182,
+        "best_loss_min": 0.0017766646695577698,
+        "best_loss_median": 28.15781876271106,
+        "best_loss_max": 40.77651541414131,
+        "success_count": 3,
+        "success_rate": 0.016483516483516484
+      },
+      {
+        "label": 0,
+        "kind": "cluster",
+        "count": 210,
+        "best_loss_min": 0.0014349089175630326,
+        "best_loss_median": 27.114729472360352,
+        "best_loss_max": 40.673285901391516,
+        "success_count": 9,
+        "success_rate": 0.04285714285714286
+      },
+      {
+        "label": 1,
+        "kind": "cluster",
+        "count": 8,
+        "best_loss_min": 0.004042634902850965,
+        "best_loss_median": 22.761594835802377,
+        "best_loss_max": 36.02636336387767,
+        "success_count": 1,
+        "success_rate": 0.125
+      }
+    ]
+  },
+  "heisenberg_failed_only": {
+    "total": 387,
+    "noise_count": 270,
+    "cluster_count": 4,
+    "clusters": [
+      {
+        "label": -1,
+        "kind": "noise",
+        "count": 270,
+        "best_loss_min": 0.012485120495511667,
+        "best_loss_median": 27.351357991350014,
+        "best_loss_max": 40.77651541414131,
+        "success_count": 0,
+        "success_rate": 0.0
+      },
+      {
+        "label": 0,
+        "kind": "cluster",
+        "count": 8,
+        "best_loss_min": 24.85903045595466,
+        "best_loss_median": 34.143349575392115,
+        "best_loss_max": 39.14941820894975,
+        "success_count": 0,
+        "success_rate": 0.0
+      },
+      {
+        "label": 1,
+        "kind": "cluster",
+        "count": 15,
+        "best_loss_min": 0.02028942531168125,
+        "best_loss_median": 32.890681851320466,
+        "best_loss_max": 38.621108251262356,
+        "success_count": 0,
+        "success_rate": 0.0
+      },
+      {
+        "label": 2,
+        "kind": "cluster",
+        "count": 10,
+        "best_loss_min": 1.7812330829823362,
+        "best_loss_median": 24.078378693050905,
+        "best_loss_max": 37.465490181072326,
+        "success_count": 0,
+        "success_rate": 0.0
+      },
+      {
+        "label": 3,
+        "kind": "cluster",
+        "count": 84,
+        "best_loss_min": 0.10488215535984782,
+        "best_loss_median": 28.15165603764987,
+        "best_loss_max": 40.586511336509794,
+        "success_count": 0,
+        "success_rate": 0.0
+      }
+    ]
+  },
+  "warmstart": {
+    "total": 400,
+    "noise_count": 292,
+    "cluster_count": 6,
+    "clusters": [
+      {
+        "label": -1,
+        "kind": "noise",
+        "count": 292,
+        "best_loss_min": 5.191383801680446e-05,
+        "best_loss_median": 0.012391780223061392,
+        "best_loss_max": 22.487258471357503,
+        "success_count": 122,
+        "success_rate": 0.4178082191780822
+      },
+      {
+        "label": 0,
+        "kind": "cluster",
+        "count": 10,
+        "best_loss_min": 0.002738120382697965,
+        "best_loss_median": 0.019182647903290787,
+        "best_loss_max": 22.114460916474265,
+        "success_count": 4,
+        "success_rate": 0.4
+      },
+      {
+        "label": 1,
+        "kind": "cluster",
+        "count": 8,
+        "best_loss_min": 0.0007536482075488399,
+        "best_loss_median": 0.011106347094545877,
+        "best_loss_max": 0.03574116391301134,
+        "success_count": 3,
+        "success_rate": 0.375
+      },
+      {
+        "label": 2,
+        "kind": "cluster",
+        "count": 36,
+        "best_loss_min": 0.00015620292010233038,
+        "best_loss_median": 0.008165516888737097,
+        "best_loss_max": 22.545433573731458,
+        "success_count": 20,
+        "success_rate": 0.5555555555555556
+      },
+      {
+        "label": 3,
+        "kind": "cluster",
+        "count": 16,
+        "best_loss_min": 0.00045236856957376383,
+        "best_loss_median": 0.003768092270505468,
+        "best_loss_max": 17.40461090431075,
+        "success_count": 10,
+        "success_rate": 0.625
+      },
+      {
+        "label": 4,
+        "kind": "cluster",
+        "count": 29,
+        "best_loss_min": 0.0011870264363154426,
+        "best_loss_median": 0.020179972768513806,
+        "best_loss_max": 22.063139476033435,
+        "success_count": 11,
+        "success_rate": 0.3793103448275862
+      },
+      {
+        "label": 5,
+        "kind": "cluster",
+        "count": 9,
+        "best_loss_min": 0.000181219738519589,
+        "best_loss_median": 0.00804402609299491,
+        "best_loss_max": 0.025395056612806097,
+        "success_count": 5,
+        "success_rate": 0.5555555555555556
+      }
+    ]
+  },
+  "combined": {
+    "total": 800,
+    "noise_count": 266,
+    "cluster_count": 2,
+    "clusters": [
+      {
+        "label": -1,
+        "kind": "noise",
+        "count": 266,
+        "best_loss_min": 5.191383801680446e-05,
+        "best_loss_median": 14.244012676192632,
+        "best_loss_max": 40.673285901391516,
+        "success_count": 61,
+        "success_rate": 0.22932330827067668
+      },
+      {
+        "label": 0,
+        "kind": "cluster",
+        "count": 526,
+        "best_loss_min": 0.00015620292010233038,
+        "best_loss_median": 15.73250400773576,
+        "best_loss_max": 40.77651541414131,
+        "success_count": 126,
+        "success_rate": 0.23954372623574144
+      },
+      {
+        "label": 1,
+        "kind": "cluster",
+        "count": 8,
+        "best_loss_min": 0.0057401514315414725,
+        "best_loss_median": 22.46388787678537,
+        "best_loss_max": 37.12216740574952,
+        "success_count": 1,
+        "success_rate": 0.125
+      }
+    ]
+  }
+}

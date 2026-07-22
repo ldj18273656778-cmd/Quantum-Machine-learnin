@@ -1,0 +1,117 @@
+{
+  "params": "/home/um202470160/task2_code/hpc_parallel_training/data/warmstart_n32_8blocks_heisenberg_threshold001_20260618_222057/bundle/task2_training_n32_8blocks_heisenberg_default_5layer_cz_heisenberg_pauli_20260619_201516/params.npz",
+  "metadata": "/home/um202470160/task2_code/hpc_parallel_training/data/warmstart_n32_8blocks_heisenberg_threshold001_20260618_222057/bundle/task2_training_n32_8blocks_heisenberg_default_5layer_cz_heisenberg_pauli_20260619_201516/metadata.json",
+  "n_qubits": 32,
+  "input_state": "zero",
+  "observable_qubits": [
+    28
+  ],
+  "all_requested_observable_qubits": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31
+  ],
+  "shard": {
+    "mode": "modulo",
+    "num_shards": 32,
+    "shard_index": 28
+  },
+  "paulis": [
+    "X",
+    "Y",
+    "Z"
+  ],
+  "order": "odd-even",
+  "dagger_convention": "trained",
+  "ansatz": "default_5layer_cz",
+  "max_cone_qubits": 32,
+  "target_cone_sizes": {
+    "28": 6
+  },
+  "sewing_cone_sizes": {
+    "28": 18
+  },
+  "summary": {
+    "X": {
+      "max_abs_diff": 0.00028805214150023906,
+      "mean_abs_diff": 0.00028805214150023906,
+      "rms_abs_diff": 0.00028805214150023906
+    },
+    "Y": {
+      "max_abs_diff": 0.0013470227136752368,
+      "mean_abs_diff": 0.0013470227136752368,
+      "rms_abs_diff": 0.0013470227136752368
+    },
+    "Z": {
+      "max_abs_diff": 5.6707393981170195e-05,
+      "mean_abs_diff": 5.6707393981170195e-05,
+      "rms_abs_diff": 5.6707393981170195e-05
+    },
+    "all": {
+      "max_abs_diff": 0.0013470227136752368,
+      "mean_abs_diff": 0.0005639274163855486,
+      "rms_abs_diff": 0.0007959606263109602
+    }
+  },
+  "rows": [
+    {
+      "qubit": 28,
+      "pauli": "X",
+      "target_expectation": -0.47361070627882895,
+      "sewing_expectation": -0.4738987584203292,
+      "signed_diff": -0.00028805214150023906,
+      "abs_diff": 0.00028805214150023906,
+      "target_cone_size": 6,
+      "sewing_cone_size": 18
+    },
+    {
+      "qubit": 28,
+      "pauli": "Y",
+      "target_expectation": 0.029945043685130138,
+      "sewing_expectation": 0.0285980209714549,
+      "signed_diff": -0.0013470227136752368,
+      "abs_diff": 0.0013470227136752368,
+      "target_cone_size": 6,
+      "sewing_cone_size": 18
+    },
+    {
+      "qubit": 28,
+      "pauli": "Z",
+      "target_expectation": -0.06015052230838652,
+      "sewing_expectation": -0.06020722970236769,
+      "signed_diff": -5.6707393981170195e-05,
+      "abs_diff": 5.6707393981170195e-05,
+      "target_cone_size": 6,
+      "sewing_cone_size": 18
+    }
+  ]
+}

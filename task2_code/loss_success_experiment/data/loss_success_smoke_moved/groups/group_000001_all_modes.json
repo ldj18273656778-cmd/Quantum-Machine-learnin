@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "artifact_type": "loss_success_group_result",
+  "experiment_root": "task2_code\\loss_success_experiment\\data\\loss_success_smoke_moved",
+  "group_index": 1,
+  "results": [
+    {
+      "mode": {
+        "label": "edge_quantum_channel_superoperator_from_mix",
+        "loss_function": "edge_quantum_channel",
+        "superoperator": "superoperator_from_mix",
+        "uses_superoperator": true,
+        "success_threshold": 0.01,
+        "mode_index": 0
+      },
+      "trials": [
+        {
+          "restart_index": 1,
+          "seed": 1042,
+          "initial_loss": 11.864372382369995,
+          "best_loss": 10.752145829368803,
+          "best_iteration": 1,
+          "final_loss": 10.752145829368803,
+          "success_threshold": 0.01,
+          "success": false,
+          "failed": false,
+          "failure_reason": "",
+          "loss_history": [
+            11.864372382369995,
+            10.752145829368803
+          ]
+        }
+      ],
+      "success_count": 0,
+      "total_count": 1,
+      "success_rate": 0.0
+    },
+    {
+      "mode": {
+        "label": "heisenberg_pauli",
+        "loss_function": "heisenberg_pauli",
+        "superoperator": null,
+        "uses_superoperator": false,
+        "success_threshold": 3.0,
+        "mode_index": 1
+      },
+      "trials": [
+        {
+          "restart_index": 1,
+          "seed": 1001042,
+          "initial_loss": 45.92778670797718,
+          "best_loss": 44.24734717154023,
+          "best_iteration": 1,
+          "final_loss": 44.24734717154023,
+          "success_threshold": 3.0,
+          "success": false,
+          "failed": false,
+          "failure_reason": "",
+          "loss_history": [
+            45.92778670797718,
+            44.24734717154023
+          ]
+        }
+      ],
+      "success_count": 0,
+      "total_count": 1,
+      "success_rate": 0.0
+    }
+  ]
+}

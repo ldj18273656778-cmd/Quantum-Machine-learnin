@@ -1,0 +1,65 @@
+{
+  "n_qubits": 4,
+  "block_qubits": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "target_bit": 1,
+  "radius": 0,
+  "lightcone_mode": "radius",
+  "loss_mode": "lightcone",
+  "target_seed": 42,
+  "time_k": 1,
+  "time": 0.23661944901923448,
+  "h_arr": [
+    0.5479120971119267,
+    -0.12224312049589536,
+    0.7171958398227649,
+    0.3947360581187278
+  ],
+  "lightcone_qubits": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "ansatz": "default_5layer_cz",
+  "block_only_ansatz": false,
+  "ansatz_qubits": 4,
+  "theta_size": 60,
+  "block_positions": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "outside_qubits": [],
+  "lightcone_semantics": "circuit_gate_restriction",
+  "loss_semantics": "lightcone_residual_channel",
+  "lightcone_diagnostics": {
+    "left_unitarity_error": 3.438474367072404e-15,
+    "right_unitarity_error": 3.466505390467108e-15,
+    "max_column_leakage": 1.1102230246251565e-15
+  },
+  "target_operator_summary": {
+    "shape": "(16, 16)",
+    "fro_norm": 4.0,
+    "sha256_float_view": "2fd5870008a102ce4c093b907218782e3fd7a561210a2e8ae02a9184a4acdbf5"
+  },
+  "full_target_operator_summary": null,
+  "training_seed": 404,
+  "validation": "n4",
+  "schema_version": 1,
+  "best_restart": 0,
+  "best_iteration": 1,
+  "best_loss": 12.114511415129233,
+  "restart_failed": [
+    false
+  ],
+  "failure_reasons": [
+    ""
+  ],
+  "array_file": "module_e_training_arrays.npz"
+}

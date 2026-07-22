@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "artifact_type": "loss_success_experiment",
+  "timestamp": "20260615_131358",
+  "experiment_root": "task2_code\\loss_success_experiment\\data\\loss_success_smoke_moved",
+  "preset": "n4_single_block",
+  "n_qubits": 4,
+  "block_index": 1,
+  "block_qubits": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "target_bit": 1,
+  "lightcone_qubits": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "lightcone_size": 4,
+  "ansatz": "default_5layer_cz",
+  "ansatz_qubits": 4,
+  "theta_size": 60,
+  "block_only_ansatz": false,
+  "radius": 0,
+  "lightcone_mode": "circuit",
+  "loss_mode": "lightcone",
+  "iterations": 1,
+  "lr": 0.1,
+  "fd_eps": 1e-05,
+  "training_seed_start": 1042,
+  "success_threshold": null,
+  "total_restarts": 1,
+  "restarts_per_group": 1,
+  "group_count": 1,
+  "modes": [
+    {
+      "label": "edge_quantum_channel_superoperator_from_mix",
+      "loss_function": "edge_quantum_channel",
+      "superoperator": "superoperator_from_mix",
+      "uses_superoperator": true,
+      "success_threshold": 0.01
+    },
+    {
+      "label": "heisenberg_pauli",
+      "loss_function": "heisenberg_pauli",
+      "superoperator": null,
+      "uses_superoperator": false,
+      "success_threshold": 3.0
+    }
+  ],
+  "lightcone_semantics": "circuit_gate_restriction",
+  "loss_semantics": "lightcone_residual_channel",
+  "target_seed": 42,
+  "time_k": 5,
+  "time": 1.1790972450961723,
+  "h_arr": [
+    0.5479120971119267,
+    -0.12224312049589536,
+    0.7171958398227649,
+    0.3947360581187278
+  ]
+}

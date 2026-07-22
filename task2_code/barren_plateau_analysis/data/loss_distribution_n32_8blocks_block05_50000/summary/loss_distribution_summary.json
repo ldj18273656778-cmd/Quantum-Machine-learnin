@@ -1,0 +1,40 @@
+{
+  "artifact_type": "random_parameter_loss_distribution_summary",
+  "experiment_root": "task2_code\\barren_plateau_analysis\\data\\loss_distribution_n32_8blocks_block05_50000",
+  "sample_count": 50000,
+  "theta_size": 120,
+  "mode_labels": [
+    "edge_quantum_channel:superoperator_from_mix",
+    "heisenberg_pauli"
+  ],
+  "modes": {
+    "edge_quantum_channel:superoperator_from_mix": {
+      "loss": {
+        "min": 9.908295209073948,
+        "q05": 11.512114268452274,
+        "q25": 11.868763932811328,
+        "median": 12.081429530787696,
+        "q75": 12.335380500289956,
+        "q95": 12.869908761351882,
+        "max": 15.360184403133552,
+        "mean": 12.122643784354702,
+        "var": 0.1792866279180773,
+        "std": 0.4234225170182584
+      }
+    },
+    "heisenberg_pauli": {
+      "loss": {
+        "min": 44.753505112687264,
+        "q05": 46.842074340118955,
+        "q25": 47.295917802074904,
+        "median": 47.50481812787874,
+        "q75": 47.65155161928024,
+        "q95": 47.791690146531145,
+        "max": 47.95096444807853,
+        "mean": 47.43409932766103,
+        "var": 0.09734808990552803,
+        "std": 0.31200655426693846
+      }
+    }
+  }
+}

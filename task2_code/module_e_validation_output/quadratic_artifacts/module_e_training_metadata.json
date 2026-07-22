@@ -1,0 +1,16 @@
+{
+  "validation": "quadratic",
+  "schema_version": 1,
+  "best_restart": 1,
+  "best_iteration": 1,
+  "best_loss": 2.208992379595592,
+  "restart_failed": [
+    false,
+    false
+  ],
+  "failure_reasons": [
+    "",
+    ""
+  ],
+  "array_file": "module_e_training_arrays.npz"
+}

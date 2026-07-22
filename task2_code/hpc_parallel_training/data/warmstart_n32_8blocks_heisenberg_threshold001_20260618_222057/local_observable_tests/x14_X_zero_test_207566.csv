@@ -1,0 +1,2 @@
+qubit,pauli,target_expectation,sewing_expectation,signed_diff,abs_diff,target_cone_size,sewing_cone_size
+14,X,0.059495304148644734,0.060720109045483445,0.0012248048968387104,0.0012248048968387104,6,28

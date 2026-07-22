@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "artifact_type": "loss_success_summary",
+  "experiment_root": "task2_code\\data\\loss_success_smoke_opencode_v2",
+  "preset": "n4_single_block",
+  "block_index": 1,
+  "block_qubits": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "target_bit": 1,
+  "lightcone_qubits": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "success_threshold": null,
+  "rows": [
+    {
+      "mode": "edge_quantum_channel_superoperator_from_mix",
+      "total_count": 1,
+      "success_count": 0,
+      "success_rate": 0.0,
+      "failed_count": 0,
+      "success_threshold": 0.01,
+      "best_loss_min": 10.752145829368803,
+      "best_loss_median": 10.752145829368803,
+      "best_loss_mean": 10.752145829368803,
+      "best_loss_max": 10.752145829368803
+    },
+    {
+      "mode": "edge_quantum_channel_superoperator_from_one",
+      "total_count": 1,
+      "success_count": 0,
+      "success_rate": 0.0,
+      "failed_count": 0,
+      "success_threshold": 0.01,
+      "best_loss_min": 11.53289351447464,
+      "best_loss_median": 11.53289351447464,
+      "best_loss_mean": 11.53289351447464,
+      "best_loss_max": 11.53289351447464
+    },
+    {
+      "mode": "edge_quantum_channel_superoperator_from_zero",
+      "total_count": 1,
+      "success_count": 0,
+      "success_rate": 0.0,
+      "failed_count": 0,
+      "success_threshold": 0.01,
+      "best_loss_min": 11.314261514735454,
+      "best_loss_median": 11.314261514735454,
+      "best_loss_mean": 11.314261514735454,
+      "best_loss_max": 11.314261514735454
+    },
+    {
+      "mode": "heisenberg_pauli",
+      "total_count": 1,
+      "success_count": 0,
+      "success_rate": 0.0,
+      "failed_count": 0,
+      "success_threshold": 3.0,
+      "best_loss_min": 42.63705707843229,
+      "best_loss_median": 42.63705707843229,
+      "best_loss_mean": 42.63705707843229,
+      "best_loss_max": 42.63705707843229
+    }
+  ]
+}

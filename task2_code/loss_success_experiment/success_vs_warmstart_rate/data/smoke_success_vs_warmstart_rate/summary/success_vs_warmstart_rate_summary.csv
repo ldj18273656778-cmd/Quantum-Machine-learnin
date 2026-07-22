@@ -1,0 +1,2 @@
+warmstart_iterations,trials,success_count,success_rate,final_best_loss_mean,final_best_loss_median,final_best_loss_q25,final_best_loss_q75,warmstart_best_loss_mean,warmstart_best_loss_median
+1,1,0,0.0,43.80706098815881,43.80706098815881,43.80706098815881,43.80706098815881,10.752145829368803,10.752145829368803

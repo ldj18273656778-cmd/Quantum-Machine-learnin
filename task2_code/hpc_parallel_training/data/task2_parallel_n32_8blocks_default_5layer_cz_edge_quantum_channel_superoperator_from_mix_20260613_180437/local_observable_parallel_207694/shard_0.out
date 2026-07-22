@@ -1,0 +1,8 @@
+Saved local observable JSON: /home/um202470160/task2_code/hpc_parallel_training/data/task2_parallel_n32_8blocks_default_5layer_cz_edge_quantum_channel_superoperator_from_mix_20260613_180437/local_observable_parallel_207694/local_observables_metadata_zero_shard_000_of_032.json
+Saved local observable CSV: /home/um202470160/task2_code/hpc_parallel_training/data/task2_parallel_n32_8blocks_default_5layer_cz_edge_quantum_channel_superoperator_from_mix_20260613_180437/local_observable_parallel_207694/local_observables_metadata_zero_shard_000_of_032.csv
+selected_qubits = [0]
+X: max_abs_diff=0.0212128 mean_abs_diff=0.0212128 rms_abs_diff=0.0212128
+Y: max_abs_diff=0.00321781 mean_abs_diff=0.00321781 rms_abs_diff=0.00321781
+Z: max_abs_diff=0.0127693 mean_abs_diff=0.0127693 rms_abs_diff=0.0127693
+all: max_abs_diff=0.0212128 mean_abs_diff=0.0124 rms_abs_diff=0.0144152
+

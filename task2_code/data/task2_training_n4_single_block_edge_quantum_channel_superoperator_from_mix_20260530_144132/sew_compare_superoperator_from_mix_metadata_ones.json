@@ -1,0 +1,64 @@
+{
+  "run_dir": "task2_code\\data\\task2_training_n4_single_block_edge_quantum_channel_superoperator_from_mix_20260530_144132",
+  "params": "task2_code\\data\\task2_training_n4_single_block_edge_quantum_channel_superoperator_from_mix_20260530_144132\\params.npz",
+  "metadata": "task2_code\\data\\task2_training_n4_single_block_edge_quantum_channel_superoperator_from_mix_20260530_144132\\metadata.json",
+  "input_state": "ones",
+  "order": "odd-even",
+  "dagger_convention": "trained",
+  "ansatz": "default_5layer_cz",
+  "n_qubits": 4,
+  "target": {
+    "X": [
+      -0.07257383131085315,
+      0.5185418837334911,
+      -0.5658030651958846,
+      -0.0793944511409812
+    ],
+    "Y": [
+      -0.560230120119835,
+      -0.2934636159423516,
+      0.06305904397869908,
+      0.11757503140435453
+    ],
+    "Z": [
+      -0.7448927525769605,
+      -0.6017810827537876,
+      -0.5001595159646283,
+      -0.8382908099184442
+    ]
+  },
+  "sewing": {
+    "X": [
+      -0.07439856802849903,
+      0.4730677437497013,
+      -0.5471595057093863,
+      -0.06605507223003854
+    ],
+    "Y": [
+      -0.5629819104841993,
+      -0.305949975107452,
+      0.04647296843419476,
+      0.1324126482121317
+    ],
+    "Z": [
+      -0.7438031395865132,
+      -0.6099044198030557,
+      -0.49809388131244253,
+      -0.835345791101075
+    ]
+  },
+  "summary": {
+    "X": {
+      "max_diff": 0.045474139983789796,
+      "mean_diff": 0.019820453774719166
+    },
+    "Y": {
+      "max_diff": 0.016586075544504315,
+      "mean_diff": 0.011665460470436552
+    },
+    "Z": {
+      "max_diff": 0.008123337049268042,
+      "mean_diff": 0.0035559008773175665
+    }
+  }
+}

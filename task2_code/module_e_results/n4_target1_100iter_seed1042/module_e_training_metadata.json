@@ -1,0 +1,66 @@
+{
+  "n_qubits": 4,
+  "block_qubits": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "target_bit": 1,
+  "radius": 0,
+  "target_seed": 42,
+  "time_k": 5,
+  "time": 1.1790972450961723,
+  "h_arr": [
+    0.5479120971119267,
+    -0.12224312049589536,
+    0.7171958398227649,
+    0.3947360581187278
+  ],
+  "lightcone_qubits": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "block_positions": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "outside_qubits": [],
+  "lightcone_semantics": "outside_zero_projection",
+  "lightcone_diagnostics": {
+    "left_unitarity_error": 3.448830825663979e-15,
+    "right_unitarity_error": 3.482830414333586e-15,
+    "max_column_leakage": 1.1102230246251565e-15
+  },
+  "target_operator_summary": {
+    "shape": "(16, 16)",
+    "fro_norm": 4.000000000000001,
+    "sha256_float_view": "cae598040f32c8ec97fbc9d0a779f835e55cbddf6a232b1c1cd2c8f8d162f257"
+  },
+  "training_seed": 1042,
+  "optimizer": {
+    "iterations": 100,
+    "lr": 0.01,
+    "beta1": 0.85,
+    "beta2": 0.9995,
+    "eps": 1e-08,
+    "fd_eps": 1e-05,
+    "wrap_angles": true
+  },
+  "initial_zero_theta_loss": 1.3021799295489376,
+  "schema_version": 1,
+  "best_restart": 0,
+  "best_iteration": 100,
+  "best_loss": 0.32046568882668003,
+  "restart_failed": [
+    false
+  ],
+  "failure_reasons": [
+    ""
+  ],
+  "array_file": "module_e_training_arrays.npz"
+}

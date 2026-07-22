@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "artifact_type": "random_parameter_loss_distribution_experiment",
+  "preset": "n4_single_block",
+  "n_qubits": 4,
+  "block_index": 1,
+  "block_qubits": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "target_bit": 1,
+  "radius": 0,
+  "time_k": 5,
+  "target_seed": 42,
+  "training_seed_start": 1042,
+  "lightcone_mode": "circuit",
+  "loss_mode": "lightcone",
+  "ansatz": "default_5layer_cz",
+  "block_only_ansatz": false,
+  "ansatz_qubits": 4,
+  "theta_size": 60,
+  "lightcone_qubits": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "sample_count": 4,
+  "samples_per_task": 2,
+  "task_count": 2,
+  "modes": [
+    {
+      "label": "edge_quantum_channel:superoperator_from_mix",
+      "loss_function": "edge_quantum_channel",
+      "superoperator": "superoperator_from_mix",
+      "uses_superoperator": true
+    },
+    {
+      "label": "heisenberg_pauli",
+      "loss_function": "heisenberg_pauli",
+      "superoperator": null,
+      "uses_superoperator": false
+    }
+  ],
+  "target_metadata": {
+    "n_qubits": 4,
+    "target_seed": 42,
+    "time_k": 5,
+    "time": 1.1790972450961723,
+    "h_arr": [
+      0.5479120971119267,
+      -0.12224312049589536,
+      0.7171958398227649,
+      0.3947360581187278
+    ]
+  },
+  "context_metadata": {
+    "n_qubits": 4,
+    "block_qubits": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "target_bit": 1,
+    "radius": 0,
+    "lightcone_mode": "circuit",
+    "loss_mode": "lightcone",
+    "target_seed": 42,
+    "time_k": 5,
+    "time": 1.1790972450961723,
+    "h_arr": [
+      0.5479120971119267,
+      -0.12224312049589536,
+      0.7171958398227649,
+      0.3947360581187278
+    ],
+    "lightcone_qubits": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "ansatz": "default_5layer_cz",
+    "block_only_ansatz": false,
+    "ansatz_qubits": 4,
+    "theta_size": 60,
+    "block_positions": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "outside_qubits": [],
+    "lightcone_semantics": "circuit_gate_restriction",
+    "loss_semantics": "lightcone_residual_channel",
+    "lightcone_diagnostics": {
+      "left_unitarity_error": 3.5476863760404414e-15,
+      "right_unitarity_error": 3.7068153306630895e-15,
+      "max_column_leakage": 8.881784197001252e-16
+    },
+    "target_operator_summary": {
+      "shape": "(16, 16)",
+      "fro_norm": 4.0,
+      "sha256_float_view": "0ce73684762e3d128a0b193a10a5a84de2e4474f9b38720f3ebf16884f68d9e1"
+    },
+    "full_target_operator_summary": null
+  }
+}

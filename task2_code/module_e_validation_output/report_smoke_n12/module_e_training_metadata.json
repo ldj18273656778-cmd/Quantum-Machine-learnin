@@ -1,0 +1,85 @@
+{
+  "n_qubits": 12,
+  "block_qubits": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "target_bit": 5,
+  "radius": 2,
+  "target_seed": 42,
+  "time_k": 5,
+  "time": 1.1790972450961723,
+  "h_arr": [
+    0.5479120971119267,
+    -0.12224312049589536,
+    0.7171958398227649,
+    0.3947360581187278,
+    -0.8116453042247009,
+    0.9512447032735118,
+    0.5222794039807059,
+    0.5721286105539076,
+    -0.7437727346489083,
+    -0.09922812420886573,
+    -0.25840395153483753,
+    0.8535299776972036
+  ],
+  "lightcone_qubits": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "block_positions": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "outside_qubits": [
+    0,
+    1,
+    10,
+    11
+  ],
+  "lightcone_semantics": "outside_zero_projection",
+  "lightcone_diagnostics": {
+    "left_unitarity_error": 12.500267835665245,
+    "right_unitarity_error": 12.500267835665241,
+    "max_column_leakage": 0.7943249971181428
+  },
+  "target_operator_summary": {
+    "shape": "(256, 256)",
+    "fro_norm": 7.486958857292367,
+    "sha256_float_view": "b252d5d4668f8b8e82fec346d9be1af9f8a1d1d3eae6767274b6a1dcfbd44ca2"
+  },
+  "training_seed": 1042,
+  "optimizer": {
+    "iterations": 0,
+    "lr": 0.01,
+    "beta1": 0.85,
+    "beta2": 0.9995,
+    "eps": 1e-08,
+    "fd_eps": 1e-05,
+    "wrap_angles": true
+  },
+  "initial_zero_theta_loss": 13.954115277360847,
+  "ansatz_qubits": 8,
+  "theta_size": 120,
+  "schema_version": 1,
+  "best_restart": 0,
+  "best_iteration": 0,
+  "best_loss": 14.600072312246542,
+  "restart_failed": [
+    false
+  ],
+  "failure_reasons": [
+    ""
+  ],
+  "array_file": "module_e_training_arrays.npz"
+}

@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "artifact_type": "paired_warmstart_experiment",
+  "timestamp": "20260620_230420",
+  "experiment_root": "task2_code\\loss_success_experiment\\data\\paired_warmstart_smoke",
+  "preset": "n4_single_block",
+  "n_qubits": 4,
+  "block_index": 1,
+  "block_qubits": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "target_bit": 1,
+  "lightcone_qubits": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "lightcone_size": 4,
+  "ansatz": "default_5layer_cz",
+  "ansatz_qubits": 4,
+  "theta_size": 60,
+  "block_only_ansatz": false,
+  "radius": 0,
+  "lightcone_mode": "circuit",
+  "loss_mode": "lightcone",
+  "fd_eps": 1e-05,
+  "training_seed_start": 1042,
+  "total_pairs": 1,
+  "pairs_per_group": 1,
+  "group_count": 1,
+  "heisenberg_only": {
+    "name": "heisenberg_only",
+    "loss_function": "heisenberg_pauli",
+    "superoperator": null,
+    "iterations": 1,
+    "lr": 0.1,
+    "success_threshold": 0.01
+  },
+  "warmstart": {
+    "stage1": {
+      "name": "mixed_edge",
+      "loss_function": "edge_quantum_channel",
+      "superoperator": "superoperator_from_mix",
+      "iterations": 1,
+      "lr": 0.1
+    },
+    "stage2": {
+      "name": "heisenberg_warmstart",
+      "loss_function": "heisenberg_pauli",
+      "superoperator": null,
+      "iterations": 1,
+      "lr": 0.1,
+      "success_threshold": 0.01
+    }
+  },
+  "lightcone_semantics": "circuit_gate_restriction",
+  "loss_semantics": "lightcone_residual_channel",
+  "target_seed": 42,
+  "time_k": 5,
+  "time": 1.1790972450961723,
+  "h_arr": [
+    0.5479120971119267,
+    -0.12224312049589536,
+    0.7171958398227649,
+    0.3947360581187278
+  ]
+}
