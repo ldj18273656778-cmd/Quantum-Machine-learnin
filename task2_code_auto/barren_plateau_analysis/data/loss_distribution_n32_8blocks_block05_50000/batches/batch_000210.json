@@ -1,0 +1,15 @@
+{
+  "task_index": 210,
+  "sample_start": 4181,
+  "sample_stop": 4200,
+  "sample_count": 20,
+  "mode_labels": [
+    "edge_quantum_channel:superoperator_from_mix",
+    "heisenberg_pauli"
+  ],
+  "elapsed_seconds": 4.720204399898648,
+  "elapsed_seconds_by_mode": {
+    "edge_quantum_channel:superoperator_from_mix": 1.872790599707514,
+    "heisenberg_pauli": 2.8469773000106215
+  }
+}

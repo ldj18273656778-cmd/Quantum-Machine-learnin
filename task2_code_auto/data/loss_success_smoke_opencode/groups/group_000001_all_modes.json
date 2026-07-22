@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "artifact_type": "loss_success_group_result",
+  "experiment_root": "task2_code\\data\\loss_success_smoke_opencode",
+  "group_index": 1,
+  "results": [
+    {
+      "mode": {
+        "label": "edge_quantum_channel_superoperator_from_mix",
+        "loss_function": "edge_quantum_channel",
+        "superoperator": "superoperator_from_mix",
+        "uses_superoperator": true,
+        "mode_index": 0
+      },
+      "trials": [
+        {
+          "restart_index": 1,
+          "seed": 1042,
+          "initial_loss": 11.864372382369995,
+          "best_loss": 10.752145829368803,
+          "best_iteration": 1,
+          "final_loss": 10.752145829368803,
+          "success": false,
+          "loss_history": [
+            11.864372382369995,
+            10.752145829368803
+          ]
+        }
+      ],
+      "success_count": 0,
+      "total_count": 1,
+      "success_rate": 0.0
+    },
+    {
+      "mode": {
+        "label": "edge_quantum_channel_superoperator_from_zero",
+        "loss_function": "edge_quantum_channel",
+        "superoperator": "superoperator_from_zero",
+        "uses_superoperator": true,
+        "mode_index": 1
+      },
+      "trials": [
+        {
+          "restart_index": 1,
+          "seed": 1001042,
+          "initial_loss": 14.161092287192238,
+          "best_loss": 11.314261514735454,
+          "best_iteration": 1,
+          "final_loss": 11.314261514735454,
+          "success": false,
+          "loss_history": [
+            14.161092287192238,
+            11.314261514735454
+          ]
+        }
+      ],
+      "success_count": 0,
+      "total_count": 1,
+      "success_rate": 0.0
+    },
+    {
+      "mode": {
+        "label": "edge_quantum_channel_superoperator_from_one",
+        "loss_function": "edge_quantum_channel",
+        "superoperator": "superoperator_from_one",
+        "uses_superoperator": true,
+        "mode_index": 2
+      },
+      "trials": [
+        {
+          "restart_index": 1,
+          "seed": 2001042,
+          "initial_loss": 15.115034256707432,
+          "best_loss": 11.53289351447464,
+          "best_iteration": 1,
+          "final_loss": 11.53289351447464,
+          "success": false,
+          "loss_history": [
+            15.115034256707432,
+            11.53289351447464
+          ]
+        }
+      ],
+      "success_count": 0,
+      "total_count": 1,
+      "success_rate": 0.0
+    },
+    {
+      "mode": {
+        "label": "heisenberg_pauli",
+        "loss_function": "heisenberg_pauli",
+        "superoperator": null,
+        "uses_superoperator": false,
+        "mode_index": 3
+      },
+      "trials": [
+        {
+          "restart_index": 1,
+          "seed": 3001042,
+          "initial_loss": 44.296840268234895,
+          "best_loss": 42.63705707843229,
+          "best_iteration": 1,
+          "final_loss": 42.63705707843229,
+          "success": false,
+          "loss_history": [
+            44.296840268234895,
+            42.63705707843229
+          ]
+        }
+      ],
+      "success_count": 0,
+      "total_count": 1,
+      "success_rate": 0.0
+    }
+  ]
+}

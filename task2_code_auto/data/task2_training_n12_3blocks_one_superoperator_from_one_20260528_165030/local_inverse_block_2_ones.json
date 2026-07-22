@@ -1,0 +1,48 @@
+{
+  "run_dir": "task2_code\\data\\task2_training_n12_3blocks_one_superoperator_from_one_20260528_165030",
+  "params": "task2_code\\data\\task2_training_n12_3blocks_one_superoperator_from_one_20260528_165030\\params.npz",
+  "metadata": "task2_code\\data\\task2_training_n12_3blocks_one_superoperator_from_one_20260528_165030\\metadata.json",
+  "trained_superoperator": "superoperator_from_one",
+  "ansatz": "default_5layer_cz",
+  "input_state": "ones",
+  "operation_order": "U_target after U_trial(theta)^dagger",
+  "matrix_order": "U_target * U_trial(theta)^dagger",
+  "z_convention": "Pauli Z expectation: |0> -> +1, |1> -> -1",
+  "block_index": 2,
+  "block_qubits": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "lightcone_qubits": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "block_z_expectations": {
+    "4": -0.9951702541646803,
+    "5": -0.9965469371523161,
+    "6": -0.9961444924660732,
+    "7": -0.9959786634978878
+  },
+  "all_z_expectations": {
+    "0": 0.8501146538581766,
+    "1": 0.8759350923593187,
+    "2": 0.055560951520908675,
+    "3": -0.16379574291256582,
+    "4": -0.9951702541646803,
+    "5": -0.9965469371523161,
+    "6": -0.9961444924660732,
+    "7": -0.9959786634978878,
+    "8": 0.3075243687154985,
+    "9": 0.01670299310817913,
+    "10": -0.2333633066936025,
+    "11": 0.223583840134714
+  }
+}

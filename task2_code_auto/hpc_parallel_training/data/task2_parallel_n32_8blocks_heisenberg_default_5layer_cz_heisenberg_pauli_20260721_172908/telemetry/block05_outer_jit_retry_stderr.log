@@ -1,0 +1,31 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1784690707.895462   72000 instrument.cc:563] Metric with name 'grpc.resource_quota.calls_dropped' registered more than once. Ignoring later registration.
+E0000 00:00:1784690707.976720   72000 instrument.cc:563] Metric with name 'grpc.resource_quota.calls_rejected' registered more than once. Ignoring later registration.
+E0000 00:00:1784690708.025211   72000 instrument.cc:563] Metric with name 'grpc.resource_quota.connections_dropped' registered more than once. Ignoring later registration.
+E0000 00:00:1784690708.099753   72000 instrument.cc:563] Metric with name 'grpc.resource_quota.instantaneous_memory_pressure' registered more than once. Ignoring later registration.
+E0000 00:00:1784690708.121902   72000 instrument.cc:563] Metric with name 'grpc.resource_quota.memory_pressure_control_value' registered more than once. Ignoring later registration.
+Traceback (most recent call last):
+  File "D:\研究生\研究生\Quantum Machine learning\task2_code_auto\hpc_parallel_training\train_block.py", line 432, in <module>
+    main()
+  File "D:\研究生\研究生\Quantum Machine learning\task2_code_auto\hpc_parallel_training\train_block.py", line 327, in main
+    result = multi_restart_train(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "D:\研究生\研究生\Quantum Machine learning\task2_code_auto\module_e_training.py", line 577, in multi_restart_train
+    result = adam_optimize(
+             ^^^^^^^^^^^^^^
+  File "D:\研究生\研究生\Quantum Machine learning\task2_code_auto\module_e_training.py", line 438, in adam_optimize
+    jax_result = jax_adam_optimize(
+                 ^^^^^^^^^^^^^^^^^^
+  File "D:\研究生\研究生\Quantum Machine learning\task2_code_auto\jax_backend\optimizer.py", line 131, in adam_optimize
+    if not bool(jnp.all(jnp.isfinite(grad))) or not bool(jnp.isfinite(grad_norm)):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\QML\Lib\site-packages\jax\_src\array.py", line 306, in __bool__
+    return bool(self._value)
+                ^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\QML\Lib\site-packages\jax\_src\profiler.py", line 354, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\envs\QML\Lib\site-packages\jax\_src\array.py", line 644, in _value
+    npy_value, did_copy = self._single_device_array_to_np_array_did_copy()
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+jaxlib._jax.XlaRuntimeError: INTERNAL: Buffer Definition Event: Error dispatching computation: Error dispatching computation: Error preparing computation: Out of memory allocating 313574528 bytes.

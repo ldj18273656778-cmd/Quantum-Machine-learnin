@@ -1,0 +1,115 @@
+{
+  "run_dir": "task2_code\\data\\n4_single_block_zero_experiment\\task2_training_n4_single_block_superoperator_from_zero_20260529_165022",
+  "params": "task2_code\\data\\n4_single_block_zero_experiment\\task2_training_n4_single_block_superoperator_from_zero_20260529_165022\\params.npz",
+  "metadata": "task2_code\\data\\n4_single_block_zero_experiment\\task2_training_n4_single_block_superoperator_from_zero_20260529_165022\\metadata.json",
+  "n_qubits": 4,
+  "block_qubits": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "lightcone_qubits": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "definition": {
+    "V1": "U_trial(theta)^dagger",
+    "W": "U_target @ V1",
+    "condition_checked": "sum_{P in {X,Y,Z}} || W^dagger P_q W - P_q ||_infty",
+    "norm_note": "In quantum information notation, ||.||_infty is reported as spectral/operator norm.",
+    "qubit_order": "Cirq/NumPy qubit_order=[q0,q1,q2,q3]; q0 is the leftmost tensor factor."
+  },
+  "results_by_qubit": {
+    "q0": {
+      "sum_over_XYZ_operator_infinity_norm_spectral": 2.3501684880834355,
+      "sum_over_XYZ_frobenius_norm": 5.766910869388003,
+      "sum_over_XYZ_max_abs_entry": 1.7874174258883038,
+      "pauli_terms": {
+        "X": {
+          "operator_infinity_norm_spectral": 0.9170645735637106,
+          "frobenius_norm": 2.267695835043957,
+          "max_abs_entry": 0.7215798773852543
+        },
+        "Y": {
+          "operator_infinity_norm_spectral": 0.9400104368162175,
+          "frobenius_norm": 2.3268009069180136,
+          "max_abs_entry": 0.7455393792543323
+        },
+        "Z": {
+          "operator_infinity_norm_spectral": 0.4930934777035076,
+          "frobenius_norm": 1.1724141274260322,
+          "max_abs_entry": 0.320298169248717
+        }
+      }
+    },
+    "q1": {
+      "sum_over_XYZ_operator_infinity_norm_spectral": 4.679703669774592,
+      "sum_over_XYZ_frobenius_norm": 13.107488666899155,
+      "sum_over_XYZ_max_abs_entry": 4.266078430288573,
+      "pauli_terms": {
+        "X": {
+          "operator_infinity_norm_spectral": 1.9927948258635586,
+          "frobenius_norm": 5.764582356221579,
+          "max_abs_entry": 1.9291039045977516
+        },
+        "Y": {
+          "operator_infinity_norm_spectral": 1.9950389235180461,
+          "frobenius_norm": 5.773153163115526,
+          "max_abs_entry": 1.927380132686602
+        },
+        "Z": {
+          "operator_infinity_norm_spectral": 0.6918699203929876,
+          "frobenius_norm": 1.5697531475620496,
+          "max_abs_entry": 0.40959439300421935
+        }
+      }
+    },
+    "q2": {
+      "sum_over_XYZ_operator_infinity_norm_spectral": 5.126096010139463,
+      "sum_over_XYZ_frobenius_norm": 13.8157373521669,
+      "sum_over_XYZ_max_abs_entry": 4.726684679205136,
+      "pauli_terms": {
+        "X": {
+          "operator_infinity_norm_spectral": 1.9804223205677796,
+          "frobenius_norm": 5.470387823950811,
+          "max_abs_entry": 1.9415213196756127
+        },
+        "Y": {
+          "operator_infinity_norm_spectral": 1.9855464079799356,
+          "frobenius_norm": 5.778208576611636,
+          "max_abs_entry": 1.946669389078315
+        },
+        "Z": {
+          "operator_infinity_norm_spectral": 1.1601272815917476,
+          "frobenius_norm": 2.5671409516044528,
+          "max_abs_entry": 0.8384939704512085
+        }
+      }
+    },
+    "q3": {
+      "sum_over_XYZ_operator_infinity_norm_spectral": 4.313844839805656,
+      "sum_over_XYZ_frobenius_norm": 11.96932958424837,
+      "sum_over_XYZ_max_abs_entry": 3.92289422346927,
+      "pauli_terms": {
+        "X": {
+          "operator_infinity_norm_spectral": 1.9978796040318527,
+          "frobenius_norm": 5.529361837511838,
+          "max_abs_entry": 1.847317408018231
+        },
+        "Y": {
+          "operator_infinity_norm_spectral": 1.9899258040512398,
+          "frobenius_norm": 5.4968492010578505,
+          "max_abs_entry": 1.8239631569127785
+        },
+        "Z": {
+          "operator_infinity_norm_spectral": 0.32603943172256317,
+          "frobenius_norm": 0.9431185456786823,
+          "max_abs_entry": 0.25161365853826007
+        }
+      }
+    }
+  }
+}

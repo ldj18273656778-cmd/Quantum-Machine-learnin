@@ -1,0 +1,8 @@
+Saved local observable JSON: /home/um202470160/task2_code/hpc_parallel_training/data/warmstart_n32_8blocks_heisenberg_threshold001_20260618_222057/local_observable_parallel_207577/local_observables_metadata_zero_shard_031_of_032.json
+Saved local observable CSV: /home/um202470160/task2_code/hpc_parallel_training/data/warmstart_n32_8blocks_heisenberg_threshold001_20260618_222057/local_observable_parallel_207577/local_observables_metadata_zero_shard_031_of_032.csv
+selected_qubits = [31]
+X: max_abs_diff=0.00221489 mean_abs_diff=0.00221489 rms_abs_diff=0.00221489
+Y: max_abs_diff=0.00118296 mean_abs_diff=0.00118296 rms_abs_diff=0.00118296
+Z: max_abs_diff=0.00320189 mean_abs_diff=0.00320189 rms_abs_diff=0.00320189
+all: max_abs_diff=0.00320189 mean_abs_diff=0.00219991 rms_abs_diff=0.00234927
+

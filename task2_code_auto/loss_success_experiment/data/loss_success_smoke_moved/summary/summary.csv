@@ -1,0 +1,3 @@
+mode,total_count,success_count,success_rate,failed_count,success_threshold,best_loss_min,best_loss_median,best_loss_mean,best_loss_max
+edge_quantum_channel_superoperator_from_mix,1,0,0.0,0,0.01,10.752145829368803,10.752145829368803,10.752145829368803,10.752145829368803
+heisenberg_pauli,1,0,0.0,0,3.0,44.24734717154023,44.24734717154023,44.24734717154023,44.24734717154023

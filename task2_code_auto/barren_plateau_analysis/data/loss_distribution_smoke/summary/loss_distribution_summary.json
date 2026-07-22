@@ -1,0 +1,40 @@
+{
+  "artifact_type": "random_parameter_loss_distribution_summary",
+  "experiment_root": "task2_code\\barren_plateau_analysis\\data\\loss_distribution_smoke",
+  "sample_count": 4,
+  "theta_size": 60,
+  "mode_labels": [
+    "edge_quantum_channel:superoperator_from_mix",
+    "heisenberg_pauli"
+  ],
+  "modes": {
+    "edge_quantum_channel:superoperator_from_mix": {
+      "loss": {
+        "min": 11.864372382369995,
+        "q05": 11.96371147742282,
+        "q25": 12.36106785763412,
+        "median": 12.678209182599241,
+        "q75": 12.849733074159769,
+        "q95": 12.897607614200046,
+        "max": 12.909576249210115,
+        "mean": 12.53259174919465,
+        "var": 0.16924849445058243,
+        "std": 0.41139821882281213
+      }
+    },
+    "heisenberg_pauli": {
+      "loss": {
+        "min": 43.75910759329503,
+        "q05": 43.988830588705845,
+        "q25": 44.90772257034911,
+        "median": 45.660787847769654,
+        "q75": 46.25780074712938,
+        "q95": 46.802167021426705,
+        "max": 46.938258590001034,
+        "mean": 45.50473546970884,
+        "var": 1.3562491347335064,
+        "std": 1.1645810983926823
+      }
+    }
+  }
+}

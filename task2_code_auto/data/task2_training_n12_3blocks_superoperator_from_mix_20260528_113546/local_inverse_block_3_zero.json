@@ -1,0 +1,46 @@
+{
+  "run_dir": "task2_code\\data\\task2_training_n12_3blocks_superoperator_from_mix_20260528_113546",
+  "params": "task2_code\\data\\task2_training_n12_3blocks_superoperator_from_mix_20260528_113546\\params.npz",
+  "metadata": "task2_code\\data\\task2_training_n12_3blocks_superoperator_from_mix_20260528_113546\\metadata.json",
+  "trained_superoperator": "superoperator_from_mix",
+  "ansatz": "default_5layer_cz",
+  "input_state": "zero",
+  "operation_order": "U_target after U_trial(theta)^dagger",
+  "matrix_order": "U_target * U_trial(theta)^dagger",
+  "z_convention": "Pauli Z expectation: |0> -> +1, |1> -> -1",
+  "block_index": 3,
+  "block_qubits": [
+    8,
+    9,
+    10,
+    11
+  ],
+  "lightcone_qubits": [
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "block_z_expectations": {
+    "8": 0.9517242902447192,
+    "9": 0.967645916137677,
+    "10": 0.9650482942897601,
+    "11": 0.9997821566642143
+  },
+  "all_z_expectations": {
+    "0": 0.7899475871550787,
+    "1": 0.784583971110792,
+    "2": 0.40740148725333286,
+    "3": 0.021140603746037323,
+    "4": -0.35922628551766317,
+    "5": 0.2729639735149121,
+    "6": 0.3110102502398975,
+    "7": 0.25910956445110706,
+    "8": 0.9517242902447192,
+    "9": 0.967645916137677,
+    "10": 0.9650482942897601,
+    "11": 0.9997821566642143
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "schema_version": 2,
+  "artifact_type": "multi_block_training",
+  "timestamp": "20260531_143729",
+  "preset": "n12_3blocks_heisenberg",
+  "run_dir": "task2_code\\data\\task2_training_n12_3blocks_heisenberg_heisenberg_pauli_20260530_152212_resumed_20260531_143729",
+  "n_qubits": 12,
+  "target_seed": 42,
+  "time_k": 5,
+  "time": 1.1790972450961723,
+  "h_arr": [
+    0.5479120971119267,
+    -0.12224312049589536,
+    0.7171958398227649,
+    0.3947360581187278,
+    -0.8116453042247009,
+    0.9512447032735118,
+    0.5222794039807059,
+    0.5721286105539076,
+    -0.7437727346489083,
+    -0.09922812420886573,
+    -0.25840395153483753,
+    0.8535299776972036
+  ],
+  "blocks": [
+    {
+      "block_index": 1,
+      "block_qubits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "target_bit": 1,
+      "lightcone_qubits": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "ansatz_qubits": 6,
+      "theta_size": 90,
+      "params_key": "best_params_block_1",
+      "selected_restart": 3,
+      "completed_restarts": 3,
+      "max_restarts": 5,
+      "success_threshold": 0.01,
+      "best_iteration": 127,
+      "best_loss": 1.6889965920031914e-05,
+      "loss_breakdown": {
+        "0": 2.8267200088040855e-06,
+        "1": 3.70327078118816e-06,
+        "2": 3.9383600383905546e-06,
+        "3": 6.421615091649116e-06
+      },
+      "per_bit_losses": {
+        "0": 2.8267200088040855e-06,
+        "1": 3.70327078118816e-06,
+        "2": 3.9383600383905546e-06,
+        "3": 6.421615091649116e-06
+      },
+      "loss_qubits": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "lightcone_semantics": "circuit_gate_restriction",
+      "loss_semantics": "lightcone_residual_channel",
+      "extra_restarts_run": 3
+    },
+    {
+      "block_index": 2,
+      "block_qubits": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "target_bit": 5,
+      "lightcone_qubits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "ansatz_qubits": 8,
+      "theta_size": 120,
+      "params_key": "best_params_block_2",
+      "selected_restart": 3,
+      "completed_restarts": 5,
+      "max_restarts": 5,
+      "success_threshold": 0.01,
+      "best_iteration": 147,
+      "best_loss": 33.9897803530673,
+      "loss_breakdown": {
+        "4": 5.583208511945972,
+        "5": 4.508924328206198,
+        "6": 4.9947723460552425,
+        "7": 6.653437811331694
+      },
+      "per_bit_losses": {
+        "4": 5.583208511945972,
+        "5": 4.508924328206198,
+        "6": 4.9947723460552425,
+        "7": 6.653437811331694
+      },
+      "loss_qubits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "lightcone_semantics": "circuit_gate_restriction",
+      "loss_semantics": "lightcone_residual_channel",
+      "extra_restarts_run": 3
+    },
+    {
+      "block_index": 3,
+      "block_qubits": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "target_bit": 9,
+      "lightcone_qubits": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "ansatz_qubits": 6,
+      "theta_size": 90,
+      "params_key": "best_params_block_3",
+      "selected_restart": 4,
+      "completed_restarts": 5,
+      "max_restarts": 5,
+      "success_threshold": 0.01,
+      "best_iteration": 64,
+      "best_loss": 2.2932275546570886,
+      "loss_breakdown": {
+        "8": 2.5574775822291143,
+        "9": 2.1788446573107985,
+        "10": 0.6486020345179242,
+        "11": 0.21975722493605357
+      },
+      "per_bit_losses": {
+        "8": 2.5574775822291143,
+        "9": 2.1788446573107985,
+        "10": 0.6486020345179242,
+        "11": 0.21975722493605357
+      },
+      "loss_qubits": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "lightcone_semantics": "circuit_gate_restriction",
+      "loss_semantics": "lightcone_residual_channel",
+      "extra_restarts_run": 3
+    }
+  ],
+  "block_qubits": [
+    [
+      0,
+      1,
+      2,
+      3
+    ],
+    [
+      4,
+      5,
+      6,
+      7
+    ],
+    [
+      8,
+      9,
+      10,
+      11
+    ]
+  ],
+  "target_bits": [
+    1,
+    5,
+    9
+  ],
+  "radius": 2,
+  "lightcone_mode": "circuit",
+  "loss_mode": "lightcone",
+  "ansatz": "default_5layer_cz",
+  "loss_function": "heisenberg_pauli",
+  "loss_function_uses_superoperator": false,
+  "iterations": 150,
+  "lr": 0.1,
+  "fd_eps": 1e-05,
+  "max_restarts": 5,
+  "training_seed_start": 1042,
+  "params_file": "params.npz",
+  "metadata_file": "metadata.json",
+  "resumed_from": "task2_code\\data\\task2_training_n12_3blocks_heisenberg_heisenberg_pauli_20260530_152212"
+}

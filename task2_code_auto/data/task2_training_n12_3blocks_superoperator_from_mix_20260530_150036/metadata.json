@@ -1,0 +1,197 @@
+{
+  "schema_version": 2,
+  "artifact_type": "multi_block_training",
+  "timestamp": "20260528_113546",
+  "preset": "n12_3blocks",
+  "run_dir": "task2_code\\data\\task2_training_n12_3blocks_superoperator_from_mix_20260528_113546",
+  "n_qubits": 12,
+  "target_seed": 42,
+  "time_k": 5,
+  "time": 1.1790972450961723,
+  "h_arr": [
+    0.5479120971119267,
+    -0.12224312049589536,
+    0.7171958398227649,
+    0.3947360581187278,
+    -0.8116453042247009,
+    0.9512447032735118,
+    0.5222794039807059,
+    0.5721286105539076,
+    -0.7437727346489083,
+    -0.09922812420886573,
+    -0.25840395153483753,
+    0.8535299776972036
+  ],
+  "blocks": [
+    {
+      "block_index": 1,
+      "block_qubits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "target_bit": 1,
+      "lightcone_qubits": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "ansatz_qubits": 6,
+      "theta_size": 90,
+      "params_key": "best_params_block_1",
+      "selected_restart": 1,
+      "completed_restarts": 1,
+      "max_restarts": 5,
+      "success_threshold": 0.01,
+      "best_iteration": 150,
+      "best_loss": 0.0037361077462615545,
+      "per_bit_losses": {
+        "0": 0.0011296663364203556,
+        "1": 0.001103763186527503,
+        "2": 0.0012668973000797214,
+        "3": 0.000235780923233974
+      },
+      "loss_qubits": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "lightcone_semantics": "circuit_gate_restriction",
+      "loss_semantics": "lightcone_residual_channel"
+    },
+    {
+      "block_index": 2,
+      "block_qubits": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "target_bit": 5,
+      "lightcone_qubits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "ansatz_qubits": 8,
+      "theta_size": 120,
+      "params_key": "best_params_block_2",
+      "selected_restart": 1,
+      "completed_restarts": 1,
+      "max_restarts": 5,
+      "success_threshold": 0.01,
+      "best_iteration": 145,
+      "best_loss": 0.0001811818773243355,
+      "per_bit_losses": {
+        "4": 2.2579962813370208e-05,
+        "5": 2.1766158534694332e-05,
+        "6": 6.085019151167741e-05,
+        "7": 7.598556446459355e-05
+      },
+      "loss_qubits": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "lightcone_semantics": "circuit_gate_restriction",
+      "loss_semantics": "lightcone_residual_channel"
+    },
+    {
+      "block_index": 3,
+      "block_qubits": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "target_bit": 9,
+      "lightcone_qubits": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "ansatz_qubits": 6,
+      "theta_size": 90,
+      "params_key": "best_params_block_3",
+      "selected_restart": 5,
+      "completed_restarts": 5,
+      "max_restarts": 5,
+      "success_threshold": 0.01,
+      "best_iteration": 145,
+      "best_loss": 0.01220900311923432,
+      "per_bit_losses": {
+        "8": 0.007424366548895628,
+        "9": 0.002486654299587857,
+        "10": 0.0012461213091853173,
+        "11": 0.0010518609615655186
+      },
+      "loss_qubits": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "lightcone_semantics": "circuit_gate_restriction",
+      "loss_semantics": "lightcone_residual_channel"
+    }
+  ],
+  "block_qubits": [
+    [
+      0,
+      1,
+      2,
+      3
+    ],
+    [
+      4,
+      5,
+      6,
+      7
+    ],
+    [
+      8,
+      9,
+      10,
+      11
+    ]
+  ],
+  "target_bits": [
+    1,
+    5,
+    9
+  ],
+  "radius": 2,
+  "lightcone_mode": "circuit",
+  "loss_mode": "lightcone",
+  "ansatz": "default_5layer_cz",
+  "superoperator": "superoperator_from_mix",
+  "iterations": 150,
+  "lr": 0.1,
+  "fd_eps": 1e-05,
+  "max_restarts": 5,
+  "training_seed_start": 1042,
+  "params_file": "params.npz",
+  "metadata_file": "metadata.json"
+}

@@ -1,0 +1,89 @@
+{
+  "schema_version": 2,
+  "artifact_type": "multi_block_training",
+  "timestamp": "20260530_144132",
+  "preset": "n4_single_block",
+  "run_dir": "task2_code\\data\\task2_training_n4_single_block_edge_quantum_channel_superoperator_from_mix_20260530_144132",
+  "n_qubits": 4,
+  "target_seed": 42,
+  "time_k": 5,
+  "time": 1.1790972450961723,
+  "h_arr": [
+    0.5479120971119267,
+    -0.12224312049589536,
+    0.7171958398227649,
+    0.3947360581187278
+  ],
+  "blocks": [
+    {
+      "block_index": 1,
+      "block_qubits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "target_bit": 1,
+      "lightcone_qubits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "ansatz_qubits": 4,
+      "theta_size": 60,
+      "params_key": "best_params_block_1",
+      "selected_restart": 1,
+      "completed_restarts": 1,
+      "max_restarts": 1,
+      "success_threshold": 0.01,
+      "best_iteration": 149,
+      "best_loss": 0.0013288050103034354,
+      "loss_breakdown": {
+        "0": 0.0002049684983413818,
+        "1": 0.0004984624014002158,
+        "2": 0.0005066882463474516,
+        "3": 0.00011868586421438605
+      },
+      "per_bit_losses": {
+        "0": 0.0002049684983413818,
+        "1": 0.0004984624014002158,
+        "2": 0.0005066882463474516,
+        "3": 0.00011868586421438605
+      },
+      "loss_qubits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "lightcone_semantics": "circuit_gate_restriction",
+      "loss_semantics": "lightcone_residual_channel"
+    }
+  ],
+  "block_qubits": [
+    [
+      0,
+      1,
+      2,
+      3
+    ]
+  ],
+  "target_bits": [
+    1
+  ],
+  "radius": 0,
+  "lightcone_mode": "circuit",
+  "loss_mode": "lightcone",
+  "ansatz": "default_5layer_cz",
+  "loss_function": "edge_quantum_channel",
+  "loss_function_uses_superoperator": true,
+  "iterations": 150,
+  "lr": 0.1,
+  "fd_eps": 1e-05,
+  "max_restarts": 1,
+  "training_seed_start": 1042,
+  "params_file": "params.npz",
+  "metadata_file": "metadata.json",
+  "superoperator": "superoperator_from_mix"
+}

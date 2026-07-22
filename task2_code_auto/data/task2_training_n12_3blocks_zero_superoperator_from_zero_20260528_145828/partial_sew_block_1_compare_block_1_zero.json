@@ -1,0 +1,80 @@
+{
+  "run_dir": "task2_code\\data\\task2_training_n12_3blocks_zero_superoperator_from_zero_20260528_145828",
+  "params": "task2_code\\data\\task2_training_n12_3blocks_zero_superoperator_from_zero_20260528_145828\\params.npz",
+  "metadata": "task2_code\\data\\task2_training_n12_3blocks_zero_superoperator_from_zero_20260528_145828\\metadata.json",
+  "trained_superoperator": "superoperator_from_zero",
+  "input_state": "zero",
+  "partial_sewing_blocks": [
+    1
+  ],
+  "block_qubits_compared": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "lightcone_qubits": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "dagger_convention": "inverse",
+  "ansatz": "default_5layer_cz",
+  "target": {
+    "X": [
+      -0.8414870043011982,
+      0.3054051843812487,
+      -0.06267524078297006,
+      0.009849380582618326
+    ],
+    "Y": [
+      0.05785107478323096,
+      0.321030221682185,
+      0.06159344228947401,
+      -0.47976696463578455
+    ],
+    "Z": [
+      0.31511824621100276,
+      -0.21088929041440757,
+      0.5167615041943797,
+      -0.11704194314553551
+    ]
+  },
+  "sewing": {
+    "X": [
+      0.05647983835650543,
+      0.03742520790515397,
+      -0.11268406741129594,
+      0.02233709564372681
+    ],
+    "Y": [
+      0.06949715710948229,
+      0.09741857814543851,
+      0.041645636998035765,
+      0.08829703026272859
+    ],
+    "Z": [
+      -0.4234570275309751,
+      -0.37723432706889676,
+      0.48017985308588584,
+      0.08841911560145804
+    ]
+  },
+  "summary": {
+    "X": {
+      "max_diff": 0.8979668426577035,
+      "mean_diff": 0.30711084020580814
+    },
+    "Y": {
+      "max_diff": 0.5680639948985131,
+      "mean_diff": 0.20581738151323728
+    },
+    "Z": {
+      "max_diff": 0.7385752737419778,
+      "mean_diff": 0.28674075506298863
+    }
+  }
+}

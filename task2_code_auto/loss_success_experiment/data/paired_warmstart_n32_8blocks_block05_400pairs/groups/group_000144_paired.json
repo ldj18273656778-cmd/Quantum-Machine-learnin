@@ -1,0 +1,46 @@
+{
+  "trials": [
+    {
+      "pair_index": 144,
+      "seed": 1185,
+      "arrays_prefix": "000144",
+      "success_threshold": 0.01,
+      "heisenberg_only": {
+        "initial_loss": 46.68392262486445,
+        "best_loss": 22.01148714212273,
+        "best_iteration": 136,
+        "final_loss": 22.06832193289619,
+        "failed": false,
+        "failure_reason": "",
+        "success": false,
+        "history_length": 151
+      },
+      "warmstart": {
+        "mixed_initial_loss": 12.600460712558473,
+        "mixed_best_loss": 0.0004586955886397468,
+        "mixed_best_iteration": 142,
+        "mixed_final_loss": 0.0013841901626096239,
+        "mixed_failed": false,
+        "mixed_failure_reason": "",
+        "mixed_best_params_mixed_loss": 0.0004586955886397468,
+        "mixed_best_params_heisenberg_loss": 0.44330917469654463,
+        "heisenberg_initial_loss": 0.44330917469654463,
+        "heisenberg_best_loss": 0.001283208086089409,
+        "heisenberg_best_iteration": 92,
+        "heisenberg_final_loss": 0.0917685403176344,
+        "heisenberg_failed": false,
+        "heisenberg_failure_reason": "",
+        "success": true,
+        "mixed_history_length": 151,
+        "heisenberg_history_length": 151
+      }
+    }
+  ],
+  "total_count": 1,
+  "heisenberg_success_count": 0,
+  "heisenberg_success_rate": 0.0,
+  "warmstart_success_count": 1,
+  "warmstart_success_rate": 1.0,
+  "group_index": 144,
+  "arrays_file": "group_000144_paired_params.npz"
+}

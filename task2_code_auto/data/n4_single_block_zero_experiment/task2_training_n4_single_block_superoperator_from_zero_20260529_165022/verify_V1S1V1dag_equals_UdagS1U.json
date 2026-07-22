@@ -1,0 +1,34 @@
+{
+  "run_dir": "task2_code\\data\\n4_single_block_zero_experiment\\task2_training_n4_single_block_superoperator_from_zero_20260529_165022",
+  "params": "task2_code\\data\\n4_single_block_zero_experiment\\task2_training_n4_single_block_superoperator_from_zero_20260529_165022\\params.npz",
+  "metadata": "task2_code\\data\\n4_single_block_zero_experiment\\task2_training_n4_single_block_superoperator_from_zero_20260529_165022\\metadata.json",
+  "n_qubits": 4,
+  "block_qubits": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "lightcone_qubits": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "definition": {
+    "V1": "U_trial(theta)^dagger on system qubits",
+    "S1": "full system-ancilla SWAP for qubits 0..3",
+    "lhs": "(V1?I) S1 (V1??I)",
+    "rhs": "(U_target??I) S1 (U_target?I)"
+  },
+  "norms": {
+    "frobenius_lhs_minus_rhs": 21.78169405197176,
+    "relative_frobenius": 1.3613558782482342,
+    "operator_2_norm": 1.9997640673682395,
+    "max_abs_entry": 1.2029678586848458
+  },
+  "system_residual_U_target_times_V1": {
+    "frobenius_to_identity": 4.925942173135502,
+    "relative_frobenius_to_identity": 1.2314855432838756
+  }
+}

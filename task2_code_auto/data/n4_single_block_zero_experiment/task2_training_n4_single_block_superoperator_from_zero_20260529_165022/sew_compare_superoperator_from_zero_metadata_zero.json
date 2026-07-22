@@ -1,0 +1,64 @@
+{
+  "run_dir": "task2_code\\data\\n4_single_block_zero_experiment\\task2_training_n4_single_block_superoperator_from_zero_20260529_165022",
+  "params": "task2_code\\data\\n4_single_block_zero_experiment\\task2_training_n4_single_block_superoperator_from_zero_20260529_165022\\params.npz",
+  "metadata": "task2_code\\data\\n4_single_block_zero_experiment\\task2_training_n4_single_block_superoperator_from_zero_20260529_165022\\metadata.json",
+  "input_state": "zero",
+  "order": "odd-even",
+  "dagger_convention": "trained",
+  "ansatz": "default_5layer_cz",
+  "n_qubits": 4,
+  "target": {
+    "X": [
+      0.2862430702479425,
+      0.3310209555863059,
+      -0.7597429811655492,
+      0.27821728990799827
+    ],
+    "Y": [
+      -0.08273301224663093,
+      -0.22217663577542468,
+      0.19498441455735516,
+      0.01714466010834239
+    ],
+    "Z": [
+      0.7444093136774874,
+      0.6164690008321243,
+      0.15923530553580745,
+      0.8615562789507366
+    ]
+  },
+  "sewing": {
+    "X": [
+      0.38634047952736905,
+      0.48075122572373946,
+      -0.7074308648313011,
+      -0.09725612663896191
+    ],
+    "Y": [
+      -0.06282141909601607,
+      -0.021782758254682302,
+      -0.09326425763564,
+      -0.04545322064849608
+    ],
+    "Z": [
+      0.8184637192203222,
+      0.6489370094464353,
+      0.24547693623602473,
+      0.852808144096831
+    ]
+  },
+  "summary": {
+    "X": {
+      "max_diff": 0.3754734165469602,
+      "mean_diff": 0.1694033030745171
+    },
+    "Y": {
+      "max_diff": 0.28824867219299516,
+      "mean_diff": 0.14278800590529772
+    },
+    "Z": {
+      "max_diff": 0.08624163070021729,
+      "mean_diff": 0.05037804492781717
+    }
+  }
+}

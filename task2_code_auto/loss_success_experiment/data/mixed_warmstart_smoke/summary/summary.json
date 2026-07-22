@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "artifact_type": "mixed_warmstart_summary",
+  "experiment_root": "task2_code\\loss_success_experiment\\data\\mixed_warmstart_smoke",
+  "preset": "n4_single_block",
+  "block_index": 1,
+  "block_qubits": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "target_bit": 1,
+  "lightcone_qubits": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "stage1": {
+    "name": "mixed_edge",
+    "loss_function": "edge_quantum_channel",
+    "superoperator": "superoperator_from_mix",
+    "iterations": 1,
+    "lr": 0.1
+  },
+  "stage2": {
+    "name": "heisenberg_warmstart",
+    "loss_function": "heisenberg_pauli",
+    "superoperator": null,
+    "iterations": 1,
+    "lr": 0.1,
+    "success_threshold": 0.01
+  },
+  "row": {
+    "total_count": 1,
+    "success_count": 0,
+    "success_rate": 0.0,
+    "mixed_failed_count": 0,
+    "heisenberg_failed_count": 0,
+    "success_threshold": 0.01,
+    "mixed_best_loss_min": 10.752145829368803,
+    "mixed_best_loss_median": 10.752145829368803,
+    "mixed_best_loss_mean": 10.752145829368803,
+    "mixed_best_loss_max": 10.752145829368803,
+    "mixed_best_params_mixed_edge_loss_min": 10.752145829368803,
+    "mixed_best_params_mixed_edge_loss_median": 10.752145829368803,
+    "mixed_best_params_mixed_edge_loss_mean": 10.752145829368803,
+    "mixed_best_params_mixed_edge_loss_max": 10.752145829368803,
+    "mixed_best_params_heisenberg_loss_min": 44.82835974156242,
+    "mixed_best_params_heisenberg_loss_median": 44.82835974156242,
+    "mixed_best_params_heisenberg_loss_mean": 44.82835974156242,
+    "mixed_best_params_heisenberg_loss_max": 44.82835974156242,
+    "heisenberg_best_loss_min": 43.80706098815881,
+    "heisenberg_best_loss_median": 43.80706098815881,
+    "heisenberg_best_loss_mean": 43.80706098815881,
+    "heisenberg_best_loss_max": 43.80706098815881
+  }
+}
